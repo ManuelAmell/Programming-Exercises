@@ -1,2 +1,35 @@
-,gcontraseñas.cpp,string.cpp
+gcontraseñas.cpp,string.cpp
 output/string.exe
+# Archivos binarios / ejecutables
+*.exe
+*.out
+*.app
+*.dll
+*.so
+*.dylib
+
+# Carpetas de compilación
+build/
+bin/
+output/
+
+# Archivos de configuración local o IDEs
+.vscode/
+*.user
+*.suo
+*.log
+
+# Archivos temporales
+*.tmp
+*.temp
+*.obj
+*.o
+
+# Archivos generados por compiladores
+*.ilk
+*.pdb
+*.idb
+
+# Archivos de sistema de Windows
+Thumbs.db
+.DS_Store
