@@ -9,7 +9,7 @@ int main() {
 
     for (char c : numero) {
         int ascii_val = c;          // valor ASCII del caracter
-        int digito = c - '0';       // conversión a número
+        int digito = c - '0';      // conversión a número
 
         cout << "   " << c << "     |  " << ascii_val << "   |      " << digito << endl;
     }
