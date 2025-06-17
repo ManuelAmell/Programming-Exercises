@@ -1,0 +1,63 @@
+#include <iostream>
+#include <windows.h>
+using namespace std;
+int main(){
+
+    int n;
+    cout << "ingrese el volumen del arreglo :";
+    cin >> n;
+    int arr[n];
+
+    for (int i=0;i < n;i ++){
+        cout << "ingrese el elemento # "<<i+1<<" : "<<endl;
+        cin >>arr[i];
+    }
+
+    system("cls");
+    
+    cout << "arreglo original :"<<endl;
+
+    if (n==1){
+
+        cout << " hay un solo elemento en el arreglo y es :"<<arr[0]<<endl;
+    }
+    
+    else{
+
+    
+    for (int i=0;i < n;i++){
+        cout << arr[i] <<" ";
+        Sleep(350);
+    }
+    
+    cout << endl;
+    
+    for ( int i=0;i < n-1 ;i++ )
+    {
+        bool orden=false;
+        
+        for ( int x=0;x < n-i-1;x++ )
+        {
+            if (arr[x] < arr[x+1])
+            {   //swap(arr[x],arr[x+1]);//no valido en clase 
+                int aux= arr[x];
+                arr[x]= arr[x+1];
+                arr[x+1]= aux;
+                orden=true;
+            }
+        }
+         if (!orden){
+                break;
+            }
+    }
+
+    cout << "arreglo ordenado de mayor a menor : "<<endl;
+    for (int i=0; i < n ;i++)
+    {
+        cout << arr[i]<<" ";
+        Sleep(400);
+    }
+}
+
+    return 0;
+}
