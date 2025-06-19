@@ -1,3 +1,4 @@
+//algoritmo por bubble short
 #include <iostream>
 #include <windows.h>
 using namespace std;
@@ -6,7 +7,7 @@ int main(){
     int n;
     cout << "ingrese el volumen del arreglo :";
     cin >> n;
-    int arr[n];
+    int arr[n];//sizeof(arr) / sizeof(arr[0])// aqui no funciona sizeof por que es arreglo dinamico
 
     for (int i=0;i < n;i ++){
         cout << "ingrese el elemento # "<<i+1<<" : "<<endl;
@@ -19,7 +20,7 @@ int main(){
 
     if (n==1){
 
-        cout << " hay un solo elemento en el arreglo y es :"<<arr[0]<<endl;
+        cout << "arreglo de un elemento  :"<<arr[0]<<endl;
     }
     
     else{
@@ -38,8 +39,8 @@ int main(){
         
         for ( int x=0;x < n-i-1;x++ )
         {
-            if (arr[x] < arr[x+1])
-            {   //swap(arr[x],arr[x+1]);//no valido en clase 
+            if (arr[x] < arr[x+1]) // el signo determina el orden si es mayor o menor
+            {   //swap(arr[x],arr[x+1]);//no valido en clase y mas facil
                 int aux= arr[x];
                 arr[x]= arr[x+1];
                 arr[x+1]= aux;
