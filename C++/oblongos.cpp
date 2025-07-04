@@ -6,8 +6,10 @@ cout << "ingrese N :";
 cin >> n;
 int arr[n],arro[n];
 for (int i=0;i < n; i++){
+    do{
     cout << "ingrese el elemento #"<<i+1<<" :";
     cin >> arr[i];
+    }while (arr[i]<0);
     for (int x=0;x < arr[i];x++)
     {
 
@@ -32,4 +34,4 @@ for (int i=0;i < c;i++)
     cout <<arro[i]<<" ";
 }
     return 0;
-}
+}//17,19
