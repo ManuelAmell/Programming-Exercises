@@ -17,6 +17,7 @@ int main() {
             }
         }
 
+        
         if(!swap_flag)     // Si no hubo cambios, ya está ordenado
             break;
     }
