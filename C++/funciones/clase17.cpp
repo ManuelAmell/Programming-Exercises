@@ -73,6 +73,7 @@ void OrdenarAscendente(int arreglo[],int &n){
     for (int i=0;i < n;i++){
         cout <<"["<<arreglo[i]<<"]  ";
     }
+    cout << endl;
 }
 
 
@@ -93,19 +94,18 @@ case 2:ImprimirArreglo(arreglo,n);break;
 
 case 3:
 ImprimirArregloAlrevez(arreglo,n);break;
+
 case 4:
 int encontrar;
 cout << "Numero a buscar :";
 cin>> encontrar;
-BuscarElemento(arreglo,n,encontrar);
+BuscarElemento(arreglo,n,encontrar);break;
 break;
-case 5:OrdenarAscendente(arreglo,n);
+
+case 5:OrdenarAscendente(arreglo,n);break;
 break;
 case 6:
 break;
-case 7:
-break;
-
 }
 }while(opc !=7);
 
