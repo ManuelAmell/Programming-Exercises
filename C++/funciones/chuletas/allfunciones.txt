@@ -1,0 +1,1719 @@
+Funciones en C++: Guía Completa
+1. Funciones Básicas cpp
+
+// Declaración y definición básica
+int sumar(int a, int b) {
+    return a + b;
+}
+
+// Prototipo (declaración separada)
+int restar(int, int);
+
+int restar(int a, int b) {
+    return a - b;
+}
+2. Parámetros por Valor, Referencia y Puntero
+cpp// Por valor (copia)
+void porValor(int x) {
+    x = 100; // No afecta al original
+}
+
+// Por referencia
+void porReferencia(int& x) {
+    x = 100; // Modifica el original
+}
+
+// Por puntero
+void porPuntero(int* x) {
+    *x = 100; // Modifica el original
+}
+
+// Referencias const
+void porReferenciaConst(const int& x) {
+    // x = 100; // ERROR: no se puede modificar
+    std::cout << x;
+}
+3. Valores por Defecto
+cpp// Los parámetros con valor por defecto deben estar al final
+void imprimir(std::string msg, int veces = 1, char fin = '\n') {
+    for(int i = 0; i < veces; i++) {
+        std::cout << msg << fin;
+    }
+}
+
+// Uso
+imprimir("Hola");           // veces=1, fin='\n'
+imprimir("Hola", 3);        // fin='\n'
+imprimir("Hola", 3, ' ');   // todos especificados
+4. Sobrecarga de Funciones
+cppint multiplicar(int a, int b) {
+    return a * b;
+}
+
+double multiplicar(double a, double b) {
+    return a * b;
+}
+
+int multiplicar(int a, int b, int c) {
+    return a * b * c;
+}
+
+// CUIDADO: Esto puede causar ambigüedad
+void funcion(int x) { }
+void funcion(double x) { }
+
+// funcion(5.0f); // ERROR: ambiguo entre int y double
+5. Funciones Inline
+cpp// Sugiere al compilador expandir la función en línea
+inline int cuadrado(int x) {
+    return x * x;
+}
+
+// Funciones definidas dentro de clases son inline por defecto
+class Calculadora {
+public:
+    int sumar(int a, int b) { return a + b; } // inline implícito
+};
+6. Funciones Constexpr (Evaluación en Tiempo de Compilación)
+cppconstexpr int factorial(int n) {
+    return (n <= 1) ? 1 : n * factorial(n - 1);
+}
+
+int main() {
+    constexpr int val = factorial(5); // Calculado en compilación
+    int arr[factorial(4)]; // Válido, tamaño conocido en compilación
+}
+7. Funciones Lambda
+cpp// Sintaxis básica
+auto suma = [](int a, int b) { return a + b; };
+
+// Captura por valor
+int x = 10;
+auto lambda1 = [x]() { return x * 2; };
+
+// Captura por referencia
+auto lambda2 = [&x]() { x = 20; };
+
+// Captura todo por valor
+auto lambda3 = [=]() { return x; };
+
+// Captura todo por referencia
+auto lambda4 = [&]() { x++; };
+
+// Captura mixta
+int y = 5;
+auto lambda5 = [x, &y]() { y = x; };
+
+// Lambda mutable (puede modificar capturas por valor)
+auto lambda6 = [x]() mutable { x++; return x; };
+8. Punteros a Funciones
+cppint sumar(int a, int b) { return a + b; }
+int restar(int a, int b) { return a - b; }
+
+int main() {
+    // Declaración de puntero a función
+    int (*operacion)(int, int);
+    
+    operacion = sumar;
+    std::cout << operacion(5, 3); // 8
+    
+    operacion = restar;
+    std::cout << operacion(5, 3); // 2
+    
+    // Array de punteros a funciones
+    int (*ops[])(int, int) = {sumar, restar};
+    std::cout << ops[0](10, 5); // 15
+}
+9. std::function (Más Flexible)
+cpp#include <functional>
+
+int sumar(int a, int b) { return a + b; }
+
+int main() {
+    std::function<int(int, int)> op;
+    
+    op = sumar;
+    std::cout << op(3, 4); // 7
+    
+    op = [](int a, int b) { return a * b; };
+    std::cout << op(3, 4); // 12
+}
+10. Funciones Recursivas
+cpp// Recursión simple
+int factorial(int n) {
+    if (n <= 1) return 1;
+    return n * factorial(n - 1);
+}
+
+// Recursión de cola (tail recursion)
+int factorialTail(int n, int acum = 1) {
+    if (n <= 1) return acum;
+    return factorialTail(n - 1, n * acum);
+}
+11. Funciones con Número Variable de Argumentos
+Método Clásico (C-style)
+cpp#include <cstdarg>
+
+double promedio(int cantidad, ...) {
+    va_list args;
+    va_start(args, cantidad);
+    
+    double suma = 0;
+    for(int i = 0; i < cantidad; i++) {
+        suma += va_arg(args, int);
+    }
+    
+    va_end(args);
+    return suma / cantidad;
+}
+
+// Uso: promedio(3, 10, 20, 30);
+Templates Variádicos (Moderno)
+cpp// Caso base
+void imprimir() {
+    std::cout << std::endl;
+}
+
+// Caso recursivo
+template<typename T, typename... Args>
+void imprimir(T primero, Args... resto) {
+    std::cout << primero << " ";
+    imprimir(resto...);
+}
+
+// Uso: imprimir(1, "hola", 3.14, 'x');
+12. Funciones Template
+cpptemplate<typename T>
+T maximo(T a, T b) {
+    return (a > b) ? a : b;
+}
+
+// Especialización explícita
+template<>
+const char* maximo<const char*>(const char* a, const char* b) {
+    return (strcmp(a, b) > 0) ? a : b;
+}
+
+// Template con múltiples tipos
+template<typename T, typename U>
+auto multiplicar(T a, U b) -> decltype(a * b) {
+    return a * b;
+}
+13. Funciones con Atributos [[noreturn]]
+cpp[[noreturn]] void terminar() {
+    std::exit(1);
+    // No retorna nunca
+}
+
+[[noreturn]] void lanzarError() {
+    throw std::runtime_error("Error fatal");
+}
+14. Funciones Static
+cpp// En una clase: pertenece a la clase, no a instancias
+class Contador {
+    static int cuenta;
+public:
+    static void incrementar() {
+        cuenta++;
+    }
+    static int obtener() { return cuenta; }
+};
+int Contador::cuenta = 0;
+
+// En un archivo: linkage interno (solo visible en ese archivo)
+static void funcionPrivada() {
+    // Solo visible en este .cpp
+}
+15. Funciones Friend
+cppclass Caja {
+private:
+    int ancho;
+    
+    friend void mostrarAncho(Caja& c);
+    friend class Inspector;
+};
+
+void mostrarAncho(Caja& c) {
+    std::cout << c.ancho; // Puede acceder a miembros privados
+}
+16. COSAS RARAS Y EXCEPCIONES
+A) Función que retorna función
+cppauto crearMultiplicador(int factor) {
+    return [factor](int x) { return x * factor; };
+}
+
+auto multiplicarPor5 = crearMultiplicador(5);
+std::cout << multiplicarPor5(10); // 50
+B) Función con especificación de excepción (deprecated)
+cpp// C++98/03 (OBSOLETO, no usar)
+void funcion() throw(std::exception) {
+    // Solo puede lanzar std::exception
+}
+
+// C++11+ (Correcto)
+void noLanza() noexcept {
+    // Garantiza que no lanza excepciones
+}
+
+void puedeNoLanzar() noexcept(true) { }
+void puedeNoLanzar2() noexcept(sizeof(int) == 4) { }
+C) Trailing return type
+cpp// En lugar de: int suma(int a, int b)
+auto suma(int a, int b) -> int {
+    return a + b;
+}
+
+// Útil con templates complejos
+template<typename T, typename U>
+auto multiplicar(T a, U b) -> decltype(a * b) {
+    return a * b;
+}
+D) Funciones con [[nodiscard]]
+cpp[[nodiscard]] int calcularImportante() {
+    return 42;
+}
+
+int main() {
+    calcularImportante(); // WARNING: resultado ignorado
+    int x = calcularImportante(); // OK
+}
+E) Immediate functions (C++20)
+cppconsteval int cuadrado(int n) {
+    return n * n;
+}
+
+int main() {
+    constexpr int x = cuadrado(5); // OK
+    int y = 5;
+    // int z = cuadrado(y); // ERROR: debe evaluarse en compilación
+}
+F) Overload con const
+cppclass Dato {
+public:
+    int& obtener() { 
+        std::cout << "No const\n";
+        return valor; 
+    }
+    
+    const int& obtener() const { 
+        std::cout << "Const\n";
+        return valor; 
+    }
+private:
+    int valor = 42;
+};
+
+Dato d;
+const Dato cd;
+d.obtener();   // Llama versión no-const
+cd.obtener();  // Llama versión const
+G) Deleted functions
+cppclass NoCopiable {
+public:
+    NoCopiable() = default;
+    NoCopiable(const NoCopiable&) = delete;
+    NoCopiable& operator=(const NoCopiable&) = delete;
+};
+
+// Prevenir conversiones implícitas
+void procesar(int x) { }
+void procesar(double) = delete; // Previene conversión double->int
+H) Función con referencias rvalue (move semantics)
+cppvoid procesar(std::string& s) {
+    std::cout << "lvalue\n";
+}
+
+void procesar(std::string&& s) {
+    std::cout << "rvalue\n";
+}
+
+std::string str = "hola";
+procesar(str);              // lvalue
+procesar(std::move(str));   // rvalue
+procesar("temporal");       // rvalue
+I) SFINAE (Substitution Failure Is Not An Error)
+cpp#include <type_traits>
+
+// Solo funciona si T es entero
+template<typename T>
+typename std::enable_if<std::is_integral<T>::value, T>::type
+duplicar(T x) {
+    return x * 2;
+}
+
+duplicar(5);     // OK
+// duplicar(5.5); // ERROR: no existe esta versión
+J) Problema del Dangling Reference
+cpp// PELIGRO: retorna referencia a variable local
+int& funcionPeligrosa() {
+    int x = 42;
+    return x; // ERROR: x se destruye al salir
+}
+
+// Correcto
+int funcionSegura() {
+    int x = 42;
+    return x; // Copia el valor
+}
+17. Funciones Virtuales y Polimorfismo
+cppclass Base {
+public:
+    virtual void mostrar() {
+        std::cout << "Base\n";
+    }
+    
+    virtual ~Base() = default; // Destructor virtual importante
+};
+
+class Derivada : public Base {
+public:
+    void mostrar() override { // override es opcional pero recomendado
+        std::cout << "Derivada\n";
+    }
+};
+
+// Función virtual pura (clase abstracta)
+class Abstracta {
+public:
+    virtual void metodo() = 0; // Debe implementarse en derivadas
+};
+18. Orden de Evaluación de Argumentos (TRAMPA)
+cppint i = 0;
+// ¡El orden de evaluación NO está especificado antes de C++17!
+funcion(i++, i++, i++); // Comportamiento indefinido pre-C++17
+
+// C++17+: los argumentos se evalúan en orden indeterminado
+// pero cada uno completo antes del siguiente
+Esta guía cubre desde lo básico hasta características avanzadas y casos raros. ¿Hay algún tema específico que quieras profundizar?ReintentarClaude aún no tiene la capacidad de ejecutar el código que genera.Msin poo y añade una descripccion de todo lo que pasaFunciones en C++ - Guía Completa (Sin POO)
+1. Funciones Básicas
+cpp// DECLARACIÓN (prototipo): le dice al compilador que existe la función
+int sumar(int a, int b);
+
+// DEFINICIÓN: código real de la función
+int sumar(int a, int b) {
+    return a + b;
+}
+
+int main() {
+    int resultado = sumar(5, 3); // LLAMADA: ejecuta la función
+    // QUÉ PASA:
+    // 1. Se copian los valores 5 y 3 a los parámetros a y b
+    // 2. Se ejecuta el código de sumar()
+    // 3. Se retorna 8
+    // 4. El valor 8 se asigna a resultado
+    // 5. Los parámetros a y b se destruyen
+}
+LO QUE SUCEDE EN MEMORIA:
+cppvoid ejemplo(int x) {
+    int y = 10;
+    // STACK (pila):
+    // |  y = 10  |  <- variable local
+    // |  x = ?   |  <- parámetro
+    // | retorno  |  <- dirección de retorno
+    // | main()   |  <- función llamadora
+}
+2. Paso por Valor, Referencia y Puntero
+A) Por Valor (copia)
+cppvoid porValor(int x) {
+    x = 100; // modifica LA COPIA, no el original
+    // STACK:
+    // | x = 100 | <- COPIA del valor original
+}
+
+int main() {
+    int num = 5;
+    porValor(num);
+    // num SIGUE siendo 5
+    // QUÉ PASÓ:
+    // 1. Se creó una COPIA de num llamada x
+    // 2. Se modificó x
+    // 3. x se destruyó al salir de porValor()
+    // 4. num nunca cambió
+}
+B) Por Referencia (alias)
+cppvoid porReferencia(int& x) {
+    x = 100; // modifica el ORIGINAL
+    // x es un ALIAS (otro nombre) para la variable original
+    // NO se crea copia, x apunta a la misma dirección de memoria
+}
+
+int main() {
+    int num = 5;
+    porReferencia(num);
+    // num AHORA es 100
+    // QUÉ PASÓ:
+    // 1. x es como un segundo nombre para num
+    // 2. Modificar x es modificar num directamente
+    // 3. Ambos comparten la MISMA ubicación de memoria
+}
+C) Por Puntero
+cppvoid porPuntero(int* x) {
+    *x = 100; // modifica el valor en la dirección apuntada
+    // x contiene la DIRECCIÓN de memoria
+    // *x accede al VALOR en esa dirección
+}
+
+int main() {
+    int num = 5;
+    porPuntero(&num); // &num = dirección de num
+    // num AHORA es 100
+    // QUÉ PASÓ:
+    // 1. Se pasó la dirección de num (ejemplo: 0x7fff1234)
+    // 2. x contiene 0x7fff1234
+    // 3. *x accede a lo que hay en 0x7fff1234 (que es num)
+    // 4. Se modifica ese valor
+}
+D) Referencias Const (optimización sin riesgo)
+cppvoid imprimirGrande(const std::string& texto) {
+    // texto es una referencia, NO se copia
+    // const previene modificaciones accidentales
+    std::cout << texto;
+    // texto = "otro"; // ERROR de compilación
+}
+
+int main() {
+    std::string largo = "texto muy largo de miles de caracteres...";
+    imprimirGrande(largo);
+    // QUÉ PASÓ:
+    // 1. NO se copió el string (ahorró memoria y tiempo)
+    // 2. texto es un alias para largo
+    // 3. const garantiza que no se modifica largo
+    // 4. EFICIENTE para objetos grandes
+}
+3. Valores por Defecto
+cppvoid imprimir(std::string msg, int veces = 1, char fin = '\n') {
+    for(int i = 0; i < veces; i++) {
+        std::cout << msg << fin;
+    }
+}
+
+int main() {
+    imprimir("Hola");           // veces=1, fin='\n'
+    imprimir("Hola", 3);        // fin='\n'
+    imprimir("Hola", 3, ' ');   // todos especificados
+    
+    // QUÉ PASA:
+    // Los valores por defecto se aplican en TIEMPO DE COMPILACIÓN
+    // El compilador "rellena" los argumentos faltantes
+    // Es como si escribieras: imprimir("Hola", 1, '\n')
+    
+    // REGLA: parámetros con defecto DEBEN estar AL FINAL
+    // void mal(int x = 1, int y); // ERROR
+    // void bien(int y, int x = 1); // OK
+}
+4. Sobrecarga de Funciones (Function Overloading)
+cppint sumar(int a, int b) {
+    return a + b;
+}
+
+double sumar(double a, double b) {
+    return a + b;
+}
+
+int sumar(int a, int b, int c) {
+    return a + b + c;
+}
+
+int main() {
+    sumar(5, 3);        // llama versión int (8)
+    sumar(5.5, 3.2);    // llama versión double (8.7)
+    sumar(1, 2, 3);     // llama versión 3 parámetros (6)
+    
+    // QUÉ PASA (NAME MANGLING):
+    // El compilador renombra internamente las funciones:
+    // sumar(int,int)         -> _Z5sumarII
+    // sumar(double,double)   -> _Z5sumarDD
+    // sumar(int,int,int)     -> _Z5sumarIII
+    // Así puede distinguirlas
+}
+
+// CASO AMBIGUO (ERROR):
+void funcion(int x) { }
+void funcion(double x) { }
+
+int main() {
+    funcion(5);      // OK: llama funcion(int)
+    funcion(5.0);    // OK: llama funcion(double)
+    funcion(5.0f);   // ERROR: ¿int o double? AMBIGUO
+    
+    // QUÉ PASA:
+    // float puede convertirse a int O a double
+    // El compilador no sabe cuál elegir
+    // Solución: funcion(static_cast<int>(5.0f))
+}
+5. Funciones Inline
+cppinline int cuadrado(int x) {
+    return x * x;
+}
+
+int main() {
+    int a = cuadrado(5);
+    
+    // QUÉ PASA:
+    // SIN inline:
+    //   1. Se hace CALL a cuadrado
+    //   2. Se pasa el parámetro por stack
+    //   3. Se ejecuta cuadrado
+    //   4. Se retorna por stack
+    //   5. OVERHEAD de llamada a función
+    
+    // CON inline (si el compilador acepta):
+    //   El código se EXPANDE directamente:
+    //   int a = 5 * 5;
+    //   NO hay llamada a función
+    //   MÁS RÁPIDO pero MÁS CÓDIGO
+    
+    // NOTA: "inline" es una SUGERENCIA, no una orden
+    // El compilador decide si realmente lo hace inline
+}
+
+// CUÁNDO USAR inline:
+// ✓ Funciones PEQUEÑAS llamadas MUCHAS veces
+// ✓ Funciones en loops críticos
+// ✗ Funciones grandes (aumenta tamaño del ejecutable)
+// ✗ Funciones recursivas (no pueden ser inline)
+6. Funciones Constexpr (Evaluación en Compilación)
+cppconstexpr int factorial(int n) {
+    return (n <= 1) ? 1 : n * factorial(n - 1);
+}
+
+int main() {
+    constexpr int val = factorial(5); // 120
+    int arr[factorial(4)];             // array de tamaño 24
+    
+    int x;
+    std::cin >> x;
+    int val2 = factorial(x); // se ejecuta en RUNTIME
+    
+    // QUÉ PASA:
+    // constexpr significa: "puede ejecutarse en compilación"
+    // 
+    // factorial(5):
+    //   - El compilador CALCULA 120 durante la compilación
+    //   - En el ejecutable ya está el valor 120
+    //   - CERO costo en runtime
+    //
+    // factorial(x):
+    //   - x no se conoce en compilación
+    //   - Se ejecuta en runtime normalmente
+    //   - constexpr funciona como función normal
+    
+    // VENTAJAS:
+    // - Sin overhead en runtime
+    // - Puede usarse para tamaños de arrays
+    // - Puede usarse en template parameters
+}
+
+// RESTRICCIONES:
+constexpr int valido(int x) {
+    return x * 2;  // OK: expresión simple
+}
+
+constexpr int invalido(int x) {
+    int arr[100];  // ERROR: no puede tener arrays en C++11
+    return x;      // OK en C++14+
+}
+7. Funciones Lambda
+cppint main() {
+    // LAMBDA BÁSICA
+    auto suma = [](int a, int b) { return a + b; };
+    int r = suma(3, 4); // 7
+    
+    // QUÉ ES UNA LAMBDA:
+    // Es una función ANÓNIMA (sin nombre)
+    // El compilador genera una clase (functor) automáticamente
+    // Como si escribieras:
+    struct Lambda_suma {
+        int operator()(int a, int b) const {
+            return a + b;
+        }
+    };
+    
+    // CAPTURA POR VALOR [x]
+    int x = 10;
+    auto lambda1 = [x]() { 
+        return x * 2; 
+        // x = 5; // ERROR: x es const por defecto
+    };
+    
+    // QUÉ PASA:
+    // Se COPIA el valor de x en el momento de crear lambda1
+    // La lambda tiene su PROPIA COPIA de x
+    // Si x cambia después, la lambda NO lo ve
+    x = 20;
+    std::cout << lambda1(); // imprime 20 (10*2), NO 40
+    
+    // CAPTURA POR REFERENCIA [&x]
+    int y = 10;
+    auto lambda2 = [&y]() { 
+        y = 20; // OK: puede modificar y
+        return y; 
+    };
+    lambda2();
+    std::cout << y; // imprime 20
+    
+    // QUÉ PASA:
+    // La lambda tiene una REFERENCIA a y
+    // Cualquier cambio afecta a la y original
+    // Si y se destruye, la lambda tiene referencia INVÁLIDA (PELIGRO)
+    
+    // CAPTURA TODO [=] y [&]
+    int a = 1, b = 2, c = 3;
+    auto l1 = [=]() { return a + b + c; };  // captura todo por valor
+    auto l2 = [&]() { a = b = c = 0; };     // captura todo por referencia
+    
+    // CAPTURA MIXTA
+    auto l3 = [a, &b]() { 
+        // a por valor, b por referencia
+        b = a; 
+    };
+    
+    // MUTABLE (permite modificar capturas por valor)
+    int z = 5;
+    auto l4 = [z]() mutable { 
+        z++; // OK con mutable
+        return z; 
+    };
+    std::cout << l4(); // 6
+    std::cout << z;    // sigue siendo 5 (la lambda modificó su copia)
+    
+    // QUÉ PASA CON MUTABLE:
+    // Normalmente las capturas por valor son const
+    // mutable permite modificar la COPIA dentro de la lambda
+    // NO modifica la variable original
+}
+8. Punteros a Funciones
+cppint sumar(int a, int b) { return a + b; }
+int restar(int a, int b) { return a - b; }
+int multiplicar(int a, int b) { return a * b; }
+
+int main() {
+    // DECLARACIÓN: int (*nombre)(int, int)
+    //              ↑    ↑         ↑
+    //            tipo puntero  parámetros
+    int (*operacion)(int, int);
+    
+    operacion = sumar; // operacion apunta a sumar
+    // También válido: operacion = &sumar;
+    
+    int r = operacion(5, 3); // llama a sumar(5, 3)
+    // También válido: int r = (*operacion)(5, 3);
+    
+    // QUÉ PASA:
+    // operacion contiene la DIRECCIÓN de memoria donde está sumar
+    // Llamar operacion(...) salta a esa dirección y ejecuta
+    
+    // MEMORIA:
+    // [código de sumar]     @ 0x1000
+    // [código de restar]    @ 0x1100
+    // [operacion]           contiene: 0x1000
+    
+    operacion = restar; // ahora apunta a restar
+    r = operacion(5, 3); // llama a restar(5, 3)
+    
+    // ARRAY DE PUNTEROS A FUNCIONES
+    int (*operaciones[])(int, int) = {sumar, restar, multiplicar};
+    
+    for(int i = 0; i < 3; i++) {
+        std::cout << operaciones[i](10, 5) << "\n";
+        // Salida: 15, 5, 50
+    }
+    
+    // QUÉ PASA:
+    // operaciones es un array de direcciones de funciones
+    // operaciones[0] apunta a sumar
+    // operaciones[1] apunta a restar
+    // operaciones[2] apunta a multiplicar
+    
+    // USO PRÁCTICO: callbacks, estrategias, tablas de dispatch
+}
+9. std::function (Wrapper Flexible)
+cpp#include <functional>
+
+int sumar(int a, int b) { return a + b; }
+
+int main() {
+    // std::function puede contener:
+    // - Punteros a función
+    // - Lambdas
+    // - Functors
+    
+    std::function<int(int, int)> op;
+    //            ↑   ↑
+    //         retorno parámetros
+    
+    op = sumar;
+    std::cout << op(3, 4); // 7
+    
+    op = [](int a, int b) { return a * b; };
+    std::cout << op(3, 4); // 12
+    
+    // QUÉ PASA:
+    // std::function es un WRAPPER genérico
+    // Puede almacenar CUALQUIER cosa que sea callable
+    // Internamente usa TYPE ERASURE
+    // Tiene un pequeño overhead comparado con puntero directo
+    
+    // VENTAJAS vs punteros a función:
+    // ✓ Puede almacenar lambdas con capturas
+    // ✓ Sintaxis más clara
+    // ✓ Puede almacenar functors
+    
+    // DESVENTAJAS:
+    // ✗ Ligeramente más lento
+    // ✗ Usa más memoria
+}
+10. Funciones Recursivas
+cppint factorial(int n) {
+    // CASO BASE: condición de parada
+    if (n <= 1) return 1;
+    
+    // CASO RECURSIVO
+    return n * factorial(n - 1);
+}
+
+int main() {
+    int r = factorial(5);
+    
+    // QUÉ PASA (STACK):
+    // factorial(5)
+    //   ↓ llama factorial(4)
+    //     ↓ llama factorial(3)
+    //       ↓ llama factorial(2)
+    //         ↓ llama factorial(1)
+    //         ↑ retorna 1
+    //       ↑ retorna 2*1 = 2
+    //     ↑ retorna 3*2 = 6
+    //   ↑ retorna 4*6 = 24
+    // ↑ retorna 5*24 = 120
+    
+    // MEMORIA (STACK):
+    // | factorial(1): n=1, ret=1       |
+    // | factorial(2): n=2, esperando 1 |
+    // | factorial(3): n=3, esperando 2 |
+    // | factorial(4): n=4, esperando 6 |
+    // | factorial(5): n=5, esperando 24|
+    // | main()                          |
+    
+    // PELIGRO: STACK OVERFLOW
+    // Cada llamada consume espacio en el stack
+    // Demasiadas llamadas -> SE ACABA EL STACK
+    // factorial(1000000) -> CRASH
+}
+
+// RECURSIÓN DE COLA (Tail Recursion)
+int factorialTail(int n, int acum = 1) {
+    if (n <= 1) return acum;
+    return factorialTail(n - 1, n * acum);
+    //     ↑ última operación es la llamada recursiva
+}
+
+// QUÉ PASA:
+// Algunos compiladores OPTIMIZAN esto a un LOOP
+// No se apilan llamadas, se REUTILIZA el stack frame
+// factorialTail(5, 1)
+//   -> factorialTail(4, 5)   (reemplaza el frame anterior)
+//   -> factorialTail(3, 20)  (reemplaza el frame anterior)
+//   -> factorialTail(2, 60)  (reemplaza el frame anterior)
+//   -> factorialTail(1, 120) (reemplaza el frame anterior)
+//   -> retorna 120
+// USO CONSTANTE de memoria
+11. Argumentos Variables
+A) Método C (va_list) - PELIGROSO
+cpp#include <cstdarg>
+
+double promedio(int cantidad, ...) {
+    // ... indica argumentos variables
+    
+    va_list args; // lista de argumentos
+    va_start(args, cantidad); // inicializa desde último parámetro conocido
+    
+    double suma = 0;
+    for(int i = 0; i < cantidad; i++) {
+        suma += va_arg(args, int); // extrae siguiente int
+        //       ↑         ↑
+        //     lista    tipo esperado
+    }
+    
+    va_end(args); // limpia
+    return suma / cantidad;
+}
+
+int main() {
+    double p = promedio(3, 10, 20, 30); // 20.0
+    
+    // QUÉ PASA:
+    // Los argumentos se pasan por STACK
+    // va_arg ASUME que el siguiente es del tipo indicado
+    // NO HAY verificación de tipos
+    // 
+    // STACK:
+    // | 30      |
+    // | 20      |
+    // | 10      |
+    // | 3       | <- cantidad
+    // | ...     |
+    
+    // PELIGROS:
+    promedio(2, 10, 20, 30); // UB: lee 30 sin saberlo
+    promedio(4, 10, 20, 30); // UB: lee basura después de 30
+    promedio(3, 10, 20, 5.5); // UB: lee 5.5 como int
+    
+    // NO HAY seguridad de tipos
+    // NO HAY verificación de cantidad
+    // Fácil causar UNDEFINED BEHAVIOR
+}
+B) Templates Variádicos (C++11+) - SEGURO
+cpp// CASO BASE (sin argumentos)
+void imprimir() {
+    std::cout << std::endl;
+}
+
+// CASO RECURSIVO
+template<typename T, typename... Args>
+//                    ↑ parameter pack
+void imprimir(T primero, Args... resto) {
+    std::cout << primero << " ";
+    imprimir(resto...); // expande el pack recursivamente
+}
+
+int main() {
+    imprimir(1, "hola", 3.14, 'x');
+    
+    // QUÉ PASA (expansión en compilación):
+    // imprimir(1, "hola", 3.14, 'x')
+    //   imprime 1, llama imprimir("hola", 3.14, 'x')
+    //     imprime "hola", llama imprimir(3.14, 'x')
+    //       imprime 3.14, llama imprimir('x')
+    //         imprime 'x', llama imprimir()
+    //           imprime endl
+    
+    // El compilador genera TODAS estas funciones:
+    // void imprimir(int, const char*, double, char)
+    // void imprimir(const char*, double, char)
+    // void imprimir(double, char)
+    // void imprimir(char)
+    // void imprimir()
+    
+    // VENTAJAS:
+    // ✓ Seguridad de tipos en COMPILACIÓN
+    // ✓ No hay overhead en runtime
+    // ✓ Flexible con cualquier tipo
+}
+
+// EJEMPLO: sumar cualquier cantidad de números
+template<typename T>
+T sumar(T valor) {
+    return valor; // caso base
+}
+
+template<typename T, typename... Args>
+T sumar(T primero, Args... resto) {
+    return primero + sumar(resto...);
+}
+
+// Uso:
+int s1 = sumar(1, 2, 3, 4, 5); // 15
+double s2 = sumar(1.5, 2.5, 3.5); // 7.5
+12. Templates de Funciones
+cpptemplate<typename T>
+T maximo(T a, T b) {
+    return (a > b) ? a : b;
+}
+
+int main() {
+    int x = maximo(5, 10);           // T = int
+    double y = maximo(5.5, 10.2);    // T = double
+    char z = maximo('a', 'z');       // T = char
+    
+    // QUÉ PASA (TEMPLATE INSTANTIATION):
+    // El compilador genera TRES funciones:
+    // int maximo<int>(int a, int b) { return (a > b) ? a : b; }
+    // double maximo<double>(double a, double b) { return (a > b) ? a : b; }
+    // char maximo<char>(char a, char b) { return (a > b) ? a : b; }
+    
+    // Esto sucede en TIEMPO DE COMPILACIÓN
+    // Cada tipo usado genera una nueva función
+    // Se llama TEMPLATE INSTANTIATION
+    
+    // Puedes especificar el tipo explícitamente:
+    auto w = maximo<float>(5, 10); // fuerza T = float
+}
+
+// ESPECIALIZACIÓN (override para un tipo específico)
+template<>
+const char* maximo<const char*>(const char* a, const char* b) {
+    return (strcmp(a, b) > 0) ? a : b;
+}
+
+// QUÉ PASA:
+// Para const char*, usa esta versión especializada
+// Para otros tipos, usa la versión genérica
+
+// MÚLTIPLES PARÁMETROS TEMPLATE
+template<typename T, typename U>
+auto multiplicar(T a, U b) -> decltype(a * b) {
+    //                         ↑ tipo de retorno deducido
+    return a * b;
+}
+
+int main() {
+    auto r1 = multiplicar(5, 3);      // int * int = int
+    auto r2 = multiplicar(5, 3.5);    // int * double = double
+    auto r3 = multiplicar(2.5f, 4);   // float * int = float
+    
+    // QUÉ PASA:
+    // decltype(a * b) pregunta al compilador:
+    // "¿Qué tipo resulta de multiplicar a y b?"
+    // El compilador deduce el tipo automáticamente
+}
+13. Especificadores de Funciones
+A) noexcept (no lanza excepciones)
+cppvoid segura() noexcept {
+    // Garantiza que NO lanzará excepciones
+    // Si lanza, el programa llama std::terminate()
+}
+
+void insegura() noexcept(false) {
+    throw std::runtime_error("error");
+}
+
+int main() {
+    // QUÉ PASA CON noexcept:
+    // - El compilador puede OPTIMIZAR mejor
+    // - No necesita generar código para desenrollar el stack
+    // - Funciones move constructor suelen ser noexcept
+    // - std::vector puede optimizar si move es noexcept
+    
+    // VENTAJAS:
+    // ✓ Mejor performance
+    // ✓ Permite optimizaciones
+    // ✓ Documenta que es segura
+}
+B) [[nodiscard]] (debe usar el retorno)
+cpp[[nodiscard]] int calcular() {
+    return 42;
+}
+
+int main() {
+    calcular(); // WARNING del compilador
+    int x = calcular(); // OK
+    
+    // QUÉ PASA:
+    // El compilador ADVIERTE si ignoras el valor de retorno
+    // Útil para funciones donde ignorar el retorno es error
+    // Ejemplo: funciones que retornan códigos de error
+}
+C) [[noreturn]] (nunca retorna)
+cpp[[noreturn]] void terminar() {
+    std::exit(1);
+    // Esta función NUNCA retorna al caller
+}
+
+[[noreturn]] void error() {
+    throw std::runtime_error("fatal");
+    // Tampoco retorna (lanza excepción)
+}
+
+int main() {
+    // QUÉ PASA:
+    // El compilador sabe que estas funciones no retornan
+    // Puede generar mejor código
+    // Elimina warnings de "control reaches end of non-void function"
+    
+    if(error_critico) {
+        terminar(); // compilador sabe que aquí termina
+        // No genera código después de esto
+    }
+}
+14. Cosas Raras y Trampas
+A) Retornar referencia local (PELIGRO MORTAL)
+cppint& funcionPeligrosa() {
+    int x = 42;
+    return x; // ERROR: x se destruye al salir
+}
+
+int main() {
+    int& ref = funcionPeligrosa();
+    std::cout << ref; // UNDEFINED BEHAVIOR
+    
+    // QUÉ PASA:
+    // 1. Se crea x en el stack de funcionPeligrosa()
+    // 2. Se retorna una referencia a x
+    // 3. x se DESTRUYE al salir de funcionPeligrosa()
+    // 4. ref ahora apunta a memoria INVÁLIDA (basura)
+    // 5. Acceder a ref es UB: puede funcionar, puede crashear
+    
+    // MEMORIA:
+    // | ??????? | <- x existía aquí, ahora es basura
+    // | ref     | <- apunta a la basura
+    
+    // NUNCA retornes referencia a variables locales
+}
+B) Dangling pointers con lambdas
+cppstd::function<int()> crearLambda() {
+    int x = 42;
+    return [&x]() { return x; }; // PELIGRO: captura por referencia
+}
+
+int main() {
+    auto lambda = crearLambda();
+    std::cout << lambda(); // UNDEFINED BEHAVIOR
+    
+    // QUÉ PASA:
+    // 1. x existe solo dentro de crearLambda()
+    // 2. La lambda captura x por REFERENCIA
+    // 3. x se destruye al salir de crearLambda()
+    // 4. La lambda tiene una referencia a memoria inválida
+    
+    // SOLUCIÓN: capturar por valor [x]
+    return [x]() { return x; }; // OK: copia x
+}
+C) Orden de evaluación de argumentos (trampa pre-C++17)
+cppint i = 0;
+
+void funcion(int a, int b, int c) {
+    std::cout << a << " " << b << " " << c;
+}
+
+int main() {
+    funcion(i++, i++, i++);
+    
+    // PRE-C++17: UNDEFINED BEHAVIOR
+    // El orden de evaluación NO está definido
+    // Podría evaluar de izquierda a derecha: 0 1 2
+    // O de derecha a izquierda: 2 1 0
+    // O en cualquier orden: 0 2 1
+    
+    // C++17: COMPORTAMIENTO DEFINIDO
+    // Los argumentos se evalúan en orden indeterminado
+    // PERO cada uno se completa antes del siguiente
+    // Resultado: uno de {0,1,2}, {0,2,1}, {1,0,2}, etc.
+    
+    // NUNCA confíes en el orden
+    // NUNCA uses efectos secundarios en argumentos
+}
+D) Ambigüedad en sobrecarga
+cppvoid funcion(int x) { }
+void funcion(long x) { }
+
+int main() {
+    funcion(5);    // OK: llama funcion(int)
+    funcion(5L);   // OK: llama funcion(long)
+    funcion(5.0);  // ERROR: ¿int o long? ambiguo
+    
+    // QUÉ PASA:
+    // 5.0 (double) puede convertirse a int O a long
+    // Ambas conversiones tienen la misma "calidad"
+    // El compilador no puede decidir
+    
+    // SOLUCIÓN:
+    funcion(static_cast<int>(5.0)); // explícito
+}
+
+void otra(int x) { }
+void otra(const int x) { } // ERROR: no es sobrecarga válida
+
+// QUÉ PASA:
+// Para el CALLER, int y const int son lo mismo
+// No puede haber dos funciones que solo difieran en const del parámetro
+// (const en parámetros por valor no afecta la firma)
+
+void valida(int& x) { }        // OK
+void valida(const int& x) { }  // OK: firma diferente
+
+// Estas SÍ son diferentes porque afectan al caller
+E) Funciones que retornan funciones
+cppauto crearMultiplicador(int factor) {
+    return [factor](int x) { return x * factor; };
+}
+
+int main() {
+    auto porDos = crearMultiplicador(2);
+    auto porTres = crReintentarClaude aún no tiene la capacidad de ejecutar el código que genera.MContinuarearMultiplicador(3);
+std::cout << porDos(5);   // 10
+std::cout << porTres(5);  // 15
+
+// QUÉ PASA:
+// crearMultiplicador retorna una LAMBDA
+// La lambda captura 'factor' por VALOR
+// Cada lambda tiene su PROPIA COPIA de factor
+//
+// MEMORIA:
+// porDos:   [factor=2] -> función
+// porTres:  [factor=3] -> función
+//
+// Es como tener funciones personalizadas en runtime
+}
+// CASO MÁS COMPLEJO: función que retorna función que retorna función
+auto nivel1(int a) {
+return [a](int b) {
+return [a, b](int c) {
+return a + b + c;
+};
+};
+}
+int main() {
+auto f1 = nivel1(10);        // f1 tiene a=10
+auto f2 = f1(20);            // f2 tiene a=10, b=20
+int resultado = f2(30);      // calcula 10+20+30 = 60
+// También en una línea:
+int r = nivel1(10)(20)(30);  // 60
+
+// Esto se llama CURRYING
+}
+
+### F) Static en funciones (variables que persisten)
+```cpp
+void contador() {
+    static int cuenta = 0;  // se inicializa UNA SOLA VEZ
+    cuenta++;
+    std::cout << cuenta << "\n";
+}
+
+int main() {
+    contador(); // imprime 1
+    contador(); // imprime 2
+    contador(); // imprime 3
+    contador(); // imprime 4
+    
+    // QUÉ PASA:
+    // 'cuenta' se crea la PRIMERA vez que se llama contador()
+    // NO se destruye al salir de contador()
+    // Persiste entre llamadas
+    // Es como una variable global pero solo visible dentro de contador()
+    
+    // MEMORIA (data segment, no stack):
+    // [cuenta = 4]  <- permanece aquí todo el programa
+    
+    // INICIALIZACIÓN:
+    // static int x = 0;      // se inicializa al llamar por primera vez
+    // static int y = rand(); // se ejecuta rand() solo la primera vez
+}
+
+void inicializacionCompleja() {
+    static int valor = []() {
+        std::cout << "Inicializando...\n";
+        return 42;
+    }();
+    
+    // El lambda se ejecuta UNA SOLA VEZ
+    // La primera llamada imprime "Inicializando..."
+    // Llamadas subsecuentes: no
+}
+G) Recursión mutua (dos funciones se llaman entre sí)
+cpp// NECESITAS FORWARD DECLARATION
+void funcionB(int n);
+
+void funcionA(int n) {
+    if (n > 0) {
+        std::cout << "A" << n << " ";
+        funcionB(n - 1);
+    }
+}
+
+void funcionB(int n) {
+    if (n > 0) {
+        std::cout << "B" << n << " ";
+        funcionA(n - 1);
+    }
+}
+
+int main() {
+    funcionA(5);
+    // Salida: A5 B4 A3 B2 A1
+    
+    // QUÉ PASA:
+    // funcionA(5) llama funcionB(4)
+    //   funcionB(4) llama funcionA(3)
+    //     funcionA(3) llama funcionB(2)
+    //       funcionB(2) llama funcionA(1)
+    //         funcionA(1) llama funcionB(0)
+    //           funcionB(0) no hace nada
+    
+    // STACK crece con cada llamada
+    // Peligro de stack overflow si n es muy grande
+}
+H) Funciones con nombres "raros" (operators)
+cpp// Aunque técnicamente son operators, se comportan como funciones
+
+int operator+(int a, int b) { // ERROR: no puedes redefinir para tipos built-in
+    return a + b;
+}
+
+// Pero para tipos personalizados (structs):
+struct Vector2D {
+    float x, y;
+};
+
+Vector2D operator+(const Vector2D& a, const Vector2D& b) {
+    return {a.x + b.x, a.y + b.y};
+}
+
+int main() {
+    Vector2D v1{1.0f, 2.0f};
+    Vector2D v2{3.0f, 4.0f};
+    Vector2D v3 = v1 + v2;  // llama a operator+
+    
+    // QUÉ PASA:
+    // v1 + v2 es sintaxis especial
+    // El compilador traduce a: operator+(v1, v2)
+    // Es una función normal con nombre especial
+    
+    // EQUIVALENTE:
+    Vector2D v4 = operator+(v1, v2);  // llamada explícita
+}
+I) Macro vs función inline (trampa clásica)
+cpp// MACRO (preprocesador)
+#define CUADRADO(x) x * x
+
+// INLINE (función)
+inline int cuadrado(int x) {
+    return x * x;
+}
+
+int main() {
+    // PELIGRO CON MACROS:
+    int a = CUADRADO(2 + 3);
+    // Se expande a: 2 + 3 * 2 + 3 = 2 + 6 + 3 = 11 (NO 25!)
+    
+    int b = cuadrado(2 + 3);
+    // 1. Evalúa 2 + 3 = 5
+    // 2. Llama cuadrado(5)
+    // 3. Retorna 5 * 5 = 25 (CORRECTO)
+    
+    // QUÉ PASA CON MACROS:
+    // El preprocesador hace REEMPLAZO DE TEXTO
+    // NO evalúa expresiones
+    // NO respeta precedencia de operadores
+    // NO verifica tipos
+    
+    // OTRO PELIGRO:
+    int i = 5;
+    int c = CUADRADO(i++);
+    // Se expande a: i++ * i++
+    // i se incrementa DOS veces (undefined behavior)
+    // Resultado impredecible
+    
+    int d = cuadrado(i++);
+    // 1. Evalúa i++ (i pasa de 5 a 6, retorna 5)
+    // 2. Llama cuadrado(5)
+    // 3. Retorna 25
+    // i ahora es 6
+    
+    // MORALEJA: USA FUNCIONES, NO MACROS
+}
+
+// Si DEBES usar macro, hazla segura:
+#define CUADRADO_SEGURO(x) ((x) * (x))
+// Los paréntesis protegen contra problemas de precedencia
+J) Función con muchos return (no siempre malo)
+cppint procesarDatos(int* datos, int tamaño) {
+    // Validaciones tempranas (early return)
+    if (datos == nullptr) return -1;
+    if (tamaño <= 0) return -2;
+    if (tamaño > 1000) return -3;
+    
+    // Lógica principal
+    int suma = 0;
+    for (int i = 0; i < tamaño; i++) {
+        if (datos[i] < 0) return -4; // error en dato
+        suma += datos[i];
+    }
+    
+    return suma;
+}
+
+// QUÉ PASA:
+// Múltiples returns pueden ser MÁS CLAROS
+// Evita anidamiento excesivo
+// Cada return indica una condición de salida diferente
+
+// ALTERNATIVA (un solo return):
+int procesarDatos2(int* datos, int tamaño) {
+    int resultado = 0;
+    
+    if (datos == nullptr) {
+        resultado = -1;
+    } else if (tamaño <= 0) {
+        resultado = -2;
+    } else if (tamaño > 1000) {
+        resultado = -3;
+    } else {
+        int suma = 0;
+        bool error = false;
+        for (int i = 0; i < tamaño && !error; i++) {
+            if (datos[i] < 0) {
+                error = true;
+                resultado = -4;
+            } else {
+                suma += datos[i];
+            }
+        }
+        if (!error) resultado = suma;
+    }
+    
+    return resultado;
+}
+// Más complicado, más anidamiento, menos legible
+K) Function pointer vs std::function (performance)
+cpp#include <functional>
+#include <chrono>
+
+int sumar(int a, int b) { return a + b; }
+
+int main() {
+    // PUNTERO A FUNCIÓN (rápido)
+    int (*ptr)(int, int) = sumar;
+    
+    // STD::FUNCTION (flexible pero más lento)
+    std::function<int(int, int)> func = sumar;
+    
+    // MEDICIÓN DE PERFORMANCE
+    const int ITERACIONES = 100000000;
+    
+    // Puntero a función
+    auto inicio1 = std::chrono::high_resolution_clock::now();
+    for (int i = 0; i < ITERACIONES; i++) {
+        int r = ptr(5, 3);
+    }
+    auto fin1 = std::chrono::high_resolution_clock::now();
+    auto tiempo1 = std::chrono::duration_cast<std::chrono::milliseconds>(fin1 - inicio1);
+    
+    // std::function
+    auto inicio2 = std::chrono::high_resolution_clock::now();
+    for (int i = 0; i < ITERACIONES; i++) {
+        int r = func(5, 3);
+    }
+    auto fin2 = std::chrono::high_resolution_clock::now();
+    auto tiempo2 = std::chrono::duration_cast<std::chrono::milliseconds>(fin2 - inicio2);
+    
+    // QUÉ PASA:
+    // Puntero a función:
+    //   - Llamada directa a la dirección
+    //   - Sin overhead
+    //   - Inlineable
+    //   - Típicamente: ~100-200ms
+    //
+    // std::function:
+    //   - Indirección extra (type erasure)
+    //   - Posible asignación en heap
+    //   - NO inlineable
+    //   - Típicamente: ~300-500ms
+    //
+    // Diferencia: 2-3x más lento
+    
+    // CUÁNDO USAR CADA UNO:
+    // Puntero: código crítico de performance
+    // std::function: código genérico, callbacks, flexibilidad
+}
+L) Trailing comma en parámetros (legal pero raro)
+cppvoid funcion(
+    int a,
+    int b,
+    int c,  // comma final (C++11 lo permite en algunos contextos)
+) {
+    // ERROR: comma final no permitido aquí
+}
+
+// Pero SÍ está permitido en llamadas a funciones variádicas:
+template<typename... Args>
+void variadic(Args... args) {}
+
+variadic(1, 2, 3,); // ERROR en C++11, OK en C++20
+M) Implicit conversion problems
+cppvoid procesar(int x) {
+    std::cout << "int: " << x << "\n";
+}
+
+void procesar(double x) {
+    std::cout << "double: " << x << "\n";
+}
+
+int main() {
+    procesar(5);      // int: 5
+    procesar(5.0);    // double: 5.0
+    procesar('A');    // int: 65 (char se convierte a int)
+    procesar(true);   // int: 1 (bool se convierte a int)
+    
+    // QUÉ PASA:
+    // char, bool, short, etc. se convierten a int automáticamente
+    // Esto es PROMOCIÓN INTEGRAL
+    // Puede causar comportamiento inesperado
+    
+    // Para evitarlo:
+    void procesar(int x) = delete;  // prohibe conversiones implícitas
+    void procesar(long long x);      // solo acepta long long exacto
+}
+N) SFINAE (Substitution Failure Is Not An Error)
+cpp#include <type_traits>
+
+// Solo funciona si T es entero
+template<typename T>
+typename std::enable_if<std::is_integral<T>::value, T>::type
+duplicar(T x) {
+    return x * 2;
+}
+
+// Solo funciona si T es flotante
+template<typename T>
+typename std::enable_if<std::is_floating_point<T>::value, T>::type
+duplicar(T x) {
+    return x * 2.0;
+}
+
+int main() {
+    duplicar(5);      // llama versión integral
+    duplicar(5.5);    // llama versión flotante
+    // duplicar("hola"); // ERROR: no existe versión para const char*
+    
+    // QUÉ PASA (SFINAE):
+    // 1. Compilador intenta instanciar ambas versiones
+    // 2. Para duplicar(5):
+    //    - Versión integral: std::is_integral<int> = true, VÁLIDA
+    //    - Versión flotante: std::is_floating_point<int> = false, DESCARTADA
+    // 3. Para duplicar(5.5):
+    //    - Versión integral: std::is_integral<double> = false, DESCARTADA
+    //    - Versión flotante: std::is_floating_point<double> = true, VÁLIDA
+    //
+    // Si la sustitución falla, NO es error, simplemente se descarta
+    // Esto permite "sobrecarga" basada en características del tipo
+}
+O) Perfect forwarding (forwarding references)
+cpp#include <utility>
+
+template<typename T>
+void procesar(T&& arg) {
+    // T&& NO es rvalue reference aquí
+    // Es FORWARDING REFERENCE (universal reference)
+    // Puede ser lvalue o rvalue
+    
+    otraFuncion(std::forward<T>(arg));
+}
+
+void otraFuncion(int& x) { 
+    std::cout << "lvalue\n"; 
+}
+
+void otraFuncion(int&& x) { 
+    std::cout << "rvalue\n"; 
+}
+
+int main() {
+    int x = 5;
+    procesar(x);              // lvalue -> imprime "lvalue"
+    procesar(10);             // rvalue -> imprime "rvalue"
+    procesar(std::move(x));   // rvalue -> imprime "rvalue"
+    
+    // QUÉ PASA (reference collapsing):
+    // procesar(x):
+    //   - arg es lvalue
+    //   - T deduce a int&
+    //   - int& && colapsa a int&
+    //   - std::forward<int&>(arg) retorna int&
+    //   - llama otraFuncion(int&)
+    //
+    // procesar(10):
+    //   - arg es rvalue
+    //   - T deduce a int
+    //   - int && es int&&
+    //   - std::forward<int>(arg) retorna int&&
+    //   - llama otraFuncion(int&&)
+    //
+    // Esto preserva el "valor-ness" del argumento
+}
+P) Comma operator en return (muy raro)
+cppint raro() {
+    return 5, 10, 15;
+    // Retorna 15 (evalúa 5, descarta; evalúa 10, descarta; retorna 15)
+}
+
+int masRaro() {
+    int x = 0;
+    return (x = 5, x++, x * 2);
+    // 1. x = 5
+    // 2. x++ (x es 6)
+    // 3. Retorna x * 2 = 12
+}
+
+int main() {
+    std::cout << raro();     // 15
+    std::cout << masRaro();  // 12
+    
+    // QUÉ PASA:
+    // El operador coma (,) evalúa de izquierda a derecha
+    // Descarta todos los valores excepto el último
+    // El último valor es el que se retorna
+    
+    // NUNCA hagas esto en código real
+    // Es confuso y difícil de mantener
+}
+Q) Function try block (raro)
+cppint funcionConTry(int x) try {
+    if (x < 0) throw std::runtime_error("negativo");
+    return x * 2;
+}
+catch (const std::exception& e) {
+    std::cout << "Error: " << e.what() << "\n";
+    return -1;
+}
+
+int main() {
+    int r1 = funcionConTry(5);   // 10
+    int r2 = funcionConTry(-5);  // imprime "Error: negativo", retorna -1
+    
+    // QUÉ PASA:
+    // El bloque try envuelve TODO el cuerpo de la función
+    // Útil principalmente para constructores
+    // Permite capturar excepciones durante inicialización de miembros
+}
+R) main() retorna automáticamente 0
+cppint main() {
+    // Si no pones return, se asume return 0;
+    // Esta es la ÚNICA función con este comportamiento especial
+}
+
+int otraFuncion() {
+    // Si no pones return aquí, es UNDEFINED BEHAVIOR
+    // (a menos que sea void)
+}
+
+// QUÉ PASA:
+// main() es especial:
+// - Puede omitir return (se asume 0)
+// - No puede ser llamada desde el código
+// - No puede ser inline
+// - No puede ser static
+// - Su return value va al sistema operativo (exit code)
+S) La función más corta posible
+cppvoid f(){}  // función válida que no hace nada
+
+// O más raro aún:
+void g(){} int h(){} // dos funciones en una línea (legal pero horrible)
+
+// La función main más corta:
+int main(){}  // válida, retorna 0 implícitamente
+T) goto en funciones (el villano)
+cppvoid conGoto(int x) {
+    if (x < 0) goto error;
+    
+    std::cout << "Procesando " << x << "\n";
+    return;
+    
+error:
+    std::cout << "Error: valor negativo\n";
+}
+
+// QUÉ PASA:
+// goto salta a una etiqueta dentro de la función
+// Puede saltar hacia adelante o hacia atrás
+// PELIGROS:
+// - Código espagueti
+// - Difícil de seguir
+// - Fácil crear bugs
+//
+// ÚNICO uso legítimo: salir de loops anidados
+void buscarEnMatriz(int matriz[][10], int filas, int cols, int valor) {
+    for (int i = 0; i < filas; i++) {
+        for (int j = 0; j < cols; j++) {
+            if (matriz[i][j] == valor) {
+                goto encontrado;  // sale de ambos loops
+            }
+        }
+    }
+    std::cout << "No encontrado\n";
+    return;
+    
+encontrado:
+    std::cout << "Encontrado\n";
+}
+
+// MEJOR ALTERNATIVA: usar return directamente
+void buscarMejor(int matriz[][10], int filas, int cols, int valor) {
+    for (int i = 0; i < filas; i++) {
+        for (int j = 0; j < cols; j++) {
+            if (matriz[i][j] == valor) {
+                std::cout << "Encontrado\n";
+                return;  // más claro que goto
+            }
+        }
+    }
+    std::cout << "No encontrado\n";
+}
+15. Tamaño y Layout en Memoria
+cpp#include <iostream>
+
+void funcion1() {}
+void funcion2(int x) {}
+void funcion3(int x, double y, char z) {}
+
+int main() {
+    std::cout << sizeof(funcion1) << "\n";  // ERROR: no puedes sizeof de función
+    
+    // Pero SÍ puedes sizeof de PUNTERO a función:
+    std::cout << sizeof(&funcion1) << "\n";  // típicamente 8 bytes (64-bit)
+    std::cout << sizeof(&funcion2) << "\n";  // 8 bytes también
+    
+    // QUÉ PASA:
+    // Funciones NO tienen "tamaño" en el sentido tradicional
+    // Son secuencias de instrucciones en memoria
+    // Los punteros a función SÍ tienen tamaño (una dirección)
+    
+    // MEMORIA TÍPICA:
+    // [Segmento de texto (.text)]
+    // 0x1000: funcion1: push rbp; mov rbp, rsp; ...
+    // 0x1010: funcion2: push rbp; mov rbp, rsp; mov [rbp-4], edi; ...
+    // 0x1040: funcion3: ...
+    //
+    // Un puntero simplemente guarda 0x1000, 0x1010, o 0x1040
+}
+RESUMEN: Qué Sucede al Llamar una Función
+cppint suma(int a, int b) {
+    int resultado = a + b;
+    return resultado;
+}
+
+int main() {
+    int x = 5, y = 3;
+    int z = suma(x, y);
+}
+PASO A PASO EN ASSEMBLY (simplificado):
+1. PREPARACIÓN (caller - main):
+   push 3          ; poner y en el stack
+   push 5          ; poner x en el stack
+   call suma       ; llamar función (guarda dirección de retorno)
+
+2. ENTRADA A FUNCIÓN (callee - suma):
+   push rbp        ; guardar stack frame anterior
+   mov rbp, rsp    ; establecer nuevo stack frame
+   sub rsp, 16     ; reservar espacio para variables locales
+
+3. EJECUCIÓN:
+   mov eax, [rbp+8]   ; cargar 'a' (5)
+   mov ebx, [rbp+12]  ; cargar 'b' (3)
+   add eax, ebx       ; sumar -> eax = 8
+   mov [rbp-4], eax   ; guardar en 'resultado'
+
+4. RETORNO:
+   mov eax, [rbp-4]   ; poner valor de retorno en eax
+   mov rsp, rbp       ; restaurar stack pointer
+   pop rbp            ; restaurar stack frame anterior
+   ret                ; retornar (pop dirección y saltar)
+
+5. VUELTA AL CALLER:
+   add rsp, 8         ; limpiar parámetros del stack
+   mov [rbp-12], eax  ; guardar resultado en 'z'
+MEMORIA DURANTE LA LLAMADA:
+STACK:
++-------------------+
+|  y = 3            | <- parámetro 2
++-------------------+
+|  x = 5            | <- parámetro 1
++-------------------+
+|  dirección retorno| <- donde volver después
++-------------------+
+|  rbp anterior     | <- stack frame de main
++-------------------+
+|  resultado        | <- variable local de suma
++-------------------+ <- rsp (stack pointer actual)
+Esta guía cubre prácticamente TODO sobre funciones en C++, desde lo básico hasta los casos más raros y trampas comunes. ¿Hay algún tema específico que quieras que profundice aún más?

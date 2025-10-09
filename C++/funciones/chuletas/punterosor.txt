@@ -1,0 +1,171 @@
+Vamos a ver cómo hacer ordenamientos y operaciones con punteros en C++ sin usar POO, es decir, solo con programación estructurada.
+Esto te servirá para entender cómo manipular memoria directamente, hacer ordenamientos eficientes y practicar paso por referencia.
+
+🧠 1️⃣ Repaso: Qué es un puntero
+
+Un puntero es una variable que guarda la dirección de memoria de otra variable.
+
+int x = 10;
+int* p = &x; // p guarda la dirección de x
+
+
+👉 *p accede al valor.
+👉 p guarda la dirección.
+👉 &x es la dirección de x.
+
+🔢 2️⃣ Crear y usar arreglos con punteros
+
+En C++, un arreglo se puede manejar con punteros porque el nombre del arreglo ya es un puntero al primer elemento:
+
+int numeros[] = {5, 2, 9, 1, 3};
+int* ptr = numeros; // ptr apunta a numeros[0]
+
+
+Ejemplo para recorrer el arreglo con punteros:
+
+for (int i = 0; i < 5; i++) {
+    cout << *(ptr + i) << " ";
+}
+
+🧮 3️⃣ Intercambio de valores con punteros
+
+Fundamental para ordenamientos:
+
+void intercambiar(int* a, int* b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+🔄 4️⃣ Ordenamiento con punteros (Burbuja)
+
+Burbuja es el más fácil para aprender con punteros.
+
+#include <iostream>
+using namespace std;
+
+void intercambiar(int* a, int* b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+void ordenarBurbuja(int* arr, int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (*(arr + j) > *(arr + j + 1)) {
+                intercambiar(arr + j, arr + j + 1);
+            }
+        }
+    }
+}
+
+int main() {
+    int datos[] = {5, 1, 4, 2, 8};
+    int n = 5;
+
+    ordenarBurbuja(datos, n);
+
+    cout << "Ordenado: ";
+    for (int i = 0; i < n; i++) {
+        cout << *(datos + i) << " ";
+    }
+}
+
+⚙️ 5️⃣ Operaciones útiles con punteros y arreglos
+Operación	Ejemplo	Descripción
+Suma de elementos	suma += *(ptr + i);	Accede a cada valor
+Buscar elemento	if (*(ptr + i) == valor)	Comparar por posición
+Copiar arreglo	*(dest + i) = *(src + i);	Copia manual con punteros
+Contar pares	if (*(ptr + i) % 2 == 0)	Condición directa
+
+Ejemplo práctico:
+
+int sumaArreglo(int* arr, int n) {
+    int suma = 0;
+    for (int i = 0; i < n; i++)
+        suma += *(arr + i);
+    return suma;
+}
+
+🔍 6️⃣ Ordenamiento por selección (Selection Sort) con punteros
+void ordenarSeleccion(int* arr, int n) {
+    for (int i = 0; i < n - 1; i++) {
+        int* min = arr + i;
+        for (int j = i + 1; j < n; j++) {
+            if (*(arr + j) < *min)
+                min = arr + j;
+        }
+        intercambiar(min, arr + i);
+    }
+}
+
+⚡ 7️⃣ Ordenamiento por inserción (Insertion Sort) con punteros
+void ordenarInsercion(int* arr, int n) {
+    for (int i = 1; i < n; i++) {
+        int clave = *(arr + i);
+        int j = i - 1;
+        while (j >= 0 && *(arr + j) > clave) {
+            *(arr + j + 1) = *(arr + j);
+            j--;
+        }
+        *(arr + j + 1) = clave;
+    }
+}
+
+💡 8️⃣ Reservar memoria dinámica (new y delete)
+
+Cuando no conoces el tamaño del arreglo hasta la ejecución:
+
+int n;
+cout << "Tamaño: ";
+cin >> n;
+
+int* arr = new int[n]; // reserva memoria
+
+for (int i = 0; i < n; i++)
+    cin >> *(arr + i);
+
+ordenarBurbuja(arr, n);
+
+delete[] arr; // libera memoria
+
+🧰 9️⃣ Otras operaciones comunes con punteros
+
+Invertir arreglo
+
+void invertir(int* arr, int n) {
+    int* inicio = arr;
+    int* fin = arr + n - 1;
+    while (inicio < fin) {
+        intercambiar(inicio, fin);
+        inicio++;
+        fin--;
+    }
+}
+
+
+Encontrar máximo y mínimo
+
+int maximo(int* arr, int n) {
+    int max = *arr;
+    for (int i = 1; i < n; i++)
+        if (*(arr + i) > max)
+            max = *(arr + i);
+    return max;
+}
+
+⚠️ 🔥 10️⃣ Errores y excepciones comunes con punteros
+Error	Causa	Solución
+Segmentation fault	Acceso fuera del rango o puntero nulo	Verificar límites y punteros antes de usar
+Memory leak	No usar delete[] tras new[]	Liberar memoria al final
+Invalid read	Usar puntero ya liberado	Evitar acceder después de delete[]
+Punteros colgantes	Retornar dirección de variable local	Usar memoria dinámica o static
+Confusión * y &	Operadores mal usados	Recordar: & → dirección, * → valor
+🧩 11️⃣ Resumen de ordenamientos con punteros
+Método	Complejidad	Cuándo usarlo	Implementación fácil
+Burbuja	O(n²)	Cuando estás aprendiendo	✅ Sí
+Selección	O(n²)	Cuando quieres menos intercambios	✅ Sí
+Inserción	O(n²)	Para arreglos casi ordenados	✅ Sí
+QuickSort	O(n log n)	Arreglos grandes (avanzado)	⚙️ No sin recursión
+MergeSort	O(n log n)	Muy eficiente y estable	⚙️ Requiere recursión

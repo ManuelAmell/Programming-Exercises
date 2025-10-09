@@ -8,13 +8,16 @@ output/string.exe
 *.so
 *.dylib
 
+
 # Carpetas de compilación
 build/
 bin/
 output/
+debug/
 
 # Archivos de configuración local o IDEs
-.vscode/
+*.json
+*.vscode/
 *.user
 *.suo
 *.log

@@ -2,5 +2,69 @@
     "files.associations": {
         "iostream": "cpp",
         "iomanip": "cpp"
+    },
+
+    "workbench.colorCustomizations": {
+        "editor.background": "#1A237E10",
+        "sideBar.background": "#3949AB10",
+        "activityBar.background": "#5C6BC010",
+        "statusBar.background": "#7986CB10",
+        "titleBar.activeBackground": "#5C6BC010",
+        "titleBar.inactiveBackground": "#3949AB10",
+        "terminal.background": "#1A237E10",
+        "menu.background": "#5C6BC020",
+        "menu.selectionBackground": "#7986CB30",
+        "editorWidget.background": "#5C6BC010",
+        "quickInput.background": "#5C6BC010",
+        "notifications.background": "#5C6BC020"
+    },
+    "workbench.preferredDarkColorTheme": "One Dark Pro Night Flat",
+    "workbench.preferredLightColorTheme": "One Dark Pro Night Flat",
+    "workbench.colorTheme": "One Dark Pro Mix",
+    "workbench.iconTheme": "material-icon-theme",
+
+    // --- Clang-Format ---
+    "clang-format.executable": "/usr/bin/clang-format",
+    "clang-format.style": "file",
+    "editor.formatOnSave": true,
+
+    // --- Code Runner ---
+    "code-runner.runInTerminal": true,
+    "code-runner.saveFileBeforeRun": true,
+    "code-runner.executorMap": {
+        "cpp": "g++ \"$fullFileName\" -o \"$fileNameWithoutExt\" && ./\"$fileNameWithoutExt\""
+    },
+    "code-runner.clearPreviousOutput": true,
+
+    // --- Cppcheck ---
+    "cppcheck.enable": true,
+    "cppcheck.executable": "/usr/bin/cppcheck",
+    "cppcheck.run": "onSave",
+    "cppcheck.options": ["--enable=all", "--inconclusive", "--std=c++17"],
+    "cppcheck.showInProblems": true,
+
+    // --- Error Lens ---
+    "errorLens.enabled": true,
+    "errorLens.fontSize": "12px",
+    "errorLens.fontFamily": "Fira Code, monospace",
+    "errorLens.errorBackground": "rgba(255,0,0,0.1)",
+    "errorLens.warningBackground": "rgba(255,255,0,0.1)",
+    "errorLens.infoBackground": "rgba(0,0,255,0.1)",
+    "errorLens.errorForeground": "#FF0000",
+    "errorLens.warningForeground": "#FFA500",
+    "errorLens.infoForeground": "#0000FF",
+    "errorLens.delay": 500,
+
+    // --- Prettier ---
+    "prettier.enable": true,
+    "prettier.requireConfig": false,
+    "prettier.tabWidth": 4,
+    "prettier.useTabs": false,
+    "prettier.semi": true,
+    "prettier.singleQuote": true,
+    "prettier.trailingComma": "all",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "[cpp]": {
+        "editor.defaultFormatter": "xaver.clang-format"
     }
 }

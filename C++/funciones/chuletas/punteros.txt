@@ -1,0 +1,205 @@
+🧭 1. ¿Qué es un puntero?
+
+Un puntero es una variable que almacena una dirección de memoria en lugar de un valor directo.
+En otras palabras, “apunta” a otro dato que se encuentra en una posición específica de la memoria.
+
+int x = 10;
+int* ptr = &x; // ptr guarda la dirección de x
+
+
+🧩 Significado de los símbolos:
+
+& → operador de dirección (“dame la dirección de”)
+
+* → operador de desreferenciación (“accede al valor al que apunta”)
+
+💡 2. Declaración y uso básico
+int a = 5;
+int* p = &a;       // p almacena la dirección de a
+cout << *p;        // muestra el valor de a → 5
+cout << p;         // muestra la dirección de memoria de a
+
+
+Desglose:
+
+p → dirección de a
+
+*p → valor de a
+
+🧮 3. Tipos de punteros
+🔹 a) Punteros a tipos básicos
+int* p1;
+float* p2;
+char* p3;
+
+
+Cada tipo de puntero debe apuntar a una variable del mismo tipo.
+
+🔹 b) Puntero nulo (nullptr)
+
+Se usa cuando el puntero no apunta a nada válido:
+
+int* p = nullptr;
+
+🔹 c) Punteros a punteros
+
+Un puntero que almacena la dirección de otro puntero.
+
+int a = 5;
+int* p = &a;
+int** q = &p; // q apunta a p
+
+🔹 d) Punteros void (genéricos)
+
+Apuntan a cualquier tipo de dato, pero no se pueden desreferenciar directamente.
+
+int a = 5;
+void* ptr = &a;
+// cout << *ptr; ❌ error
+cout << *(int*)ptr; // ✅ casteo a int
+
+🧩 4. Operaciones con punteros
+🔸 Asignar dirección
+int x = 10;
+int* p = &x;
+
+🔸 Desreferenciar
+cout << *p; // imprime el valor de x
+
+🔸 Modificar el valor apuntado
+*p = 20; // cambia el valor de x a 20
+
+🔸 Cambiar el puntero
+int y = 50;
+p = &y; // ahora p apunta a y
+
+📦 5. Punteros y arreglos
+
+En C++, los arreglos se comportan como punteros constantes al primer elemento.
+
+int arr[3] = {10, 20, 30};
+int* p = arr; // p apunta a arr[0]
+
+cout << *p;     // 10
+cout << *(p+1); // 20
+cout << *(p+2); // 30
+
+
+🧠 Regla:
+p + n apunta al elemento n posiciones después en el arreglo.
+
+🔁 6. Punteros y funciones
+
+Puedes pasar punteros como parámetros para modificar variables fuera de la función (paso por referencia indirecto).
+
+void cambiar(int* p) {
+    *p = 100;
+}
+
+int main() {
+    int x = 5;
+    cambiar(&x);
+    cout << x; // 100
+}
+
+
+📘 Útil para evitar usar variables globales o retornar múltiples valores.
+
+🔧 7. Punteros y memoria dinámica
+
+Con new y delete puedes reservar y liberar memoria en tiempo de ejecución.
+
+int* p = new int;   // reserva espacio para un entero
+*p = 42;            // asigna valor
+delete p;           // libera memoria
+
+🔹 Arreglos dinámicos:
+int* arr = new int[5];
+arr[0] = 10;
+arr[1] = 20;
+delete[] arr;
+
+
+⚠️ Importante:
+
+Siempre liberar con delete o delete[].
+
+No usar punteros después de liberar → puntero colgante (dangling pointer).
+
+🧠 8. Excepciones y errores comunes
+Error	Descripción	Ejemplo
+❌ Puntero no inicializado	Contiene basura	int* p; *p = 10;
+❌ Doble liberación	Llamar delete dos veces	delete p; delete p;
+❌ Acceso a memoria liberada	Usar puntero tras delete	delete p; cout << *p;
+❌ Puntero incorrecto	No coincide el tipo	float* p = (float*)&x;
+⚠️ Fuga de memoria	No liberar memoria	int* p = new int[100]; (sin delete[])
+🧩 9. Punteros y cadenas (char*)
+
+Antes de std::string, se usaban cadenas con punteros:
+
+char nombre[] = "Manuel";
+char* p = nombre;
+
+cout << *p;     // M
+cout << *(p+2); // n
+
+
+⚠️ Nunca uses delete con cadenas literales ("texto"), porque están en memoria de solo lectura.
+
+🧮 10. Aritmética de punteros
+
+Solo puedes sumar o restar enteros a punteros (no punteros entre sí).
+
+int arr[3] = {10, 20, 30};
+int* p = arr;
+
+cout << *(p + 1); // 20
+cout << *(p + 2); // 30
+
+
+📏 Los punteros avanzan según el tamaño del tipo:
+
+p + 1 no aumenta 1 byte, sino sizeof(tipo) bytes.
+
+🧰 11. Punteros útiles y trucos
+🔹 const con punteros
+
+int* const p → el puntero no cambia de dirección.
+
+const int* p → el valor apuntado no cambia.
+
+const int* const p → ni el puntero ni el valor cambian.
+
+const int x = 10;
+const int* p = &x; // solo lectura
+
+🔹 Punteros y nullptr
+
+Nunca compares con 0, usa nullptr:
+
+if (p == nullptr) cout << "No apunta a nada";
+
+🔹 Inicialización segura
+int* p = nullptr; // evita usar basura de memoria
+
+🧠 12. Cuándo usar punteros (casos reales)
+
+Pasar grandes estructuras o arreglos sin copiarlos.
+
+Modificar variables dentro de funciones.
+
+Reservar memoria dinámica.
+
+Implementar estructuras como listas enlazadas, árboles, buffers, etc.
+
+⚡ 13. Resumen rápido (chuleta final)
+Concepto	Significado	Ejemplo
+&	Dirección de una variable	p = &x;
+*	Valor apuntado	*p = 10;
+nullptr	Puntero nulo	p = nullptr;
+new	Reserva memoria	p = new int;
+delete	Libera memoria	delete p;
+delete[]	Libera arreglo	delete[] arr;
+const int* p	No puedes cambiar el valor	—
+int* const p	No puedes cambiar la dirección	—
+**p	Puntero a puntero	—

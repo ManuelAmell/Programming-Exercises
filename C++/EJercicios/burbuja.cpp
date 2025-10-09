@@ -15,6 +15,7 @@ int main() {
                 arr[j+1] = temp;          // Y ponemos el actual donde estaba el siguiente
                 swap_flag = true;         // Hubo un intercambio
             }
+            
         }
 
         

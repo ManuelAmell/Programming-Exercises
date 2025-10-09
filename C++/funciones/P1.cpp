@@ -324,7 +324,7 @@ void VerContactos() {
 int main (){
     int opc=0;
 
-    do{
+    do{ 
     menu(opc);
 
     switch (opc) {

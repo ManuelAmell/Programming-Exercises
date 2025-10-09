@@ -1,0 +1,230 @@
+🧠 1️⃣ Fundamentos del lenguaje
+💾 Estructura básica de un programa C++
+#include <iostream>   // Biblioteca para entrada/salida
+using namespace std;  // Evita escribir std:: todo el tiempo
+
+int main() {
+    // Código principal
+    return 0;  // Fin del programa
+}
+
+🧮 2️⃣ Operaciones aritméticas
+
+Operadores principales:
+
+Operador	Significado	Ejemplo	Resultado
++	Suma	5 + 2	7
+-	Resta	8 - 3	5
+*	Multiplicación	4 * 2	8
+/	División	10 / 3	3 (entera)
+%	Módulo (resto)	10 % 3	1
+🧩 Ejemplo:
+int a = 10, b = 3;
+cout << "Suma: " << a + b << endl;
+cout << "Resta: " << a - b << endl;
+cout << "Multiplicacion: " << a * b << endl;
+cout << "Division entera: " << a / b << endl;
+cout << "Resto: " << a % b << endl;
+
+
+⚠️ División entre enteros: Si ambos son int, el resultado será entero (se pierde el decimal).
+Usa float o double si quieres decimales.
+
+📊 3️⃣ Cálculo de porcentajes
+
+Fórmula general:
+
+porcentaje
+=
+(
+𝑝
+𝑎
+𝑟
+𝑡
+𝑒
+∗
+100
+)
+/
+𝑡
+𝑜
+𝑡
+𝑎
+𝑙
+porcentaje=(parte∗100)/total
+🔹 Ejemplo 1: Calcular el % que representa una cantidad
+float parte = 25, total = 200;
+float porcentaje = (parte * 100) / total;
+cout << "Representa el " << porcentaje << "% del total.";
+
+🔹 Ejemplo 2: Calcular cuánto es X% de un número
+float numero = 250, porc = 15;
+float resultado = (numero * porc) / 100;
+cout << porc << "% de " << numero << " es " << resultado;
+
+💰 4️⃣ Aumentos y descuentos
+🔹 Descuento:
+precioFinal
+=
+precio
+−
+(
+precio
+∗
+porcentajeDescuento
+/
+100
+)
+precioFinal=precio−(precio∗porcentajeDescuento/100)
+🔹 Aumento:
+precioFinal
+=
+precio
++
+(
+precio
+∗
+porcentajeAumento
+/
+100
+)
+precioFinal=precio+(precio∗porcentajeAumento/100)
+float precio = 100, desc = 20;
+float final = precio - (precio * desc / 100);
+cout << "Precio final con descuento: $" << final;
+
+🧾 5️⃣ Entrada y salida de datos
+int edad;
+cout << "Ingresa tu edad: ";
+cin >> edad;
+cout << "Tu edad es " << edad;
+
+
+🔸 Usa cin para leer y cout para mostrar.
+🔸 Puedes leer varios datos seguidos: cin >> a >> b >> c;
+
+🔁 6️⃣ Condicionales
+✅ if, else if, else
+int nota;
+cout << "Nota: "; cin >> nota;
+
+if (nota >= 90)
+    cout << "Excelente";
+else if (nota >= 70)
+    cout << "Aprobado";
+else
+    cout << "Reprobado";
+
+⚙️ Operadores relacionales:
+Operador	Significado
+==	igual a
+!=	diferente
+>	mayor que
+<	menor que
+>=	mayor o igual
+<=	menor o igual
+🔗 7️⃣ Operadores lógicos
+Operador	Significado	Ejemplo	Resultado
+&&	Y lógico	(a>0 && b>0)	Verdadero si ambos son verdaderos
+`		`	O lógico
+!	Negación	!(a>0)	Invierte el valor lógico
+
+Ejemplo:
+
+if (edad >= 18 && edad <= 60)
+    cout << "Adulto";
+else
+    cout << "Fuera del rango";
+
+🔁 8️⃣ Bucles
+🔹 for
+for (int i = 1; i <= 5; i++)
+    cout << i << " ";
+
+🔹 while
+int i = 1;
+while (i <= 5) {
+    cout << i << " ";
+    i++;
+}
+
+🔹 do...while
+int i = 1;
+do {
+    cout << i << " ";
+    i++;
+} while (i <= 5);
+
+
+🔸 for → cuando sabes cuántas veces repetir.
+🔸 while → cuando no sabes cuántas veces, pero hay una condición.
+🔸 do-while → se ejecuta al menos una vez.
+
+📦 9️⃣ Arreglos (vectores)
+int numeros[5] = {10, 20, 30, 40, 50};
+
+for (int i = 0; i < 5; i++)
+    cout << numeros[i] << " ";
+
+
+⚠️ El índice empieza en 0.
+Ejemplo: numeros[0] = 10, numeros[4] = 50.
+
+📐 🔟 Operaciones comunes
+🔸 Promedio:
+float a, b, c;
+cin >> a >> b >> c;
+float promedio = (a + b + c) / 3;
+cout << "Promedio: " << promedio;
+
+🔸 Máximo y mínimo:
+if (a > b && a > c)
+    cout << "Mayor: " << a;
+else if (b > c)
+    cout << "Mayor: " << b;
+else
+    cout << "Mayor: " << c;
+
+🔸 Raíz cuadrada y potencia:
+#include <cmath>
+float x = 9;
+cout << "Raiz: " << sqrt(x);
+cout << "Potencia: " << pow(x, 2);
+
+💡 11️⃣ Ejercicio general
+
+Programa que calcula el promedio de 3 notas, su porcentaje y determina si aprueba:
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    float n1, n2, n3;
+    cout << "Ingrese 3 notas: ";
+    cin >> n1 >> n2 >> n3;
+
+    float prom = (n1 + n2 + n3) / 3;
+    float porc = (prom * 100) / 5; // suponiendo que 5 es la nota máxima
+
+    cout << "Promedio: " << prom << endl;
+    cout << "Porcentaje: " << porc << "%" << endl;
+
+    if (prom >= 3)
+        cout << "Aprobado";
+    else
+        cout << "Reprobado";
+
+    return 0;
+}
+
+⚙️ 12️⃣ Extras útiles
+
+abs(x) → valor absoluto
+
+round(x) → redondear
+
+ceil(x) → redondear hacia arriba
+
+floor(x) → redondear hacia abajo
+
+setprecision(n) (con <iomanip>) → controlar decimales en pantalla
