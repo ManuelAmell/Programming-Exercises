@@ -1100,41 +1100,50 @@ int main() {
                     categoryRevenue[p.category] += p.price * p.totalSold;
                 }
             }
+            
             float inventoryMargin = totalInventoryValue - totalInventoryCost;
             float inventoryMarginPercent = totalInventoryValue > 0 ? (inventoryMargin / totalInventoryValue) * 100 : 0;
-            float avgPrice = activeProducts > 0 ? totalInventoryValue / totalStock : 0;
-            float avgCost = activeProducts > 0 ? totalInventoryCost / totalStock : 0;
+            float avgPrice = totalStock > 0 ? totalInventoryValue / totalStock : 0;
+            float avgCost = totalStock > 0 ? totalInventoryCost / totalStock : 0;
             float avgMargin = avgPrice - avgCost;
             float avgMarginPercent = avgPrice > 0 ? (avgMargin / avgPrice) * 100 : 0;
+            
             int yPos = mainY + 40;
             auto drawStat = [&](string label, string value){
                 drawLabel(label + ": " + value, mainX, yPos, 16);
                 yPos += 30;
             };
+            
             drawStat("📦 Total productos", to_string(totalProducts) + " (" + to_string(activeProducts) + " activos)");
-            drawStat("📊 Valor total del inventario", to_string(totalInventoryValue) + " €");
-            drawStat("📉 Costo total del inventario", to_string(totalInventoryCost) + " €");
-            drawStat("📈 Margen de inventario", to_string(inventoryMargin) + " €");
-            drawStat("📊 % Margen de inventario", to_string(inventoryMarginPercent) + " %");
-            drawStat("💰 Precio medio", to_string(avgPrice) + " €");
-            drawStat("💸 Costo medio", to_string(avgCost) + " €");
-            drawStat("📈 Margen medio", to_string(avgMargin) + " €");
-            drawStat("📊 % Margen medio", to_string(avgMarginPercent) + " %")   ;
+            drawStat("📊 Unidades en stock", to_string(totalStock));
+            drawStat("💰 Valor total del inventario", "$" + toFixed(totalInventoryValue));
+            drawStat("💸 Costo total del inventario", "$" + toFixed(totalInventoryCost));
+            drawStat("📈 Margen de inventario", "$" + toFixed(inventoryMargin));
+            drawStat("📊 % Margen de inventario", toFixed(inventoryMarginPercent, 1) + "%");
+            drawStat("💵 Precio promedio", "$" + toFixed(avgPrice));
+            drawStat("💵 Costo promedio", "$" + toFixed(avgCost));
+            drawStat("📈 Margen promedio", "$" + toFixed(avgMargin));
+            drawStat("📊 % Margen promedio", toFixed(avgMarginPercent, 1) + "%");
+            
             yPos += 20;
             drawLabel("🏷 DISTRIBUCIÓN POR CATEGORÍAS", mainX, yPos, 18, sf::Color(150,200,255), true);
-            yPos += 30;
-            for (const auto &[cat, count] : categoryCount) {
-                float revenue = categoryRevenue[cat];
-                drawLabel("• " + cat + ": " + to_string(count) + " productos | Ingresos: " + to_string(revenue) + " €", 
-                         mainX, yPos, 14);
-                yPos += 30;
-            }
+            yPos += 35;
+            
             if (categoryCount.empty()) {
                 drawLabel("No hay categorías definidas.", mainX, yPos, 14, sf::Color(150,150,150));
+            } else {
+                for (const auto &[cat, count] : categoryCount) {
+                    float revenue = categoryRevenue[cat];
+                    drawLabel("• " + cat + ": " + to_string(count) + " productos | Ingresos: $" + toFixed(revenue), 
+                             mainX, yPos, 14);
+                    yPos += 30;
+                }
             }
-        }   
+        }
+        
         window.display();
     }
+    
     saveData(products, transactions, totalRevenue, totalCostSold);
     return 0;
 }

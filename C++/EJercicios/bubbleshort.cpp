@@ -1,6 +1,6 @@
 //algoritmo por bubble short
 #include <iostream>
-#include <windows.h>
+#include <iomanip>
 using namespace std;
 int main(){
 
@@ -10,11 +10,10 @@ int main(){
     int arr[n];//sizeof(arr) / sizeof(arr[0])// aqui no funciona sizeof por que es arreglo dinamico
 
     for (int i=0;i < n;i ++){
-        cout << "ingrese el elemento # "<<i+1<<" : "<<endl;
+        cout << "ingrese el elemento # "<<i+1<<" : "<<endl; 
         cin >>arr[i];
-    }
+    }   
 
-    system("cls");
     
     cout << "arreglo original :"<<endl;
 
@@ -28,7 +27,7 @@ int main(){
     
     for (int i=0;i < n;i++){
         cout << arr[i] <<" ";
-        Sleep(350);
+        ;
     }
     
     cout << endl;
@@ -56,7 +55,7 @@ int main(){
     for (int i=0; i < n ;i++)
     {
         cout << arr[i]<<" ";
-        Sleep(400);
+       
     }
 }
 

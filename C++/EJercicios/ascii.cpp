@@ -13,7 +13,5 @@ int main() {
 
         cout << "   " << c << "     |  " << ascii_val << "   |      " << digito << endl;
     }
-
     return 0;
 }
-

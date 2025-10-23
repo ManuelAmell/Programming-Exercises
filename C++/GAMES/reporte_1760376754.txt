@@ -1,0 +1,28 @@
+╔════════════════════════════════════════════════╗
+║     REPORTE DEL SISTEMA DE INVENTARIO         ║
+╚════════════════════════════════════════════════╝
+
+Fecha: 2025-10-13 12:32:34
+
+┌─ RESUMEN FINANCIERO ─────────────────────────┐
+│ Ingresos totales:  $0.00
+│ Costo total:       $0.00
+│ Ganancia neta:     $0.00
+│ Margen:            0.0%
+└──────────────────────────────────────────────┘
+
+┌─ INVENTARIO ACTUAL ──────────────────────────┐
+│ ID:1 | carro | Cat:1759969803
+│   Stock: 2 | Vendidos: 0 | Precio: $0.00 | Costo: $100.00
+│   ⚠ ALERTA: Stock bajo (mínimo: 200)
+│
+└──────────────────────────────────────────────┘
+
+Productos con stock bajo: 1
+
+┌─ PRODUCTOS MÁS VENDIDOS ─────────────────────┐
+│ 1. carro - 0 unidades
+└──────────────────────────────────────────────┘
+
+┌─ HISTORIAL DE TRANSACCIONES (últimas 50) ───┐
+└──────────────────────────────────────────────┘

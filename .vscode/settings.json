@@ -66,5 +66,6 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "[cpp]": {
         "editor.defaultFormatter": "xaver.clang-format"
-    }
+    },
+    "CodeGPT.apiKey": "Anthropic"
 }
