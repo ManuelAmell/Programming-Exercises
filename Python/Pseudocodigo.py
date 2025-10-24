@@ -1,5 +1,5 @@
 """
-Script para convertir código C++ a pseudocódigo estilo PSeInt
+Script para convertir código C++ a pseudocódigo con llaves visibles
 Solo pega tu código C++ en la variable CODIGO_CPP y ejecuta el script
 """
 
@@ -64,7 +64,6 @@ float calcularPuntajeTotal(int nivelAcademico, int experiencia, int pruebaTecnic
     return total;
 }
 
-// MODIFICADA: Usa aritm�tica de punteros
 void calcularPuntajes(float puntajes[], int niveles[], int experiencias[],
                       int pruebas[], int entrevistas[], int cantidad) {
     float *ptrPuntajes = puntajes;
@@ -79,7 +78,6 @@ void calcularPuntajes(float puntajes[], int niveles[], int experiencias[],
     }
 }
 
-// MODIFICADA: Usa aritm�tica de punteros
 void mostrarResultados(string nombres[], string ids[], float puntajes[], int cantidad) {
     system("cls");
     if (cantidad == 0) {
@@ -96,7 +94,6 @@ void mostrarResultados(string nombres[], string ids[], float puntajes[], int can
          << setw(10) << "Puntaje" << "\n";
     cout << string(45, '-') << "\n";
 
-    // Recorrido con aritm�tica de punteros
     string *ptrNombres = nombres;
     string *ptrIds = ids;
     float *ptrPuntajes = puntajes;
@@ -112,7 +109,6 @@ void mostrarResultados(string nombres[], string ids[], float puntajes[], int can
     system("cls");
 }
 
-// MODIFICADA: Usa aritm�tica de punteros para b�squeda de duplicados
 void registrarAspirantes(string nombres[], string ids[], int edades[], int niveles[],
                          int experiencias[], int pruebas[], int entrevistas[], float puntajes[],
                          int &cantidad, int maxAsp) {
@@ -132,7 +128,6 @@ void registrarAspirantes(string nombres[], string ids[], int edades[], int nivel
             getline(cin, id);
             duplicado = false;
             
-            // Recorrido con punteros para verificar duplicados
             string *ptrIds = ids;
             for (int k = 0; k < cantidad; ++k) {
                 if (*(ptrIds + k) == id) {
@@ -150,7 +145,6 @@ void registrarAspirantes(string nombres[], string ids[], int edades[], int nivel
         int prueba = leerEnteroValidado("Puntaje prueba t�cnica (0-100): ", 0, 100);
         int entrevista = leerEnteroValidado("Puntaje entrevista (0-100): ", 0, 100);
 
-        // Asignaci�n usando punteros
         *(nombres + cantidad) = nombre;
         *(ids + cantidad) = id;
         *(edades + cantidad) = edad;
@@ -158,10 +152,13 @@ void registrarAspirantes(string nombres[], string ids[], int edades[], int nivel
         *(experiencias + cantidad) = exp;
         *(pruebas + cantidad) = prueba;
         *(entrevistas + cantidad) = entrevista;
-        *(puntajes + cantidad) = 0.0;
+        
+        *(puntajes + cantidad) = calcularPuntajeTotal(nivel, exp, prueba, entrevista);
         cantidad++;
 
         cout << "Aspirante registrado correctamente.\n";
+        cout << "Puntaje calculado: " << fixed << setprecision(2) 
+             << *(puntajes + cantidad - 1) << " puntos\n";
     }
 
     system("pause");
@@ -177,19 +174,16 @@ void calcularPuntajesTotales(string nombres[], string ids[], int niveles[], int 
         return;
     }
 
-    calcularPuntajes(puntajes, niveles, experiencias, pruebas, entrevistas, cantidad);
     mostrarResultados(nombres, ids, puntajes, cantidad);
 }
 
-// MODIFICADA: Usa aritm�tica de punteros para intercambio
 void ordenarPorPuntajeAsc(string nombres[], string ids[], int edades[], int niveles[],
                           int experiencias[], int pruebas[], int entrevistas[], float puntajes[],
                           int cantidad) {
     for (int i = 0; i < cantidad - 1; ++i) {
         for (int j = 0; j < cantidad - i - 1; ++j) {
-            // Comparaci�n usando punteros
+        	
             if (*(puntajes + j) > *(puntajes + j + 1)) {
-                // Intercambio usando aritm�tica de punteros
                 string auxNombre = *(nombres + j);
                 string auxId = *(ids + j);
                 int auxEdad = *(edades + j);
@@ -221,7 +215,6 @@ void ordenarPorPuntajeAsc(string nombres[], string ids[], int edades[], int nive
     }
 }
 
-// MODIFICADA: Usa aritm�tica de punteros para recorrer y buscar mayor
 void reporteGeneral(string nombres[], string ids[], int edades[], int niveles[],
                     int experiencias[], int pruebas[], int entrevistas[], float puntajes[], int cantidad) {
     system("cls");
@@ -243,7 +236,6 @@ void reporteGeneral(string nombres[], string ids[], int edades[], int niveles[],
     float mayor = -1.0;
     int idxMayor = 0;
 
-    // Recorrido con punteros
     string *ptrNombres = nombres;
     string *ptrIds = ids;
     int *ptrEdades = edades;
@@ -277,6 +269,63 @@ void reporteGeneral(string nombres[], string ids[], int edades[], int niveles[],
     system("cls");
 }
 
+void consultarAspiranteDestacado(string nombres[], string ids[], int edades[], int niveles[],
+                                 int experiencias[], int pruebas[], int entrevistas[], 
+                                 float puntajes[], int cantidad) {
+    system("cls");
+    if (cantidad == 0) {
+        cout << "\nNo hay aspirantes registrados.\n";
+        system("pause");
+        system("cls");
+        return;
+    }
+
+    cout << "\n=== CONSULTA DE ASPIRANTE DESTACADO ===\n";
+    cout << "N�mero de identificaci�n: ";
+    string idBuscar;
+    getline(cin, idBuscar);
+
+    int indice = -1;
+    string *ptrIds = ids;
+    for (int i = 0; i < cantidad; ++i) {
+        if (*(ptrIds + i) == idBuscar) {
+            indice = i;
+            break;
+        }
+    }
+
+    if (indice == -1) {
+        cout << "\nAspirante no encontrado con ese documento de identificaci�n.\n";
+        system("pause");
+        system("cls");
+        return;
+    }
+
+    string nivelTexto;
+    switch (*(niveles + indice)) {
+        case 1: nivelTexto = "T�cnico"; break;
+        case 2: nivelTexto = "Tecn�logo"; break;
+        case 3: nivelTexto = "Profesional"; break;
+        case 4: nivelTexto = "Posgrado"; break;
+    }
+
+    cout << "\n=== DATOS DEL ASPIRANTE ===\n";
+    cout << string(50, '-') << "\n";
+    cout << "Nombre completo:          " << *(nombres + indice) << "\n";
+    cout << "Identificaci�n:           " << *(ids + indice) << "\n";
+    cout << "Edad:                     " << *(edades + indice) << " a�os\n";
+    cout << "Nivel acad�mico:          " << nivelTexto << "\n";
+    cout << "A�os de experiencia:      " << *(experiencias + indice) << " a�os\n";
+    cout << "Puntaje prueba t�cnica:   " << *(pruebas + indice) << "/100\n";
+    cout << "Puntaje entrevista:       " << *(entrevistas + indice) << "/100\n";
+    cout << "Puntaje total:            " << fixed << setprecision(2) 
+         << *(puntajes + indice) << "/100\n";
+    cout << string(50, '-') << "\n";
+
+    system("pause");
+    system("cls");
+}
+
 void menuReportes(string nombres[], string ids[], int edades[], int niveles[],
                   int experiencias[], int pruebas[], int entrevistas[], float puntajes[], int cantidad) {
     int op;
@@ -284,16 +333,22 @@ void menuReportes(string nombres[], string ids[], int edades[], int niveles[],
         cout << "\n=== SUBMEN�: REPORTES Y CONSULTAS ===\n";
         cout << "1. Listado general de aspirantes\n";
         cout << "2. Reporte ordenado ascendentemente por puntaje total\n";
-        cout << "3. Volver\n";
-        op = leerEnteroValidado("Seleccione una opci�n (1-3): ", 1, 3);
+        cout << "3. Consulta de aspirante destacado\n";
+        cout << "4. Volver\n";
+        op = leerEnteroValidado("Seleccione una opci�n (1-4): ", 1, 4);
 
-        if (op == 1) reporteGeneral(nombres, ids, edades, niveles, experiencias, pruebas, entrevistas, puntajes, cantidad);
-        else if (op == 2) {
+        if (op == 1) {
+            reporteGeneral(nombres, ids, edades, niveles, experiencias, pruebas, entrevistas, puntajes, cantidad);
+        } else if (op == 2) {
             ordenarPorPuntajeAsc(nombres, ids, edades, niveles, experiencias, pruebas, entrevistas, puntajes, cantidad);
             reporteGeneral(nombres, ids, edades, niveles, experiencias, pruebas, entrevistas, puntajes, cantidad);
-        } else system("cls");
+        } else if (op == 3) {
+            consultarAspiranteDestacado(nombres, ids, edades, niveles, experiencias, pruebas, entrevistas, puntajes, cantidad);
+        } else {
+            system("cls");
+        }
 
-    } while (op != 3);
+    } while (op != 4);
 }
 
 void menuPrincipal(string nombres[], string ids[], int edades[], int niveles[],
@@ -357,12 +412,13 @@ int main() {
     return 0;
 }
 
+
 """
 # ============================================
 
 def convertir_cpp_a_pseudocodigo(codigo_cpp):
     """
-    Convierte código C++ a pseudocódigo estilo PSeInt
+    Convierte código C++ a pseudocódigo manteniendo las llaves visibles
     """
     lineas = codigo_cpp.split('\n')
     pseudocodigo = []
@@ -375,29 +431,37 @@ def convertir_cpp_a_pseudocodigo(codigo_cpp):
         linea_original = linea
         linea = linea.strip()
         
-        # Ignorar líneas vacías y directivas del preprocesador
-        if not linea or linea.startswith('#') or linea.startswith('using'):
+        # Ignorar líneas vacías
+        if not linea:
+            pseudocodigo.append('')
+            continue
+            
+        # Ignorar directivas del preprocesador
+        if linea.startswith('#') or linea.startswith('using'):
             continue
         
-        # Manejar comentarios de bloque /* */ - IGNORAR
+        # Manejar comentarios de bloque /* */
         if '/*' in linea and '*/' not in linea:
             en_comentario_bloque = True
+            pseudocodigo.append('    ' * nivel_indentacion + linea)
             continue
         elif '*/' in linea:
             en_comentario_bloque = False
+            pseudocodigo.append('    ' * nivel_indentacion + linea)
             continue
         elif en_comentario_bloque:
+            pseudocodigo.append('    ' * nivel_indentacion + linea)
             continue
         
-        # Comentarios de línea - IGNORAR
+        # Comentarios de línea - MANTENER
         if linea.startswith('//'):
+            pseudocodigo.append('    ' * nivel_indentacion + linea)
             continue
         
         # main
         if re.match(r'^int\s+main\s*\(', linea):
             pseudocodigo.append('')
-            pseudocodigo.append('Algoritmo SistemaGestion')
-            nivel_indentacion += 1
+            pseudocodigo.append('Algoritmo main()')
             en_main = True
             continue
         
@@ -410,8 +474,7 @@ def convertir_cpp_a_pseudocodigo(codigo_cpp):
             params_pseudo = ', '.join(params) if params else ''
             
             pseudocodigo.append('')
-            pseudocodigo.append('    ' * nivel_indentacion + f'SubProceso {nombre_funcion_actual}({params_pseudo})')
-            nivel_indentacion += 1
+            pseudocodigo.append('    ' * nivel_indentacion + f'Procedimiento {nombre_funcion_actual}({params_pseudo})')
             continue
         
         # Declaración de función int
@@ -424,7 +487,6 @@ def convertir_cpp_a_pseudocodigo(codigo_cpp):
             
             pseudocodigo.append('')
             pseudocodigo.append('    ' * nivel_indentacion + f'Funcion {nombre_funcion_actual}({params_pseudo}) : Entero')
-            nivel_indentacion += 1
             continue
         
         # Declaración de función float
@@ -437,26 +499,40 @@ def convertir_cpp_a_pseudocodigo(codigo_cpp):
             
             pseudocodigo.append('')
             pseudocodigo.append('    ' * nivel_indentacion + f'Funcion {nombre_funcion_actual}({params_pseudo}) : Real')
+            continue
+        
+        # Declaración de función string
+        if re.match(r'^string\s+(\w+)\s*\(', linea):
+            match = re.search(r'string\s+(\w+)\s*\(', linea)
+            nombre_funcion_actual = match.group(1)
+            
+            params = extraer_parametros(linea)
+            params_pseudo = ', '.join(params) if params else ''
+            
+            pseudocodigo.append('')
+            pseudocodigo.append('    ' * nivel_indentacion + f'Funcion {nombre_funcion_actual}({params_pseudo}) : Cadena')
+            continue
+        
+        # Llave de apertura sola
+        if linea == '{':
+            pseudocodigo.append('    ' * nivel_indentacion + '{')
             nivel_indentacion += 1
             continue
         
-        # Fin de función
-        if linea == '}' and nivel_indentacion > 0:
+        # Llave de cierre sola
+        if linea == '}':
             nivel_indentacion -= 1
-            if en_main:
-                pseudocodigo.append('    ' * nivel_indentacion + 'FinAlgoritmo')
-                en_main = False
-            elif nombre_funcion_actual:
-                pseudocodigo.append('    ' * nivel_indentacion + 'FinSubProceso')
-                nombre_funcion_actual = ""
+            pseudocodigo.append('    ' * nivel_indentacion + '}')
             continue
         
-        # Declaraciones de variables
-        if re.match(r'^(int|float|string|bool|double|char)\s+', linea) and '=' in linea:
+        # Declaraciones const
+        if linea.startswith('const '):
             linea_pseudo = convertir_declaracion(linea)
             pseudocodigo.append('    ' * nivel_indentacion + linea_pseudo)
             continue
-        elif re.match(r'^(int|float|string|bool|double|char)\s+', linea):
+        
+        # Declaraciones de variables
+        if re.match(r'^(int|float|string|bool|double|char)\s+', linea):
             linea_pseudo = convertir_declaracion(linea)
             pseudocodigo.append('    ' * nivel_indentacion + linea_pseudo)
             continue
@@ -481,58 +557,90 @@ def convertir_cpp_a_pseudocodigo(codigo_cpp):
                 pseudocodigo.append('    ' * nivel_indentacion + f'Leer {var}')
             continue
         
-        # while
+        # while con llave
         if re.match(r'^while\s*\(', linea):
             condicion = extraer_condicion(linea, 'while')
-            pseudocodigo.append('    ' * nivel_indentacion + f'Mientras {condicion} Hacer')
-            nivel_indentacion += 1
+            if '{' in linea:
+                pseudocodigo.append('    ' * nivel_indentacion + f'Mientras ({condicion}) ' + '{')
+                nivel_indentacion += 1
+            else:
+                pseudocodigo.append('    ' * nivel_indentacion + f'Mientras ({condicion})')
             continue
         
         # do-while
         if linea.startswith('do') and '{' in linea:
-            pseudocodigo.append('    ' * nivel_indentacion + 'Repetir')
+            pseudocodigo.append('    ' * nivel_indentacion + 'Hacer {')
             nivel_indentacion += 1
+            continue
+        elif linea == 'do':
+            pseudocodigo.append('    ' * nivel_indentacion + 'Hacer')
             continue
         
         # Fin do-while
         if re.match(r'^\}\s*while', linea):
             nivel_indentacion -= 1
             condicion = extraer_condicion(linea, 'while')
-            pseudocodigo.append('    ' * nivel_indentacion + f'Hasta Que {convertir_condicion_negada(condicion)}')
+            pseudocodigo.append('    ' * nivel_indentacion + f'}} Mientras ({condicion});')
             continue
         
-        # for
+        # for con llave
         if re.match(r'^for\s*\(', linea):
             linea_pseudo = convertir_for(linea)
-            pseudocodigo.append('    ' * nivel_indentacion + linea_pseudo)
-            nivel_indentacion += 1
+            if '{' in linea:
+                pseudocodigo.append('    ' * nivel_indentacion + linea_pseudo + ' {')
+                nivel_indentacion += 1
+            else:
+                pseudocodigo.append('    ' * nivel_indentacion + linea_pseudo)
             continue
         
-        # if
+        # if con llave
         if re.match(r'^if\s*\(', linea):
             condicion = extraer_condicion(linea, 'if')
-            pseudocodigo.append('    ' * nivel_indentacion + f'Si {condicion} Entonces')
-            nivel_indentacion += 1
+            if '{' in linea:
+                pseudocodigo.append('    ' * nivel_indentacion + f'Si ({condicion}) ' + '{')
+                nivel_indentacion += 1
+            else:
+                pseudocodigo.append('    ' * nivel_indentacion + f'Si ({condicion})')
             continue
         
         # else if
         if re.match(r'^else\s+if\s*\(', linea) or linea.startswith('} else if'):
             if linea.startswith('}'):
                 nivel_indentacion -= 1
-            condicion = extraer_condicion(linea, 'if')
-            pseudocodigo.append('    ' * nivel_indentacion + f'Sino Si {condicion} Entonces')
-            if not linea.startswith('}'):
-                nivel_indentacion += 1
+                condicion = extraer_condicion(linea, 'if')
+                if '{' in linea:
+                    pseudocodigo.append('    ' * nivel_indentacion + f'}} Sino Si ({condicion}) ' + '{')
+                    nivel_indentacion += 1
+                else:
+                    pseudocodigo.append('    ' * nivel_indentacion + f'}} Sino Si ({condicion})')
+                    nivel_indentacion += 1
             else:
-                nivel_indentacion += 1
+                condicion = extraer_condicion(linea, 'if')
+                if '{' in linea:
+                    pseudocodigo.append('    ' * nivel_indentacion + f'Sino Si ({condicion}) ' + '{')
+                    nivel_indentacion += 1
+                else:
+                    pseudocodigo.append('    ' * nivel_indentacion + f'Sino Si ({condicion})')
             continue
         
         # else
-        if linea == 'else {' or linea.startswith('} else') or linea == 'else':
+        if linea == 'else {' or linea.startswith('} else'):
             if linea.startswith('}'):
                 nivel_indentacion -= 1
+                if '{' in linea:
+                    pseudocodigo.append('    ' * nivel_indentacion + '} Sino {')
+                    nivel_indentacion += 1
+                else:
+                    pseudocodigo.append('    ' * nivel_indentacion + '} Sino')
+            else:
+                if '{' in linea:
+                    pseudocodigo.append('    ' * nivel_indentacion + 'Sino {')
+                    nivel_indentacion += 1
+                else:
+                    pseudocodigo.append('    ' * nivel_indentacion + 'Sino')
+            continue
+        elif linea == 'else':
             pseudocodigo.append('    ' * nivel_indentacion + 'Sino')
-            nivel_indentacion += 1
             continue
         
         # switch
@@ -540,46 +648,47 @@ def convertir_cpp_a_pseudocodigo(codigo_cpp):
             match = re.search(r'switch\s*\(\s*(\w+)\s*\)', linea)
             if match:
                 var = match.group(1)
-                pseudocodigo.append('    ' * nivel_indentacion + f'Segun {var} Hacer')
-                nivel_indentacion += 1
+                if '{' in linea:
+                    pseudocodigo.append('    ' * nivel_indentacion + f'Segun ({var}) ' + '{')
+                    nivel_indentacion += 1
+                else:
+                    pseudocodigo.append('    ' * nivel_indentacion + f'Segun ({var})')
             continue
         
         # case
         if re.match(r'^case\s+', linea):
-            match = re.search(r'case\s+(\w+)\s*:', linea)
+            match = re.search(r'case\s+(.+?):', linea)
             if match:
-                valor = match.group(1)
-                pseudocodigo.append('    ' * nivel_indentacion + f'{valor}:')
-                nivel_indentacion += 1
+                valor = match.group(1).strip()
+                pseudocodigo.append('    ' * nivel_indentacion + f'Caso {valor}:')
+                # No incrementar indentación para mantener estructura
             continue
         
         # break
         if linea == 'break;':
-            nivel_indentacion -= 1
+            pseudocodigo.append('    ' * nivel_indentacion + 'Romper')
             continue
         
         # return
         if linea.startswith('return'):
             valor = linea.replace('return', '').replace(';', '').strip()
             if valor and valor != '0':
-                pseudocodigo.append('    ' * nivel_indentacion + f'retorno <- {valor}')
+                pseudocodigo.append('    ' * nivel_indentacion + f'Retornar {valor}')
+            else:
+                pseudocodigo.append('    ' * nivel_indentacion + 'Retornar 0')
             continue
         
         # Llamadas a funciones especiales
         if 'system("pause")' in linea or 'system(\"pause\")' in linea:
-            pseudocodigo.append('    ' * nivel_indentacion + 'Esperar Tecla')
+            pseudocodigo.append('    ' * nivel_indentacion + 'system("pause")')
             continue
         
-        if 'cls()' in linea or 'system("cls")' in linea or 'system("clear")' in linea:
-            pseudocodigo.append('    ' * nivel_indentacion + 'Limpiar Pantalla')
+        if 'system("cls")' in linea or 'system("clear")' in linea:
+            pseudocodigo.append('    ' * nivel_indentacion + 'system("cls")')
             continue
         
-        # delete (liberar memoria)
-        if 'delete[]' in linea or 'delete ' in linea:
-            continue
-        
-        # new (asignación dinámica) - IGNORAR
-        if 'new ' in linea and '=' in linea:
+        if 'setlocale' in linea:
+            pseudocodigo.append('    ' * nivel_indentacion + linea)
             continue
         
         # Asignaciones y otras operaciones
@@ -599,6 +708,9 @@ def convertir_cpp_a_pseudocodigo(codigo_cpp):
             linea_pseudo = linea.replace(';', '')
             pseudocodigo.append('    ' * nivel_indentacion + linea_pseudo)
             continue
+        
+        # Cualquier otra línea
+        pseudocodigo.append('    ' * nivel_indentacion + linea)
     
     return '\n'.join(pseudocodigo)
 
@@ -615,11 +727,12 @@ def extraer_parametros(linea):
     params = []
     for param in params_str.split(','):
         param = param.strip()
-        param = re.sub(r'^(const\s+)?(int|float|string|bool|void|double|char)\s*[*&]*\s*', '', param)
-        if param and '=' not in param:
-            params.append(param)
-        elif '=' in param:
-            params.append(param.split('=')[0].strip())
+        # Mantener más información del parámetro
+        param_limpio = re.sub(r'^(const\s+)?', '', param)
+        if param_limpio and '=' not in param_limpio:
+            params.append(param_limpio)
+        elif '=' in param_limpio:
+            params.append(param_limpio.split('=')[0].strip())
     
     return params
 
@@ -629,77 +742,54 @@ def extraer_condicion(linea, palabra_clave):
     match = re.search(pattern, linea)
     if match:
         condicion = match.group(1).strip()
-        return convertir_condicion(condicion)
+        # Remover la llave si está al final
+        condicion = condicion.rstrip('{').strip()
+        return condicion
     return ''
 
-def convertir_condicion(condicion):
-    """Convierte operadores de C++ a pseudocódigo"""
-    condicion = condicion.replace('&&', ' Y ')
-    condicion = condicion.replace('||', ' O ')
-    condicion = condicion.replace('!', 'NO ')
-    condicion = condicion.replace('==', '=')
-    condicion = condicion.replace('true', 'Verdadero')
-    condicion = condicion.replace('false', 'Falso')
-    return condicion
-
-def convertir_condicion_negada(condicion):
-    """Niega una condición para do-while"""
-    if condicion.startswith('NO '):
-        return condicion[3:]
-    return f'NO ({condicion})'
-
 def convertir_declaracion(linea):
-    """Convierte declaración de variable"""
-    linea = linea.replace(';', '')
+    """Convierte declaración de variable manteniendo sintaxis similar"""
+    linea_original = linea
+    linea = linea.replace(';', '').strip()
     
-    tipo = ''
-    if linea.startswith('int '):
-        tipo = 'Entero'
-        linea = linea.replace('int ', '', 1)
-    elif linea.startswith('float ') or linea.startswith('double '):
-        tipo = 'Real'
-        linea = linea.replace('float ', '', 1).replace('double ', '', 1)
-    elif linea.startswith('string '):
-        tipo = 'Cadena'
-        linea = linea.replace('string ', '', 1)
-    elif linea.startswith('bool '):
-        tipo = 'Logico'
-        linea = linea.replace('bool ', '', 1)
-    elif linea.startswith('char '):
-        tipo = 'Caracter'
-        linea = linea.replace('char ', '', 1)
+    # Mantener const si existe
+    es_const = 'const ' if linea.startswith('const ') else ''
+    linea = linea.replace('const ', '')
+    
+    tipo_map = {
+        'int': 'Entero',
+        'float': 'Real',
+        'double': 'Real',
+        'string': 'Cadena',
+        'bool': 'Logico',
+        'char': 'Caracter'
+    }
+    
+    tipo_original = ''
+    for tipo_cpp, tipo_pseudo in tipo_map.items():
+        if linea.startswith(tipo_cpp + ' '):
+            tipo_original = tipo_cpp
+            break
+    
+    if not tipo_original:
+        return linea_original
+    
+    linea = linea[len(tipo_original):].strip()
     
     if '=' in linea:
-        partes = linea.split('=')
-        var = partes[0].strip().replace('*', '').replace('&', '')
-        valor = partes[1].strip().replace(';', '').replace('f', '').replace('0.0', '0')
-        return f'{var} <- {valor}'
+        partes = linea.split('=', 1)
+        var = partes[0].strip()
+        valor = partes[1].strip()
+        return f'{es_const}{tipo_map[tipo_original]} {var} = {valor}'
     else:
-        var = linea.strip().replace('*', '').replace('&', '').replace(';', '')
-        return f'{var} : {tipo}'
+        var = linea
+        if '[' in var:  # Es un arreglo
+            return f'{es_const}{tipo_map[tipo_original]} {var}'
+        return f'{es_const}{tipo_map[tipo_original]} {var}'
 
 def convertir_cout(linea):
-    """Convierte cout a Escribir"""
-    contenido = linea.split('cout')[1] if 'cout' in linea else ''
-    contenido = contenido.replace(';', '').strip()
-    
-    if contenido.startswith('<<'):
-        contenido = contenido[2:].strip()
-    
-    elementos = []
-    partes = contenido.split('<<')
-    
-    for parte in partes:
-        parte = parte.strip()
-        if parte == 'endl' or parte == '"\\n"' or parte == '\\n':
-            continue
-        if parte.startswith('"') and parte.endswith('"'):
-            parte = parte[1:-1]
-        elementos.append(parte)
-    
-    if elementos:
-        return 'Escribir ' + ', '.join(elementos)
-    return 'Escribir ""'
+    """Convierte cout manteniendo formato similar"""
+    return linea.replace('cout', 'Escribir').replace('<<', ',').replace('endl', '')
 
 def convertir_cin(linea):
     """Convierte cin a Leer"""
@@ -710,66 +800,46 @@ def convertir_cin(linea):
     return linea
 
 def convertir_for(linea):
-    """Convierte for a Para"""
-    match = re.search(r'for\s*\(\s*(?:int\s+)?(\w+)\s*=\s*(\d+)\s*;\s*\1\s*([<>]=?)\s*(\w+)\s*;.*?\)', linea)
-    if match:
-        var = match.group(1)
-        inicio = match.group(2)
-        operador = match.group(3)
-        fin = match.group(4)
-        
-        if '<' in operador and '=' not in operador:
-            return f'Para {var} <- {inicio} Hasta {fin}-1 Hacer'
-        elif '<=' in operador:
-            return f'Para {var} <- {inicio} Hasta {fin} Hacer'
-        else:
-            return f'Para {var} <- {inicio} Hasta {fin} Hacer'
-    return 'Para ... Hacer'
+    """Convierte for manteniendo sintaxis C++"""
+    # Mantener el for original pero traducir la palabra
+    linea = linea.replace('for', 'Para')
+    return linea.rstrip('{').strip()
 
 def convertir_asignacion(linea):
-    """Convierte asignación"""
-    linea = linea.replace(';', '').strip()
-    if '=' in linea:
-        partes = linea.split('=', 1)
-        izq = partes[0].strip()
-        der = partes[1].strip().replace('f;', '').replace('f', '')
-        return f'{izq} <- {der}'
-    return linea
+    """Convierte asignación manteniendo formato"""
+    return linea.replace(';', '')
 
 def convertir_incremento(linea):
     """Convierte incrementos/decrementos"""
-    linea = linea.replace(';', '').strip()
-    if '++' in linea:
-        var = linea.replace('++', '').strip()
-        return f'{var} <- {var} + 1'
-    elif '--' in linea:
-        var = linea.replace('--', '').strip()
-        return f'{var} <- {var} - 1'
-    return linea
+    return linea.replace(';', '')
 
 # ============================================
 # EJECUCIÓN PRINCIPAL
 # ============================================
 if __name__ == "__main__":
     print("=" * 60)
-    print("CONVERSOR C++ A PSEUDOCÓDIGO PSEINT")
+    print("CONVERSOR C++ A PSEUDOCÓDIGO (CON LLAVES)")
     print("=" * 60)
     print()
     
-    # Convierte el código
-    pseudocodigo = convertir_cpp_a_pseudocodigo(CODIGO_CPP)
-    
-    # Muestra el resultado
-    print(pseudocodigo)
-    print()
-    print("=" * 60)
-    
-    # Guarda en archivo
-    try:
-        with open('pseudocodigo_resultado.txt', 'w', encoding='utf-8') as f:
-            f.write(pseudocodigo)
-        print("✓ Guardado en: pseudocodigo_resultado.txt")
-    except:
-        print("✓ Conversión completada (no se pudo guardar archivo)")
+    if not CODIGO_CPP.strip():
+        print("⚠ No hay código para convertir.")
+        print("Por favor, pega tu código C++ en la variable CODIGO_CPP")
+    else:
+        # Convierte el código
+        pseudocodigo = convertir_cpp_a_pseudocodigo(CODIGO_CPP)
+        
+        # Muestra el resultado
+        print(pseudocodigo)
+        print()
+        print("=" * 60)
+        
+        # Guarda en archivo
+        try:
+            with open('pseudocodigo_con_llaves.txt', 'w', encoding='utf-8') as f:
+                f.write(pseudocodigo)
+            print("✓ Guardado en: pseudocodigo_con_llaves.txt")
+        except:
+            print("✓ Conversión completada (no se pudo guardar archivo)")
     
     print("=" * 60)

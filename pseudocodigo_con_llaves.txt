@@ -1,0 +1,491 @@
+
+
+
+Funcion leerEnteroValidado(string &mensaje, int minVal, int maxVal) : Entero
+Entero x
+Mientras (true) {
+    Escribir , mensaje;
+    Leer x
+    Si (x >= minVal && x <= maxVal) {
+        cin.ignore(numeric_limits<streamsize>::max(), '
+        ');
+        Retornar x
+    }
+}
+Escribir , "ERROR - Entrada inv�lida. Intente de nuevo.
+";
+cin.clear()
+cin.ignore(numeric_limits<streamsize>::max(), '\n');
+}
+}
+
+
+Funcion leerCadenaNoVacia(string &mensaje) : Cadena
+Cadena s
+Leer s
+Mientras (s.empty()) {
+Escribir , mensaje;
+Leer s
+}
+Retornar s
+}
+
+
+Funcion calcularPuntajeTotal(int nivelAcademico, int experiencia, int pruebaTecnica, int entrevista) : Real
+Real total = 0.0f
+
+Segun (nivelAcademico) {
+Caso 1:
+Caso 2:
+Caso 3:
+Caso 4:
+}
+
+Si (experiencia < 1)
+Sino Si (experiencia <= 3)
+Sino Si (experiencia <= 6)
+else total += 25
+
+total += (pruebaTecnica * 25.0f / 100.0f)
+total += (entrevista * 25.0f / 100.0f)
+
+Retornar total
+}
+
+
+Procedimiento calcularPuntajes()
+Entero pruebas[], int entrevistas[], int cantidad) {
+Real *ptrPuntajes = puntajes
+Entero *ptrNiveles = niveles
+Entero *ptrExperiencias = experiencias
+Entero *ptrPruebas = pruebas
+Entero *ptrEntrevistas = entrevistas
+
+Para (int i = 0; i < cantidad; ++i) {
+*(ptrPuntajes + i) = calcularPuntajeTotal(*(ptrNiveles + i), *(ptrExperiencias + i),
+*(ptrPruebas + i), *(ptrEntrevistas + i));
+}
+}
+
+
+Procedimiento mostrarResultados(string nombres[], string ids[], float puntajes[], int cantidad)
+system("cls")
+Si (cantidad == 0) {
+Escribir , "
+No hay aspirantes registrados.
+";
+system("pause")
+system("cls")
+Retornar 0
+}
+
+Escribir , "
+=== RESULTADOS DE PUNTAJES TOTALES ===
+";
+Escribir , "(Puntaje total calculado sobre 100 puntos)
+
+";
+Escribir , left , setw(22) , "Nombre"
+<< setw(14) << "ID"
+<< setw(10) << "Puntaje" << "
+";
+Escribir , string(45, '-') , "
+";
+
+Cadena *ptrNombres = nombres
+Cadena *ptrIds = ids
+Real *ptrPuntajes = puntajes
+
+Para (int i = 0; i < cantidad; ++i) {
+Escribir , left , setw(22) , *(ptrNombres + i)
+<< setw(14) << *(ptrIds + i)
+<< setw(10) << fixed << setprecision(2) << *(ptrPuntajes + i) << "
+";
+}
+
+Escribir , "
+C�lculo de puntajes completado correctamente.
+";
+system("pause")
+system("cls")
+}
+
+
+Procedimiento registrarAspirantes()
+Entero experiencias[], int pruebas[], int entrevistas[], float puntajes[],
+Entero &cantidad, int maxAsp) {
+system("cls")
+Entero n = leerEnteroValidado("
+�Cu�ntos aspirantes desea registrar? (>=1): ", 1);
+
+Para (int i = 0; i < n && cantidad < maxAsp; ++i) {
+Escribir , "
+--- Registro del aspirante " << (cantidad + 1) << " ---
+";
+
+Escribir , "Nombre completo: ";
+Cadena nombre = leerCadenaNoVacia(" Nombre inv�lido. Ingrese el nombre: ")
+
+Cadena id
+Logico duplicado
+Hacer {
+Escribir , "N�mero de identificaci�n: ";
+Leer id
+duplicado = false
+
+Cadena *ptrIds = ids
+Para (int k = 0; k < cantidad; ++k) {
+Si (*(ptrIds + k) == id) {
+Escribir , "  ? Identificaci�n ya registrada. Ingrese otra.
+";
+duplicado = true
+Romper
+}
+}
+} Mientras (duplicado || id.empty());
+
+Entero edad = leerEnteroValidado("Edad (>=18): ", 18)
+Escribir , "Nivel acad�mico (1=T�cnico, 2=Tecn�logo, 3=Profesional, 4=Posgrado)
+";
+Entero nivel = leerEnteroValidado("Ingrese nivel (1-4): ", 1, 4)
+Entero exp = leerEnteroValidado("A�os de experiencia laboral (>=0): ", 0)
+Entero prueba = leerEnteroValidado("Puntaje prueba t�cnica (0-100): ", 0, 100)
+Entero entrevista = leerEnteroValidado("Puntaje entrevista (0-100): ", 0, 100)
+
+*(nombres + cantidad) = nombre
+*(ids + cantidad) = id
+*(edades + cantidad) = edad
+*(niveles + cantidad) = nivel
+*(experiencias + cantidad) = exp
+*(pruebas + cantidad) = prueba
+*(entrevistas + cantidad) = entrevista
+
+*(puntajes + cantidad) = calcularPuntajeTotal(nivel, exp, prueba, entrevista)
+cantidad++
+
+Escribir , "Aspirante registrado correctamente.
+";
+Escribir , "Puntaje calculado: " , fixed , setprecision(2)
+<< *(puntajes + cantidad - 1) << " puntos
+";
+}
+
+system("pause")
+system("cls")
+}
+
+
+Procedimiento calcularPuntajesTotales()
+Entero pruebas[], int entrevistas[], float puntajes[], int cantidad) {
+Si (cantidad == 0) {
+Escribir , "
+No hay aspirantes registrados.
+";
+system("pause")
+system("cls")
+Retornar 0
+}
+
+mostrarResultados(nombres, ids, puntajes, cantidad)
+}
+
+
+Procedimiento ordenarPorPuntajeAsc()
+Entero experiencias[], int pruebas[], int entrevistas[], float puntajes[],
+Entero cantidad) {
+Para (int i = 0; i < cantidad - 1; ++i) {
+Para (int j = 0; j < cantidad - i - 1; ++j) {
+
+Si (*(puntajes + j) > *(puntajes + j + 1)) {
+Cadena auxNombre = *(nombres + j)
+Cadena auxId = *(ids + j)
+Entero auxEdad = *(edades + j)
+Entero auxNivel = *(niveles + j)
+Entero auxExp = *(experiencias + j)
+Entero auxPrueba = *(pruebas + j)
+Entero auxEntrevista = *(entrevistas + j)
+Real auxPuntaje = *(puntajes + j)
+
+*(nombres + j) = *(nombres + j + 1)
+*(ids + j) = *(ids + j + 1)
+*(edades + j) = *(edades + j + 1)
+*(niveles + j) = *(niveles + j + 1)
+*(experiencias + j) = *(experiencias + j + 1)
+*(pruebas + j) = *(pruebas + j + 1)
+*(entrevistas + j) = *(entrevistas + j + 1)
+*(puntajes + j) = *(puntajes + j + 1)
+
+*(nombres + j + 1) = auxNombre
+*(ids + j + 1) = auxId
+*(edades + j + 1) = auxEdad
+*(niveles + j + 1) = auxNivel
+*(experiencias + j + 1) = auxExp
+*(pruebas + j + 1) = auxPrueba
+*(entrevistas + j + 1) = auxEntrevista
+*(puntajes + j + 1) = auxPuntaje
+}
+}
+}
+}
+
+
+Procedimiento reporteGeneral()
+Entero experiencias[], int pruebas[], int entrevistas[], float puntajes[], int cantidad) {
+system("cls")
+Si (cantidad == 0) {
+Escribir , "
+No hay aspirantes registrados.
+";
+system("pause")
+system("cls")
+Retornar 0
+}
+
+Escribir , "
+=== LISTADO GENERAL DE ASPIRANTES ===
+";
+Escribir , "(1=T�cnico, 2=Tecn�logo, 3=Profesional, 4=Posgrado)
+
+";
+
+Escribir , left , setw(22) , "Nombre" , setw(14) , "ID" , setw(6) , "Edad"
+<< setw(6) << "Niv" << setw(6) << "Exp" << setw(8) << "Prueba"
+<< setw(9) << "Entrev" << setw(8) << "Puntaje" << "
+";
+Escribir , string(90, '-') , "
+";
+
+Real mayor = -1.0
+Entero idxMayor = 0
+
+Cadena *ptrNombres = nombres
+Cadena *ptrIds = ids
+Entero *ptrEdades = edades
+Entero *ptrNiveles = niveles
+Entero *ptrExperiencias = experiencias
+Entero *ptrPruebas = pruebas
+Entero *ptrEntrevistas = entrevistas
+Real *ptrPuntajes = puntajes
+
+Para (int i = 0; i < cantidad; ++i) {
+Escribir , left , setw(22) , *(ptrNombres + i)
+<< setw(14) << *(ptrIds + i)
+<< setw(6) << *(ptrEdades + i)
+<< setw(6) << *(ptrNiveles + i)
+<< setw(6) << *(ptrExperiencias + i)
+<< setw(8) << *(ptrPruebas + i)
+<< setw(9) << *(ptrEntrevistas + i)
+<< setw(8) << fixed << setprecision(2) << *(ptrPuntajes + i) << "
+";
+
+Si (*(ptrPuntajes + i) > mayor) {
+mayor = *(ptrPuntajes + i)
+idxMayor = i
+}
+}
+
+Escribir , "
+Aspirante con mayor puntaje: " << *(ptrNombres + idxMayor)
+<< " (ID: " << *(ptrIds + idxMayor)
+<< ") - Puntaje: " << fixed << setprecision(2) << mayor << "
+";
+
+system("pause")
+system("cls")
+}
+
+
+Procedimiento consultarAspiranteDestacado()
+Entero experiencias[], int pruebas[], int entrevistas[],
+Real puntajes[], int cantidad) {
+system("cls")
+Si (cantidad == 0) {
+Escribir , "
+No hay aspirantes registrados.
+";
+system("pause")
+system("cls")
+Retornar 0
+}
+
+Escribir , "
+=== CONSULTA DE ASPIRANTE DESTACADO ===
+";
+Escribir , "N�mero de identificaci�n: ";
+Cadena idBuscar
+Leer idBuscar
+
+Entero indice = -1
+Cadena *ptrIds = ids
+Para (int i = 0; i < cantidad; ++i) {
+Si (*(ptrIds + i) == idBuscar) {
+indice = i
+Romper
+}
+}
+
+Si (indice == -1) {
+Escribir , "
+Aspirante no encontrado con ese documento de identificaci�n.
+";
+system("pause")
+system("cls")
+Retornar 0
+}
+
+Cadena nivelTexto
+Caso 1:
+Caso 2:
+Caso 3:
+Caso 4:
+}
+
+Escribir , "
+=== DATOS DEL ASPIRANTE ===
+";
+Escribir , string(50, '-') , "
+";
+Escribir , "Nombre completo:          " , *(nombres + indice) , "
+";
+Escribir , "Identificaci�n:           " , *(ids + indice) , "
+";
+Escribir , "Edad:                     " , *(edades + indice) , " a�os
+";
+Escribir , "Nivel acad�mico:          " , nivelTexto , "
+";
+Escribir , "A�os de experiencia:      " , *(experiencias + indice) , " a�os
+";
+Escribir , "Puntaje prueba t�cnica:   " , *(pruebas + indice) , "/100
+";
+Escribir , "Puntaje entrevista:       " , *(entrevistas + indice) , "/100
+";
+Escribir , "Puntaje total:            " , fixed , setprecision(2)
+<< *(puntajes + indice) << "/100
+";
+Escribir , string(50, '-') , "
+";
+
+system("pause")
+system("cls")
+}
+
+
+Procedimiento menuReportes()
+Entero experiencias[], int pruebas[], int entrevistas[], float puntajes[], int cantidad) {
+Entero op
+Hacer {
+Escribir , "
+=== SUBMEN�: REPORTES Y CONSULTAS ===
+";
+Escribir , "1. Listado general de aspirantes
+";
+Escribir , "2. Reporte ordenado ascendentemente por puntaje total
+";
+Escribir , "3. Consulta de aspirante destacado
+";
+Escribir , "4. Volver
+";
+op = leerEnteroValidado("Seleccione una opci�n (1-4): ", 1, 4)
+
+Si (op == 1) {
+reporteGeneral(nombres, ids, edades, niveles, experiencias, pruebas, entrevistas, puntajes, cantidad)
+} Sino Si (op == 2) {
+ordenarPorPuntajeAsc(nombres, ids, edades, niveles, experiencias, pruebas, entrevistas, puntajes, cantidad)
+reporteGeneral(nombres, ids, edades, niveles, experiencias, pruebas, entrevistas, puntajes, cantidad)
+} Sino Si (op == 3) {
+consultarAspiranteDestacado(nombres, ids, edades, niveles, experiencias, pruebas, entrevistas, puntajes, cantidad)
+} Sino {
+system("cls")
+}
+
+} Mientras (op != 4);
+}
+
+
+Procedimiento menuPrincipal()
+Entero experiencias[], int pruebas[], int entrevistas[], float puntajes[],
+Entero &cantidad, int maxAsp) {
+Entero opcion
+Hacer {
+Escribir , "
+=== TechSolutions S.A. - Gesti�n de Aspirantes ===
+";
+Escribir , "1. Registro de aspirantes
+";
+Escribir , "2. C�lculo de puntaje total por aspirante
+";
+Escribir , "3. Reportes y consultas
+";
+Escribir , "4. Salir
+";
+
+opcion = leerEnteroValidado("Seleccione una opci�n (1-4): ", 1, 4)
+system("cls")
+
+Si (opcion == 1)
+registrarAspirantes(nombres, ids, edades, niveles, experiencias, pruebas, entrevistas, puntajes, cantidad, maxAsp)
+Sino Si (opcion == 2)
+calcularPuntajesTotales(nombres, ids, niveles, experiencias, pruebas, entrevistas, puntajes, cantidad)
+Sino Si (opcion == 3)
+menuReportes(nombres, ids, edades, niveles, experiencias, pruebas, entrevistas, puntajes, cantidad)
+
+} Mientras (opcion != 4);
+
+Escribir , "Saliendo del sistema.";
+}
+
+
+Algoritmo main()
+setlocale(LC_ALL, "Spanish");
+
+Escribir , "=============================================
+";
+Escribir , " TechSolutions S.A. - Gesti�n de Aspirantes
+";
+Escribir , "=============================================
+";
+Escribir , "La compa�ia necesita reclutar nuevo personal de forma justa y automatizada.
+";
+Escribir , "Se solicita un programa que permita:
+";
+Escribir , "  - Registrar informaci�n de los aspirantes.
+";
+Escribir , "  - Calcular su puntaje total con base en criterios t�cnicos y actitudinales.
+";
+Escribir , "  - Generar reportes detallados de evaluaci�n.
+
+";
+Escribir , "
+AUTORES:
+";
+Escribir , "  - Samuel Cogollo Villarreal (C�d. 0222420018)
+";
+Escribir , "  - Manuel Esteban Arcia Pastrana (C�d. 0222420001)
+";
+Escribir , "  - Manuel Francisco Amell Gil (C�d. 0222421001)
+";
+Escribir , "
+Asignatura: Programaci�n B�sica -- Grupo B1
+";
+Escribir , "=============================================
+
+";
+system("pause")
+system("cls")
+
+const Entero MAX_Aspirantes = 100
+Cadena nombres[MAX_Aspirantes]
+Cadena ids[MAX_Aspirantes]
+Entero edades[MAX_Aspirantes]
+Entero niveles[MAX_Aspirantes]
+Entero experiencias[MAX_Aspirantes]
+Entero pruebas[MAX_Aspirantes]
+Entero entrevistas[MAX_Aspirantes]
+Real puntajes[MAX_Aspirantes]
+Entero cantidad = 0
+
+menuPrincipal(nombres, ids, edades, niveles, experiencias, pruebas, entrevistas, puntajes, cantidad, MAX_Aspirantes)
+Retornar 0
+}
+
+
