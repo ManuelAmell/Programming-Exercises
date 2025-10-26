@@ -23,6 +23,7 @@ debug/
 *.log
 
 # Archivos temporales
+**/ejecutables/
 *.tmp
 *.temp
 *.obj
