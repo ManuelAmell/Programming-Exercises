@@ -6,8 +6,9 @@ struct infantes {
     char gener;
     string especialidad;
 };  
+
 int main ()
 {
-    
+    cout << "hola";
     return 0;
 }

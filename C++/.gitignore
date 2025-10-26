@@ -1,4 +1,4 @@
-gcontraseñas.cpp,string.cpp
+
 output/string.exe
 # Archivos binarios / ejecutables
 *.exe
@@ -7,7 +7,7 @@ output/string.exe
 *.dll
 *.so
 *.dylib
-
+*.o
 
 # Carpetas de compilación
 build/
