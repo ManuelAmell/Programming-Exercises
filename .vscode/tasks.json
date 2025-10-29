@@ -2,15 +2,23 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "crear carpeta ejecutables",
+            "type": "shell",
+            "command": "mkdir",
+            "args": ["-p", "${fileDirname}/ejecutables"],
+            "problemMatcher": []
+        },
+        {
             "label": "C/C++: g++ build active file",
             "type": "shell",
             "command": "/usr/bin/g++",
             "args": [
+                "-std=c++23",
                 "-fdiagnostics-color=always",
                 "-g",
                 "${file}",
                 "-o",
-                "${fileDirname}/${fileBasenameNoExtension}",
+                "${fileDirname}/ejecutables/${fileBasenameNoExtension}",
                 "-lsfml-graphics",
                 "-lsfml-window",
                 "-lsfml-system"
@@ -18,12 +26,13 @@
             "options": {
                 "cwd": "${fileDirname}"
             },
+            "dependsOn": "crear carpeta ejecutables",
             "problemMatcher": ["$gcc"],
             "group": {
                 "kind": "build",
                 "isDefault": true
             },
-            "detail": "Compilador: g++ con SFML"
+            "detail": "Compilador: g++ con SFML y C++23"
         }
     ]
 }

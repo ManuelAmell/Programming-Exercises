@@ -1,7 +1,8 @@
 {
     "files.associations": {
         "iostream": "cpp",
-        "iomanip": "cpp"
+        "iomanip": "cpp",
+        "print": "cpp"
     },
 
     "workbench.colorCustomizations": {
@@ -67,5 +68,6 @@
     "[cpp]": {
         "editor.defaultFormatter": "xaver.clang-format"
     },
-    "CodeGPT.apiKey": "Anthropic"
+    "CodeGPT.apiKey": "Anthropic",
+    "C_Cpp.default.compilerPath": "/usr/bin/g++"
 }
