@@ -1,0 +1,42 @@
+
+git clone https://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@github.com/ManuelAmell/Programming-Exercises.git
+
+
+Reemplaza ghp_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX con tu token nuevo y seguro.
+
+2️⃣ Actualizar un repositorio existente en la USB
+
+cd /mnt/Programming-Exercises
+git pull https://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@github.com/ManuelAmell/Programming-Exercises.git main
+Comandos básicos en Linux (Fedora)
+# Ir a la USB
+cd /mnt
+
+# Clonar por primera vez
+git clone https://<TOKEN>@github.com/ManuelAmell/Programming-Exercises.git
+cd Programming-Exercises
+
+# Actualizar repo
+git pull https://<TOKEN>@github.com/ManuelAmell/Programming-Exercises.git main
+
+# Subir cambios
+git add .
+git commit -m "Mensaje de commit"
+git push https://<TOKEN>@github.com/ManuelAmell/Programming-Exercises.git main
+
+4️⃣ Comandos básicos en Windows CMD
+# Cambiar a la USB
+E:
+cd Programming-Exercises
+
+# Clonar por primera vez
+git clone https://<TOKEN>@github.com/ManuelAmell/Programming-Exercises.git
+cd Programming-Exercises
+
+# Actualizar repo
+git pull https://<TOKEN>@github.com/ManuelAmell/Programming-Exercises.git main
+
+# Subir cambios
+git add .
+git commit -m "Mensaje de commit"
+git push https://<TOKEN>@github.com/ManuelAmell/Programming-Exercises.git main
