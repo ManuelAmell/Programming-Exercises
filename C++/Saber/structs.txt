@@ -1,0 +1,128 @@
+#include <iostream>
+#include <cstring> // para strcpy y strcmp
+using namespace std;
+
+// --- Struct anidado ---
+struct Fecha {
+    int dia;
+    int mes;
+    int anio;
+};
+
+// --- Struct principal ---
+struct Persona {
+    char nombre[50];        // array de char
+    int edad;
+    float altura;
+    Fecha nacimiento;       // struct anidado
+    char hobbies[3][20];    // array de strings (char)
+};
+
+// --- Función para asignar valores a Persona ---
+void asignarPersona(Persona &p, const char *nombre, int edad, float altura,
+                    int dia, int mes, int anio,
+                    const char hobbies[3][20]) {
+    strcpy(p.nombre, nombre);
+    p.edad = edad;
+    p.altura = altura;
+    p.nacimiento.dia = dia;
+    p.nacimiento.mes = mes;
+    p.nacimiento.anio = anio;
+    for(int i=0; i<3; i++)
+        strcpy(p.hobbies[i], hobbies[i]);
+}
+
+// --- Función para copiar Persona ---
+void copiarPersona(Persona &dest, const Persona &src) {
+    strcpy(dest.nombre, src.nombre);
+    dest.edad = src.edad;
+    dest.altura = src.altura;
+    dest.nacimiento = src.nacimiento; // copia struct anidado
+    for(int i=0; i<3; i++)
+        strcpy(dest.hobbies[i], src.hobbies[i]);
+}
+
+// --- Función para comparar Persona ---
+bool sonIguales(const Persona &a, const Persona &b) {
+    if(strcmp(a.nombre, b.nombre) != 0) return false;
+    if(a.edad != b.edad || a.altura != b.altura) return false;
+    if(a.nacimiento.dia != b.nacimiento.dia ||
+       a.nacimiento.mes != b.nacimiento.mes ||
+       a.nacimiento.anio != b.nacimiento.anio) return false;
+    for(int i=0; i<3; i++)
+        if(strcmp(a.hobbies[i], b.hobbies[i]) != 0) return false;
+    return true;
+}
+
+// --- Función para mostrar Persona ---
+void mostrarPersona(const Persona &p) {
+    cout << "Nombre: " << p.nombre << "\nEdad: " << p.edad 
+         << "\nAltura: " << p.altura 
+         << "\nNacimiento: " << p.nacimiento.dia << "/" 
+         << p.nacimiento.mes << "/" << p.nacimiento.anio
+         << "\nHobbies: ";
+    for(int i=0;i<3;i++){
+        cout << p.hobbies[i];
+        if(i<2) cout << ", ";
+    }
+    cout << endl;
+}
+
+// --- Struct con punteros y memoria dinámica ---
+struct PersonaDyn {
+    char* nombre;
+    int edad;
+};
+
+// Crear PersonaDyn dinámicamente
+void crearPersonaDyn(PersonaDyn &p, const char* nombre, int edad) {
+    p.nombre = new char[strlen(nombre)+1];
+    strcpy(p.nombre, nombre);
+    p.edad = edad;
+}
+
+// Copiar PersonaDyn
+void copiarPersonaDyn(PersonaDyn &dest, const PersonaDyn &src) {
+    dest.nombre = new char[strlen(src.nombre)+1];
+    strcpy(dest.nombre, src.nombre);
+    dest.edad = src.edad;
+}
+
+// Liberar memoria de PersonaDyn
+void liberarPersonaDyn(PersonaDyn &p) {
+    delete[] p.nombre;
+    p.nombre = nullptr;
+}
+
+// --- Main de prueba ---
+int main() {
+    // Array de hobbies
+    const char hobbies[3][20] = {"correr", "ajedrez", "programar"};
+
+    // Crear y asignar Persona
+    Persona p1;
+    asignarPersona(p1, "Amell", 19, 1.75, 29,10,2005, hobbies);
+    mostrarPersona(p1);
+
+    // Copiar Persona
+    Persona p2;
+    copiarPersona(p2, p1);
+    cout << "\nPersona copiada:\n";
+    mostrarPersona(p2);
+
+    // Comparar Personas
+    cout << "\n¿P1 y P2 son iguales? " << (sonIguales(p1,p2) ? "Sí" : "No") << endl;
+
+    // Struct dinámico
+    PersonaDyn pd1, pd2;
+    crearPersonaDyn(pd1, "Carlos", 25);
+    copiarPersonaDyn(pd2, pd1);
+
+    cout << "\nStruct dinámico:\n";
+    cout << pd1.nombre << " - " << pd2.nombre << endl;
+
+    liberarPersonaDyn(pd1);
+    liberarPersonaDyn(pd2);
+
+    return 0;
+}
