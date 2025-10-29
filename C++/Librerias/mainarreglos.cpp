@@ -1,28 +1,40 @@
 #include "arreglos.h"
+void mostrar(int arr[], int n){
+    for(int i=0;i<n;i++) cout << arr[i] << " ";
+    cout << endl;
+}
 
 int main() {
     int arr[] = {5, 2, 9, 1, 7};
     int n = 5;
 
-    cout << "Suma: " << suma(arr,n) << endl;
-    cout << "Promedio: " << promedio(arr,n) << endl;
-    cout << "Máximo: " << maximo(arr,n) << endl;
-    cout << "Mínimo: " << minimo(arr,n) << endl;
+    cout << "Original: "; mostrar(arr,n);
 
-    invertir(arr,n);
-    cout << "Invertido: ";
-    for(int i=0;i<n;i++) cout << arr[i] << " ";
-    cout << endl;
+    ordenarBurbuja(arr,n);
+    cout << "Burbuja: "; mostrar(arr,n);
 
-    ordenarburbuja(arr,n);
-    cout << "Ordenado: ";
-    for(int i=0;i<n;i++) cout << arr[i] << " ";
-    cout << endl;
+    int arr2[] = {5,2,9,1,7};
+    ordenarInsercion(arr2,n);
+    cout << "Inserción: "; mostrar(arr2,n);
+
+    int arr3[] = {5,2,9,1,7};
+    ordenarSeleccion(arr3,n);
+    cout << "Selección: "; mostrar(arr3,n);
+
+    int arr4[] = {5,2,9,1,7};
+    ordenarMergeSort(arr4,0,n-1);
+    cout << "Merge Sort: "; mostrar(arr4,n);
+
+    int arr5[] = {5,2,9,1,7};
+    ordenarQuickSort(arr5,0,n-1);
+    cout << "Quick Sort: "; mostrar(arr5,n);
 
     int val = 7;
-    int pos = buscar(arr,n,val);
-    if(pos != -1) cout << val << " encontrado en índice " << pos << endl;
-    else cout << val << " no encontrado" << endl;
+    int pos = buscarLineal(arr,n,val);
+    cout << val << " encontrado con búsqueda lineal en índice " << pos << endl;
+
+    pos = buscarBinaria(arr,n,val);
+    cout << val << " encontrado con búsqueda binaria en índice " << pos << endl;
 
     return 0;
 }
