@@ -2,7 +2,8 @@
     "files.associations": {
         "iostream": "cpp",
         "iomanip": "cpp",
-        "print": "cpp"
+        "print": "cpp",
+        "ostream": "cpp"
     },
 
     "workbench.colorCustomizations": {
@@ -46,7 +47,7 @@
 
     // --- Error Lens ---
     "errorLens.enabled": true,
-    "errorLens.fontSize": "12px",
+    "errorLens.fontSize": "16px",
     "errorLens.fontFamily": "Fira Code, monospace",
     "errorLens.errorBackground": "rgba(255,0,0,0.1)",
     "errorLens.warningBackground": "rgba(255,255,0,0.1)",
