@@ -3,7 +3,8 @@
         "iostream": "cpp",
         "iomanip": "cpp",
         "print": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "random": "cpp"
     },
 
     "workbench.colorCustomizations": {
@@ -22,13 +23,36 @@
     },
     "workbench.preferredDarkColorTheme": "One Dark Pro Night Flat",
     "workbench.preferredLightColorTheme": "One Dark Pro Night Flat",
-    "workbench.colorTheme": "One Dark Pro Mix",
     "workbench.iconTheme": "material-icon-theme",
 
     // --- Clang-Format ---
     "clang-format.executable": "/usr/bin/clang-format",
-    "clang-format.style": "file",
+    "clang-format.style": "WebKit",
     "editor.formatOnSave": true,
+    "[cpp]": {
+        "editor.defaultFormatter": "xaver.clang-format"
+    },
+    "[c]": {
+        "editor.defaultFormatter": "xaver.clang-format"
+    },
+
+    // --- Prettier ---
+    "prettier.enable": true,
+    "prettier.requireConfig": false,
+    "prettier.tabWidth": 4,
+    "prettier.useTabs": false,
+    "prettier.semi": true,
+    "prettier.singleQuote": true,
+    "prettier.trailingComma": "all",
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
 
     // --- Code Runner ---
     "code-runner.runInTerminal": true,
@@ -57,18 +81,6 @@
     "errorLens.infoForeground": "#0000FF",
     "errorLens.delay": 500,
 
-    // --- Prettier ---
-    "prettier.enable": true,
-    "prettier.requireConfig": false,
-    "prettier.tabWidth": 4,
-    "prettier.useTabs": false,
-    "prettier.semi": true,
-    "prettier.singleQuote": true,
-    "prettier.trailingComma": "all",
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "[cpp]": {
-        "editor.defaultFormatter": "xaver.clang-format"
-    },
     "CodeGPT.apiKey": "Anthropic",
     "C_Cpp.default.compilerPath": "/usr/bin/g++"
 }
