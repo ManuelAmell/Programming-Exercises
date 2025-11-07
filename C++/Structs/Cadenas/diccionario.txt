@@ -1,0 +1,212 @@
+Diccionario de Funciones Predefinidas para Cadenas y Caracteres (C/C++)
+Funciones de longitud y comparación
+1. strlen
+
+Descripción: Devuelve la longitud de la cadena (sin incluir \0).
+
+Sintaxis: size_t strlen(const char* str);
+
+Ejemplo:
+
+char cad[] = "Hola";
+cout << strlen(cad); // Salida: 4
+
+2. strcmp
+
+Descripción: Compara dos cadenas. Retorna 0 si son iguales, >0 si la primera es mayor, <0 si la segunda es mayor.
+
+Sintaxis: int strcmp(const char* str1, const char* str2);
+
+Ejemplo:
+
+strcmp("abc", "abd"); // Retorna -1
+
+3. strncmp
+
+Descripción: Compara los primeros n caracteres de dos cadenas.
+
+Sintaxis: int strncmp(const char* str1, const char* str2, size_t n);
+
+Ejemplo:
+
+strncmp("abcd","abef",2); // Retorna 0 (primeros 2 caracteres iguales)
+
+Funciones de copia y concatenación
+4. strcpy
+
+Descripción: Copia una cadena en otra.
+
+Sintaxis: char* strcpy(char* dest, const char* src);
+
+Ejemplo:
+
+char a[10]; strcpy(a,"Hola"); cout << a; // Salida: Hola
+
+5. strncpy
+
+Descripción: Copia los primeros n caracteres de una cadena a otra.
+
+Sintaxis: char* strncpy(char* dest, const char* src, size_t n);
+
+Ejemplo:
+
+char a[10]; strncpy(a,"Hola Mundo",4); a[4]='\0'; cout << a; // Salida: Hola
+
+6. strcat
+
+Descripción: Concatena (une) dos cadenas.
+
+Sintaxis: char* strcat(char* dest, const char* src);
+
+Ejemplo:
+
+char a[20]="Hola "; char b[]="Mundo"; strcat(a,b); cout << a; // Salida: Hola Mundo
+
+7. strncat
+
+Descripción: Concatena los primeros n caracteres de una cadena a otra.
+
+Sintaxis: char* strncat(char* dest, const char* src, size_t n);
+
+Ejemplo:
+
+char a[20]="Hola "; char b[]="Mundo"; strncat(a,b,3); cout << a; // Salida: Hola Mun
+
+Funciones de búsqueda
+8. strchr
+
+Descripción: Busca la primera ocurrencia de un carácter. Devuelve puntero o NULL.
+
+Sintaxis: char* strchr(const char* str, int c);
+
+Ejemplo:
+
+char* p = strchr("Hola","o"); // p apunta a 'o' en "Hola"
+
+9. strrchr
+
+Descripción: Busca la última ocurrencia de un carácter.
+
+Sintaxis: char* strrchr(const char* str, int c);
+
+Ejemplo:
+
+char* p = strrchr("Hola Mundo",'o'); // p apunta al 'o' de "Mundo"
+
+10. strstr
+
+Descripción: Busca una subcadena dentro de otra.
+
+Sintaxis: char* strstr(const char* haystack, const char* needle);
+
+Ejemplo:
+
+char* p = strstr("Hola Mundo", "Mun"); cout << p; // Salida: Mundo
+
+11. strpbrk
+
+Descripción: Devuelve un puntero al primer carácter que coincida con alguno de los de la cadena dada.
+
+Ejemplo:
+
+char* p = strpbrk("Hola Mundo","aeiou"); cout << *p; // Salida: o
+
+Funciones de transformación de caracteres
+12. toupper
+
+Descripción: Convierte un carácter a mayúscula.
+
+Sintaxis: int toupper(int c);
+
+Ejemplo:
+
+cout << (char)toupper('a'); // Salida: A
+
+13. tolower
+
+Descripción: Convierte un carácter a minúscula.
+
+Ejemplo:
+
+cout << (char)tolower('Z'); // Salida: z
+
+14. isalpha
+
+Descripción: Retorna verdadero si el carácter es una letra (A-Z o a-z).
+
+Ejemplo:
+
+isalpha('a'); // true
+isalpha('1'); // false
+
+15. isdigit
+
+Descripción: Retorna verdadero si el carácter es un dígito (0-9).
+
+Ejemplo:
+
+isdigit('5'); // true
+
+16. isspace
+
+Descripción: Retorna verdadero si el carácter es un espacio, tab, newline, etc.
+
+Ejemplo:
+
+isspace(' '); // true
+
+17. isupper
+
+Descripción: Retorna verdadero si el carácter es mayúscula.
+
+Ejemplo:
+
+isupper('A'); // true
+
+18. islower
+
+Descripción: Retorna verdadero si el carácter es minúscula.
+
+Ejemplo:
+
+islower('a'); // true
+
+Funciones adicionales de manipulación
+19. strrev (MSVC/Windows)
+
+Descripción: Invierte la cadena en su lugar.
+
+Ejemplo:
+
+char cad[] = "Hola"; strrev(cad); cout << cad; // Salida: aloH
+
+20. memset
+
+Descripción: Rellena un bloque de memoria con un valor. Útil para inicializar cadenas.
+
+Sintaxis: void* memset(void* ptr, int value, size_t num);
+
+Ejemplo:
+
+char a[10]; memset(a,'x',10); a[9]='\0'; cout << a; // Salida: xxxxxxxx
+
+21. memcpy
+
+Descripción: Copia un bloque de memoria de una ubicación a otra.
+
+Ejemplo:
+
+char src[]="Hola"; char dest[10]; memcpy(dest,src,5); cout << dest; // Salida: Hola
+
+Funciones de reemplazo y conteo de subcadenas
+
+Para buscar subcadena: usar strstr y bucles.
+
+Para reemplazar subcadena: combinar strstr, strncpy, strcat y un buffer temporal.
+
+Ejemplo contar subcadena:
+
+char cad[]="aaaba"; char sub[]="aa"; int veces=0;
+char* ptr=cad;
+while((ptr=strstr(ptr,sub))!=NULL){veces++; ptr++;}
+cout << veces; // Salida: 2
