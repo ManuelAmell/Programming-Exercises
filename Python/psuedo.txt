@@ -1,0 +1,785 @@
+// ============================================
+// ESTRUCTURAS DE DATOS
+// ============================================
+
+Estructura publicacion
+    Entero id_publicacion
+    Entero anio
+    Cadena abstract
+    Cadena titulo_publicacion
+    Cadena premio
+    Cadena tipo_publicacion
+    Real puntos_b
+    Real puntos_a
+FinEstructura
+
+Estructura autores
+    Entero id_autor
+    Cadena nombre
+    Cadena correo
+    Cadena programa
+    publicacion pb[50]
+    Entero np
+FinEstructura
+
+
+// ============================================
+// PROCEDIMIENTOS Y FUNCIONES
+// ============================================
+
+Procedimiento puntos_y_tipo(op: Entero, p: publicacion Por Referencia)
+    Segun (op)
+        Caso 1:
+            p.tipo_publicacion <- "Publicacion en revista internacional indexada"
+            p.puntos_b <- 100
+        Caso 2:
+            p.tipo_publicacion <- "Publicacion en revista nacional"
+            p.puntos_b <- 80
+        Caso 3:
+            p.tipo_publicacion <- "Ponencia en congreso internacional"
+            p.puntos_b <- 70
+        Caso 4:
+            p.tipo_publicacion <- "Ponencia en congreso nacional"
+            p.puntos_b <- 60
+        Caso 5:
+            p.tipo_publicacion <- "Articulo en boletin o revista estudiantil"
+            p.puntos_b <- 40
+        De Otro Modo:
+            p.tipo_publicacion <- "Desconocido"
+            p.puntos_b <- 0
+    FinSegun
+FinProcedimiento
+
+
+Funcion existe_p(autor: autores[], p: publicacion, n: Entero): Logico
+    Para i <- 0 Hasta n-1
+        Para j <- 0 Hasta autor[i].np-1
+            Si (p.id_publicacion = autor[i].pb[j].id_publicacion) Entonces
+                Retornar Verdadero
+            FinSi
+        FinPara
+    FinPara
+    Retornar Falso
+FinFuncion
+
+
+Funcion existe_a(autor: autores[], nuevo: autores, n: Entero): Logico
+    Para i <- 0 Hasta n-1
+        Si (nuevo.id_autor = autor[i].id_autor) Entonces
+            Retornar Verdadero
+        FinSi
+    FinPara
+    Retornar Falso
+FinFuncion
+
+
+Funcion buscar_autor(id: Entero, autor: autores[], n: Entero): Entero
+    Para i <- 0 Hasta n-1
+        Si (id = autor[i].id_autor) Entonces
+            Retornar i
+        FinSi
+    FinPara
+    Retornar -1
+FinFuncion
+
+
+Procedimiento registro_autor(autor: autores[] Por Referencia, n: Entero Por Referencia)
+    Limpiar Pantalla
+    
+    Si (n >= 10) Entonces
+        Escribir "Cantidad maxima registrada."
+        Pausar
+        Retornar
+    FinSi
+
+    Escribir ""
+    Escribir "=== Registro de Autor ", n + 1, " ==="
+    Escribir "ID: "
+    Leer nuevo.id_autor
+
+    Si (existe_a(autor, nuevo, n)) Entonces
+        Escribir "Autor ya registrado."
+        Pausar
+        Retornar
+    FinSi
+
+    Escribir "Nombre: "
+    Leer nuevo.nombre
+    Escribir "Correo: "
+    Leer nuevo.correo
+    Escribir "Programa: "
+    Leer nuevo.programa
+
+    nuevo.np <- 0
+    autor[n] <- nuevo
+    n <- n + 1
+    Escribir "Autor registrado correctamente."
+    Pausar
+FinProcedimiento
+
+
+Procedimiento mostrarMenuColores()
+    Escribir ""
+    Escribir "Seleccione color:"
+    Escribir "[1] Rojo"
+    Escribir "[2] Verde"
+    Escribir "[3] Azul"
+    Escribir "[4] Amarillo"
+    Escribir "[5] Resetear color"
+FinProcedimiento
+
+
+Procedimiento registrar_publicacion(autor: autores[] Por Referencia, n: Entero)
+    Limpiar Pantalla
+    
+    Si (n = 0) Entonces
+        Escribir "No hay autores registrados."
+        Pausar
+        Retornar
+    FinSi
+
+    Entero aux
+    Escribir "ID del autor dueño de la publicacion: "
+    Leer aux
+
+    Entero i
+    i <- buscar_autor(aux, autor, n)
+    
+    Si (i = -1) Entonces
+        Escribir "Este autor no existe."
+        Pausar
+        Retornar
+    FinSi
+
+    Si (autor[i].np >= 50) Entonces
+        Escribir "Numero maximo de publicaciones registradas."
+        Pausar
+        Retornar
+    FinSi
+
+    publicacion p
+    Escribir ""
+    Escribir "=== Registro de Publicacion para: ", autor[i].nombre, " ==="
+    Escribir "ID de la publicacion: "
+    Leer p.id_publicacion
+
+    Si (existe_p(autor, p, n)) Entonces
+        Escribir "Ya existe esta publicacion."
+        Pausar
+        Retornar
+    FinSi
+
+    Escribir "Titulo: "
+    Leer p.titulo_publicacion
+
+    Entero op
+    Repetir
+        Escribir ""
+        Escribir "Tipo de publicacion:"
+        Escribir "[1] Revista internacional indexada"
+        Escribir "[2] Revista nacional"
+        Escribir "[3] Congreso internacional"
+        Escribir "[4] Congreso nacional"
+        Escribir "[5] Boletin o revista estudiantil"
+        Escribir "Seleccione: "
+        Leer op
+        Si (op < 1 O op > 5) Entonces
+            Escribir "Opcion invalida."
+        FinSi
+    Hasta Que (op >= 1 Y op <= 5)
+
+    puntos_y_tipo(op, p)
+
+    Escribir "Año: "
+    Leer p.anio
+    Escribir "Premio (si no aplica escriba 'ninguno'): "
+    Leer p.premio
+
+    Si (p.premio <> "ninguno" Y Longitud(p.premio) > 0) Entonces
+        p.puntos_a <- 20
+    Sino
+        p.puntos_a <- 0
+    FinSi
+
+    Escribir "Resumen: "
+    Leer p.abstract
+
+    Caracter resp
+    Escribir ""
+    Escribir "¿Desea analizar o editar el texto? (s/n): "
+    Leer resp
+
+    Si (Minusculas(resp) = "s") Entonces
+        Entero opcion1
+        Repetir
+            Limpiar Pantalla
+            Escribir "--- My WP ---"
+            Escribir "[1] Analizar texto"
+            Escribir "[2] Editar texto"
+            Escribir "[3] Salir"
+            Escribir "Seleccione una opción: "
+            Leer opcion1
+
+            Segun (opcion1)
+                Caso 1:
+                    Entero sub
+                    Repetir
+                        Limpiar Pantalla
+                        Escribir "--- Análisis de Texto ---"
+                        Escribir "[1] Total de caracteres"
+                        Escribir "[2] Contar vocales"
+                        Escribir "[3] Contar numéricos"
+                        Escribir "[4] Contar espacios"
+                        Escribir "[5] Contar especiales"
+                        Escribir "[6] Contar palabras"
+                        Escribir "[7] Salir"
+                        Escribir "Seleccione: "
+                        Leer sub
+
+                        Segun (sub)
+                            Caso 1:
+                                Escribir "Total de caracteres: ", totalCaracteres(p.abstract)
+                            Caso 2:
+                                Escribir "Vocales: ", contarVocales(p.abstract)
+                            Caso 3:
+                                Escribir "Numéricos: ", contarNumericos(p.abstract)
+                            Caso 4:
+                                Escribir "Espacios: ", contarEspacios(p.abstract)
+                            Caso 5:
+                                Escribir "Especiales: ", contarEspeciales(p.abstract)
+                            Caso 6:
+                                Escribir "Palabras: ", contarPalabras(p.abstract)
+                        FinSegun
+                        Pausar
+                    Hasta Que (sub = 7)
+
+                Caso 2:
+                    Entero sub
+                    Repetir
+                        Limpiar Pantalla
+                        Escribir "--- Edición de Texto ---"
+                        Escribir "[1] Convertir todo a mayúsculas"
+                        Escribir "[2] Convertir todo a minúsculas"
+                        Escribir "[3] Detectar tipo de oración"
+                        Escribir "[4] Capitalizar palabras"
+                        Escribir "[5] Asignar color"
+                        Escribir "[6] Salir"
+                        Escribir "Seleccione: "
+                        Leer sub
+
+                        Segun (sub)
+                            Caso 1:
+                                aMayusculas(p.abstract)
+                                Escribir p.abstract
+                            Caso 2:
+                                aMinusculas(p.abstract)
+                                Escribir p.abstract
+                            Caso 3:
+                                Escribir "Tipo de oración: ", tipoOracion(p.abstract)
+                            Caso 4:
+                                capitalizarPalabras(p.abstract)
+                                Escribir p.abstract
+                            Caso 5:
+                                Entero colorOp
+                                mostrarMenuColores()
+                                Leer colorOp
+                                asignarColor(colorOp)
+                                Escribir p.abstract
+                                asignarColor(5)
+                        FinSegun
+                        Pausar
+                    Hasta Que (sub = 6)
+            FinSegun
+        Hasta Que (opcion1 = 3)
+    FinSi
+
+    autor[i].pb[autor[i].np] <- p
+    autor[i].np <- autor[i].np + 1
+
+    Escribir ""
+    Escribir "Publicación registrada correctamente."
+    Escribir "Puntos base: ", p.puntos_b
+    Escribir "Puntos adicionales: ", p.puntos_a
+    Escribir "Total: ", p.puntos_b + p.puntos_a
+    Pausar
+FinProcedimiento
+
+
+Procedimiento mostrarDatosAutor(autor: autores[], i: Entero)
+    Escribir "Datos del autor: "
+    Escribir "ID del autor: ", autor[i].id_autor
+    Escribir "Nombre del autor: ", autor[i].nombre
+    Escribir "Correo del autor: ", autor[i].correo
+    Escribir "Programa del autor: ", autor[i].programa
+FinProcedimiento
+
+
+Procedimiento actualizarAutor(autor: autores[] Por Referencia, n: Entero)
+    Limpiar Pantalla
+    
+    Entero autID, autDeseado, opc
+    opc <- 0
+    
+    Escribir "Ingresar la ID del autor que desea actualizar: "
+    Leer autID
+    
+    autDeseado <- buscar_autor(autID, autor, n)
+    
+    Si (autDeseado >= 0) Entonces
+        Escribir "Se ha encontrado al autor!"
+        
+        mostrarDatosAutor(autor, autDeseado)
+        
+        Repetir
+            Escribir "Que dato desea modificar?: "
+            Escribir "[1] Nombre. "
+            Escribir "[2] Correo. "
+            Escribir "[3] Programa. "
+            Leer opc
+        Hasta Que (opc >= 1 Y opc <= 3)
+        
+        Segun (opc)
+            Caso 1:
+                Escribir "Ingresar el nombre modificado: "
+                Leer autor[autDeseado].nombre
+            Caso 2:
+                Escribir "Ingresar el correo modificado: "
+                Leer autor[autDeseado].correo
+            Caso 3:
+                Escribir "Ingresar el programa modificado: "
+                Leer autor[autDeseado].programa
+        FinSegun
+    Sino
+        Escribir "No se ha encontrado al autor ingresado. "
+    FinSi
+FinProcedimiento
+
+
+Procedimiento actualizarPub(autor: autores[] Por Referencia, n: Entero)
+    Entero pubID, opc
+    Logico found
+    found <- Falso
+    
+    Entero f, c
+    
+    Escribir "Ingresar ID de la publicación: "
+    Leer pubID
+    
+    Para f <- 0 Hasta n-1
+        Para c <- 0 Hasta autor[f].np-1
+            Si (pubID = autor[f].pb[c].id_publicacion) Entonces
+                found <- Verdadero
+                Romper
+            FinSi
+        FinPara
+        Si (found) Entonces
+            Romper
+        FinSi
+    FinPara
+    
+    Si (found = Verdadero) Entonces
+        Limpiar Pantalla
+        Escribir "Datos de la publicacion: "
+        Escribir "ID: ", autor[f].pb[c].id_publicacion
+        Escribir "Año: ", autor[f].pb[c].anio
+        Escribir "Abstract: "
+        Escribir autor[f].pb[c].abstract
+        Escribir "Titulo: ", autor[f].pb[c].titulo_publicacion
+        Escribir "Premio: "
+        Escribir autor[f].pb[c].premio
+        Escribir "Tipo de publicación: ", autor[f].pb[c].tipo_publicacion
+        Escribir "Puntos a: ", autor[f].pb[c].puntos_a
+        Escribir "Puntos b: ", autor[f].pb[c].puntos_b
+        
+        Repetir
+            Escribir "Que dato desea modificar?: "
+            Escribir "[1] Año. "
+            Escribir "[2] Abstract. "
+            Escribir "[3] Titulo. "
+            Escribir "[4] Premio. "
+            Escribir "[5] Tipo de publicación (1-5). "
+            Leer opc
+        Hasta Que (opc >= 1 Y opc <= 5)
+        
+        Segun (opc)
+            Caso 1:
+                Escribir "Ingresar nuevo año: "
+                Leer autor[f].pb[c].anio
+            Caso 2:
+                Escribir "Ingresar nuevo abstract: "
+                Leer autor[f].pb[c].abstract
+            Caso 3:
+                Escribir "Ingresar nuevo titulo: "
+                Leer autor[f].pb[c].titulo_publicacion
+            Caso 4:
+                Escribir "Ingresar nuevo premio: "
+                Leer autor[f].pb[c].premio
+                
+                Si (autor[f].pb[c].premio <> "ninguno") Entonces
+                    autor[f].pb[c].puntos_a <- 20
+                Sino
+                    autor[f].pb[c].puntos_a <- 0
+                FinSi
+            Caso 5:
+                Entero nuev
+                
+                Repetir
+                    Escribir "Ingresar nuevo tipo de publicación (1-5): "
+                    Leer nuev
+                Hasta Que (nuev >= 1 Y nuev <= 5)
+                
+                puntos_y_tipo(nuev, autor[f].pb[c])
+        FinSegun
+    Sino
+        Escribir "No se encontró una publicación con esa ID. "
+    FinSi
+FinProcedimiento
+
+
+Procedimiento asignarActualizar(autor: autores[] Por Referencia, n: Entero)
+    Limpiar Pantalla
+    Caracter opc
+    Logico loop
+    loop <- Verdadero
+    
+    Mientras (loop)
+        Escribir "ASIGNACIÓN Y ACTUALIZACIÓN DE DATOS "
+        Escribir "[a] Autor. "
+        Escribir "[b] Publicación. "
+        Escribir "[c] Salir. "
+        Escribir "Opción deseada: "
+        Leer opc
+        opc <- Minusculas(opc)
+        
+        Segun (opc)
+            Caso "a":
+                actualizarAutor(autor, n)
+            Caso "b":
+                actualizarPub(autor, n)
+            Caso "c":
+                loop <- Falso
+        FinSegun
+    FinMientras
+FinProcedimiento
+
+
+Procedimiento consultarAutor(autor: autores[], n: Entero)
+    Entero autID, AD
+    
+    Escribir "Ingresar la ID del autor: "
+    Leer autID
+    
+    AD <- buscar_autor(autID, autor, n)
+    
+    Si (autor[AD].np = 0) Entonces
+        Escribir "El autor no tiene publicaciones. "
+        Retornar
+    FinSi
+    
+    Si (AD >= 0) Entonces
+        Escribir "PUBLICACIONES DEL AUTOR: "
+        
+        Para i <- 0 Hasta autor[AD].np-1
+            Escribir "PUBLICACION #", i+1
+            Escribir "Título: ", autor[AD].pb[i].titulo_publicacion
+            Escribir "Tipo de publicacion: ", autor[AD].pb[i].tipo_publicacion
+            Escribir "Premio: ", autor[AD].pb[i].premio
+            Escribir "Puntaje base: ", autor[AD].pb[i].puntos_b
+            Escribir "Puntos adicionales: ", autor[AD].pb[i].puntos_a
+            Escribir "Total de puntos: ", autor[AD].pb[i].puntos_b + autor[AD].pb[i].puntos_a
+            Escribir ""
+        FinPara
+    Sino
+        Escribir "No se encontró la ID del autor. "
+    FinSi
+    
+    Pausar
+FinProcedimiento
+
+
+Procedimiento consultarPub(autor: autores[], n: Entero)
+    Entero ID, f, c
+    Logico found
+    found <- Falso
+    
+    Escribir "Ingresar la ID de la publicación: "
+    Leer ID
+    
+    Para f <- 0 Hasta n-1
+        Para c <- 0 Hasta autor[f].np-1
+            Si (ID = autor[f].pb[c].id_publicacion) Entonces
+                found <- Verdadero
+                Romper
+            FinSi
+        FinPara
+        Si (found) Entonces
+            Romper
+        FinSi
+    FinPara
+    
+    Si (found) Entonces
+        Escribir "Autor de la publicación: ", autor[f].nombre
+        Escribir "Programa al que pertenece: ", autor[f].programa
+        Escribir "Cantidad de puntos obtenidos: ", autor[f].pb[c].puntos_b + autor[f].pb[c].puntos_a
+        Escribir ""
+    Sino
+        Escribir "No se encontró la ID de la publicación... "
+    FinSi
+    
+    Pausar
+FinProcedimiento
+
+
+Procedimiento listadoGeneral(autor: autores[], n: Entero)
+    Para i <- 0 Hasta n-1
+        Escribir "Publicaciones de: ", autor[i].nombre, ": "
+        Escribir ""
+        Real acum
+        acum <- 0
+        Para j <- 0 Hasta autor[i].np-1
+            Escribir "#", j+1, ": "
+            Escribir "Titulo: ", autor[i].pb[j].titulo_publicacion
+            Escribir "Puntaje total: ", autor[i].pb[j].puntos_b + autor[i].pb[j].puntos_a
+            acum <- acum + (autor[i].pb[j].puntos_b + autor[i].pb[j].puntos_a)
+        FinPara
+        Escribir ""
+        Escribir " Puntaje acumulado del autor: ", acum
+        Escribir ""
+    FinPara
+    
+    Pausar
+FinProcedimiento
+
+
+Procedimiento reportesConsultas(autor: autores[], n: Entero)
+    Limpiar Pantalla
+    Caracter opc
+    Logico loop
+    loop <- Verdadero
+    
+    Mientras (loop)
+        Escribir "REPORTES Y CONSULTAS "
+        Escribir "[a] Consultar un autor. "
+        Escribir "[b] Consultar una publicación. "
+        Escribir "[c] Listado de todos los autores y sus publicaciones. "
+        Escribir "[d] Salir. "
+        Escribir "Opción deseada: "
+        Leer opc
+        opc <- Minusculas(opc)
+        
+        Segun (opc)
+            Caso "a":
+                consultarAutor(autor, n)
+            Caso "b":
+                consultarPub(autor, n)
+            Caso "c":
+                listadoGeneral(autor, n)
+            Caso "d":
+                loop <- Falso
+        FinSegun
+    FinMientras
+FinProcedimiento
+
+
+Procedimiento estadisticas(autor: autores[], n: Entero)
+    Limpiar Pantalla
+    Escribir "====Estadisticas Generales===="
+    
+    Si (n = 0) Entonces
+        Escribir "No hay autores registrados."
+        Pausar
+        Retornar
+    FinSi
+    
+    Escribir ""
+    Escribir "A) Numero de publicaciones por autor:"
+    Para i <- 0 Hasta n-1
+        Escribir autor[i].nombre, ": ", autor[i].np, " publicaciones"
+    FinPara
+    
+    Entero conPremio, totalAutoresConPub
+    conPremio <- 0
+    totalAutoresConPub <- 0
+    
+    Para i <- 0 Hasta n-1
+        Logico tienePremio
+        tienePremio <- Falso
+        
+        Si (autor[i].np > 0) Entonces
+            totalAutoresConPub <- totalAutoresConPub + 1
+        FinSi
+        
+        Para j <- 0 Hasta autor[i].np-1
+            Si (autor[i].pb[j].premio <> "ninguno" Y Longitud(autor[i].pb[j].premio) > 0) Entonces
+                tienePremio <- Verdadero
+                Romper
+            FinSi
+        FinPara
+        
+        Si (tienePremio) Entonces
+            conPremio <- conPremio + 1
+        FinSi
+    FinPara
+    
+    Real porcentajePremio
+    Si (totalAutoresConPub = 0) Entonces
+        porcentajePremio <- 0
+    Sino
+        porcentajePremio <- (conPremio / totalAutoresConPub) * 100
+    FinSi
+    
+    Escribir ""
+    Escribir "B) Porcentaje de autores con algun premio: ", porcentajePremio, "%"
+    
+    Real maxP, minP
+    Entero iMax, iMin
+    maxP <- -1
+    minP <- 999999
+    iMax <- -1
+    iMin <- -1
+    
+    Para i <- 0 Hasta n-1
+        Real total
+        total <- 0
+        
+        Para j <- 0 Hasta autor[i].np-1
+            total <- total + (autor[i].pb[j].puntos_b + autor[i].pb[j].puntos_a)
+        FinPara
+        
+        Si (autor[i].np > 0) Entonces
+            Si (total > maxP) Entonces
+                maxP <- total
+                iMax <- i
+            FinSi
+            Si (total < minP) Entonces
+                minP <- total
+                iMin <- i
+            FinSi
+        FinSi
+    FinPara
+    
+    Escribir ""
+    Escribir "C) Autor con mayor puntaje: "
+    Si (iMax <> -1) Entonces
+        Escribir autor[iMax].nombre, " (", maxP, " puntos)"
+    Sino
+        Escribir "No disponible."
+    FinSi
+    
+    Escribir "   Autor con menor puntaje: "
+    Si (iMin <> -1) Entonces
+        Escribir autor[iMin].nombre, " (", minP, " puntos)"
+    Sino
+        Escribir "No disponible."
+    FinSi
+    
+    // Análisis por tipo de publicación
+    Entero tipos
+    tipos <- 5
+    Arreglo conteo[5]
+    Arreglo sumaPuntos[5]
+    
+    Para i <- 0 Hasta 4
+        conteo[i] <- 0
+        sumaPuntos[i] <- 0
+    FinPara
+
+    Para i <- 0 Hasta n-1
+        Para j <- 0 Hasta autor[i].np-1
+            Entero t
+            t <- 0
+            
+            Si (autor[i].pb[j].tipo_publicacion = "Publicacion en revista internacional indexada") Entonces
+                t <- 0
+            Sino
+                Si (autor[i].pb[j].tipo_publicacion = "Publicacion en revista nacional") Entonces
+                    t <- 1
+                Sino
+                    Si (autor[i].pb[j].tipo_publicacion = "Ponencia en congreso internacional") Entonces
+                        t <- 2
+                    Sino
+                        Si (autor[i].pb[j].tipo_publicacion = "Ponencia en congreso nacional") Entonces
+                            t <- 3
+                        Sino
+                            t <- 4
+                        FinSi
+                    FinSi
+                FinSi
+            FinSi
+
+            conteo[t] <- conteo[t] + 1
+            sumaPuntos[t] <- sumaPuntos[t] + (autor[i].pb[j].puntos_b + autor[i].pb[j].puntos_a)
+        FinPara
+    FinPara
+    
+    Entero totalPub, maxTipo
+    totalPub <- 0
+    maxTipo <- 0
+    
+    Para i <- 0 Hasta 4
+        totalPub <- totalPub + conteo[i]
+    FinPara
+    
+    Para i <- 1 Hasta 4
+        Si (conteo[i] > conteo[maxTipo]) Entonces
+            maxTipo <- i
+        FinSi
+    FinPara
+
+    Arreglo nombresTipos[5]
+    nombresTipos[0] <- "Revista internacional indexada"
+    nombresTipos[1] <- "Revista nacional"
+    nombresTipos[2] <- "Congreso internacional"
+    nombresTipos[3] <- "Congreso nacional"
+    nombresTipos[4] <- "Boletin o revista estudiantil"
+
+    Escribir ""
+    Escribir "D) Tipo con más registros: ", nombresTipos[maxTipo]
+    
+    Si (totalPub > 0) Entonces
+        Escribir "   Representa el ", (conteo[maxTipo] / totalPub) * 100, "% de las publicaciones."
+        Escribir "   Promedio de puntos: ", sumaPuntos[maxTipo] / conteo[maxTipo]
+    FinSi
+
+    Pausar
+FinProcedimiento
+
+
+// ============================================
+// ALGORITMO PRINCIPAL
+// ============================================
+
+Algoritmo PUBLISOFT
+    Entero op, n
+    n <- 0
+    Arreglo autor[10]
+
+    Repetir
+        Limpiar Pantalla
+        Escribir "           PUBLISOFT"
+        Escribir "----------------------------------------"
+        Escribir "[1] Registro de autores"
+        Escribir "[2] Registro de publicaciones"
+        Escribir "[3] Asignación y actualización de puntos"
+        Escribir "[4] Reportes y consultas"
+        Escribir "[5] Estadisticas"
+        Escribir "[6] Salir"
+        Escribir "Seleccione una opción: "
+        Leer op
+
+        Segun (op)
+            Caso 1:
+                registro_autor(autor, n)
+            Caso 2:
+                registrar_publicacion(autor, n)
+            Caso 3:
+                asignarActualizar(autor, n)
+            Caso 4:
+                reportesConsultas(autor, n)
+            Caso 5:
+                estadisticas(autor, n)
+            Caso 6:
+                Escribir "Gracias por usar PUBLISOFT. saliendo..."
+        FinSegun
+    Hasta Que (op = 6)
+FinAlgoritmo

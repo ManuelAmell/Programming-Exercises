@@ -15,7 +15,8 @@ Mientras (true) {
 Escribir , "ERROR - Entrada inv�lida. Intente de nuevo.
 ";
 cin.clear()
-cin.ignore(numeric_limits<streamsize>::max(), '\n');
+cin.ignore(numeric_limits<streamsize>::max(), '
+');
 }
 }
 
