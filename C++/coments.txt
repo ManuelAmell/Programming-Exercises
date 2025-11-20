@@ -1,0 +1,9 @@
+| Símbolo     | Tipo de comentario          | Color por defecto | Uso típico                                                                   |
+| ----------- | --------------------------- | ----------------- | ---------------------------------------------------------------------------- |
+| `// ?`      | Pregunta / duda             | Azul              | Para señalar preguntas, aclaraciones o temas que necesitas revisar           |
+| `// !`      | Alerta / advertencia        | Rojo              | Para errores potenciales, problemas críticos o cosas importantes a notar     |
+| `// *`      | Nota / punto importante     | Verde             | Para destacar información importante, recordatorios de diseño o puntos clave |
+| `// TODO:`  | Tareas pendientes           | Amarillo          | Para marcar tareas, cosas por implementar o pendientes de revisar            |
+| `// FIXME:` | Corrección requerida        | Naranja           | Para código que necesita arreglo o mejora inmediata                          |
+| `// NOTE:`  | Nota informativa            | Gris / azul claro | Información adicional que puede ayudar a entender el código                  |
+| `// HACK:`  | Solución temporal o “truco” | Violeta           | Para marcar soluciones rápidas o parches temporales                          |

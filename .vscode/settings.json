@@ -4,7 +4,8 @@
     "iomanip": "cpp",
     "print": "cpp",
     "ostream": "cpp",
-    "random": "cpp"
+    "random": "cpp",
+    "cstdio": "cpp"
   },
   "workbench.colorCustomizations": {
     "editor.background": "#1A237E10",

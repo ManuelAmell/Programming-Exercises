@@ -1,0 +1,20 @@
+Estudiante #1
+Nombre: 1
+Programa: 1
+Documento: 1
+Semestre: 1
+Materias matriculadas: 1
+Materias reprobadas: 1
+Promedio: 1
+Estrato: 1
+-------------------------------------------
+Estudiante #2
+Nombre: 1
+Programa: 1
+Documento: 2
+Semestre: 2
+Materias matriculadas: 2
+Materias reprobadas: 2
+Promedio: 2
+Estrato: 2
+-------------------------------------------
