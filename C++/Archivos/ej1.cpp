@@ -1,6 +1,6 @@
+#include <cstring>
 #include <fstream>
 #include <iostream>
-#include <cstring>
 using namespace std;
 
 struct empleado {
@@ -30,7 +30,7 @@ int menu() {
     cout << "5)pila :\n";
     cout << " 6)salir :\n";
     cin >> opc;
-    
+
   } while (opc < 1 || opc > 6);
   return opc;
 }
@@ -93,8 +93,8 @@ void calnomina(struct empleado nomina[], int n) {
       nomina[x].salarioextra = 0;
     }
 
-    nomina[x].totalpagar = nomina[x].salarioextra + nomina[x].salariOrdinario -(
-                           nomina[x].salud + nomina[x].pension);
+    nomina[x].totalpagar = nomina[x].salarioextra + nomina[x].salariOrdinario -
+                           (nomina[x].salud + nomina[x].pension);
 
     cout << "Empleado :" << nomina[x].nombre << endl;
     cout << "pension :" << nomina[x].pension << endl;
@@ -107,11 +107,9 @@ void calnomina(struct empleado nomina[], int n) {
   }
 }
 // case 3
-void consultas(struct empleado nomina[], char nombre[100],int n) {
-
+void consultas(struct empleado nomina[], char nombre[100], int n) {
   for (int x = 0; x < n; x++) {
-
-    if (strcmp(nomina[x].nombre, nombre)==0) {//comparar cadenas
+    if (strcmp(nomina[x].nombre, nombre) == 0) {  // comparar cadenas
       cout << "id :" << nomina[x].id << endl;
       cout << "nombre :" << nomina[x].nombre << endl;
       cout << "salario ordinario :" << nomina[x].salariOrdinario << endl;
@@ -129,52 +127,49 @@ void banco(struct empleado nomina[], int n) {
   do {
     cout << " 1) generar Archivo de texto al banco :" << endl;
     cout << " 2) imprimir Archivo :" << endl;
-    cout << " 3 salir "<<endl;
+    cout << " 3 salir " << endl;
     cin >> opc;
     switch (opc) {
-    case 1: {
+      case 1: {
+        ofstream archivoBanco("banco.txt");
+        if (!archivoBanco) {
+          cout << "Error al abrir" << endl;
+          return (0);
+        }
 
-      ofstream archivoBanco("banco.txt");
-      if (!archivoBanco) {
-        cout << "Error al abrir" << endl;
-        exit(0);
+        for (int x = 0; x < n; x++) {
+          archivoBanco << "ID: " << nomina[x].id
+                       << ", Nombre: " << nomina[x].nombre
+                       << ", Salario Neto a Pagar: " << nomina[x].totalpagar
+                       << endl;
+        }
+        archivoBanco.close();
+        cout << "Archivo de banco generado exitosamente." << endl;
+        break;
       }
 
-      for (int x = 0; x < n; x++) {
+      case 2: {
+        ifstream archivoBanco("banco.txt");
+        if (!archivoBanco) {
+          cout << "Error al abrir el archivo." << endl;
+          return (0);
+        }
 
-        archivoBanco << "ID: " << nomina[x].id
-                     << ", Nombre: " << nomina[x].nombre
-                     << ", Salario Neto a Pagar: " << nomina[x].totalpagar
-                     << endl;
+        string linea;
+        cout << "Contenido del archivo del banco:" << endl;
+        while (getline(archivoBanco, linea)) {
+          cout << linea << endl;
+        }
+
+        archivoBanco.close();
+        cout << "Archivo del banco leído exitosamente." << endl;
+        break;
       }
-      archivoBanco.close();
-      cout << "Archivo de banco generado exitosamente." << endl;
-      break;
-    }
-
-    case 2: {
-      ifstream archivoBanco("banco.txt");
-      if (! archivoBanco) {
-        cout << "Error al abrir el archivo." << endl;
-        exit(0);
-      }
-
-      string linea;
-      cout << "Contenido del archivo del banco:" << endl;
-      while (getline( archivoBanco, linea)) {
-        cout << linea << endl;
-      }
-
-       archivoBanco .close();
-      cout << "Archivo del banco leído exitosamente." << endl;
-      break;
-    }
     }
   } while (opc != 3);
 }
 
 int main() {
-
   int empleados;
 
   cout << "cantidad de de empleados :";
@@ -182,32 +177,34 @@ int main() {
   empleado nomina[empleados];
   int opc;
   do {
-    opc=menu();
-    
+    opc = menu();
+
     switch (opc) {
-    case 1: {
-      ingresar(nomina, empleados);break;
-    }
-    case 2: {
-      calnomina(nomina, empleados);break;
-    }
-    case 3: {
-      char nombre[100];
-      cout << "ingrese nombre a consultar :";
-      cin >> nombre;
-      consultas(nomina, nombre,empleados);
-      break;
-    }
-    case 4: {
-      banco(nomina, empleados);
-    break;
-    }
-    case 5: {
-      break;
-    }
+      case 1: {
+        ingresar(nomina, empleados);
+        break;
+      }
+      case 2: {
+        calnomina(nomina, empleados);
+        break;
+      }
+      case 3: {
+        char nombre[100];
+        cout << "ingrese nombre a consultar :";
+        cin >> nombre;
+        consultas(nomina, nombre, empleados);
+        break;
+      }
+      case 4: {
+        banco(nomina, empleados);
+        break;
+      }
+      case 5: {
+        break;
+      }
     }
 
-  } while (opc !=  6);
+  } while (opc != 6);
 
   return 0;
 }

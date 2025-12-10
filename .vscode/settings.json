@@ -25,7 +25,7 @@
   "workbench.preferredLightColorTheme": "One Dark Pro Night Flat",
   "workbench.iconTheme": "material-icon-theme",
   "clang-format.executable": "/usr/bin/clang-format",
-  "clang-format.style": "WebKit",
+  "clang-format.style": "Google",
   "editor.formatOnSave": true,
   "[cpp]": {
     "editor.defaultFormatter": "xaver.clang-format"

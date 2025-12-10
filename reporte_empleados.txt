@@ -1,0 +1,38 @@
+===============================================
+     REPORTE GENERAL DE EMPLEADOS
+===============================================
+
+--- LISTA DE EMPLEADOS ---
+
+[1] nohemy
+    Edad: 18 años
+    Puesto: asistente
+    Salario: $1
+    ---
+[2] amell
+    Edad: 36 años
+    Puesto: gefe
+    Salario: $2
+    ---
+
+--- RESUMEN GENERAL ---
+Total de empleados: 2
+Suma total de salarios: $3
+Salario promedio: $1.5
+
+--- EMPLEADO CON MAYOR SALARIO ---
+Nombre: amell
+Salario: $2
+
+--- EMPLEADO CON MENOR SALARIO ---
+Nombre: nohemy
+Salario: $1
+
+--- DISTRIBUCIÓN POR EDAD ---
+Jóvenes (18-30): 1 empleados
+Adultos (31-50): 1 empleados
+Mayores (51+): 0 empleados
+
+===============================================
+         FIN DEL REPORTE
+===============================================
