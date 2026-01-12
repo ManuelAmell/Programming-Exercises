@@ -27,7 +27,7 @@ debug/
 *.temp
 *.obj
 *.o
-
+*.bin
 # Archivos generados por compiladores
 *.ilk
 *.pdb
