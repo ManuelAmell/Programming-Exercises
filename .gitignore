@@ -1,6 +1,28 @@
-*/.vscode
-output/string.exe
-# Archivos binarios / ejecutables
+# ----------------------------
+# Archivos de IDE / Editor
+# ----------------------------
+.vscode/
+.idea/
+*.suo
+*.user
+*.sln
+*.code-workspace
+
+# ----------------------------
+# Archivos de sistema
+# ----------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp       # archivos temporales de vim
+*~          # archivos de respaldo de editores
+*.png
+*.img
+
+# ----------------------------
+# Archivos de compilación / binarios
+# ----------------------------
+# C/C++
 *.exe
 *.out
 *.app
@@ -8,31 +30,59 @@ output/string.exe
 *.so
 *.dylib
 *.o
-
-# Carpetas de compilación
-build/
-bin/
-output/
-debug/
-
-# Archivos de configuración local o IDEs
-*.json
-*.user
-*.suo
-*.log
-
-# Archivos temporales
-**/ejecutables/
-*.tmp
-*.temp
 *.obj
-*.o
 *.bin
-# Archivos generados por compiladores
 *.ilk
 *.pdb
 *.idb
 
-# Archivos de sistema de Windows
-Thumbs.db
-.DS_Store
+# Carpetas de compilación comunes
+build/
+bin/
+output/
+debug/
+**/ejecutables/
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+*.jmod
+target/
+*.log
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pycache
+env/
+venv/
+.venv/
+
+# Node / JavaScript / Frontend
+node_modules/
+npm-debug.log*
+yarn-error.log*
+dist/
+coverage/
+*.tsbuildinfo
+
+# ----------------------------
+# Archivos temporales
+# ----------------------------
+*.tmp
+*.temp
+*.log
+*.bak
+*.swp
+*.lock
+
+# ----------------------------
+# Archivos de configuración local
+# ----------------------------
+*.json
+*.env
+.env.local
