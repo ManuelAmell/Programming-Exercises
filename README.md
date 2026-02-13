@@ -16,16 +16,22 @@ This repository contains my personal projects, practice scripts, and experiments
 
 ## 🗂 Repository Structure
 
-Programming-Exercises/
+Programming-Exercises/ 
+
 ├── HTML/ # Web projects
 │ ├── index.html
 │ ├── index2.html
 │ └── style.css
+├── C++/ # C++ examples
+│ 
+├── JAVA / # Java Examples
+│ 
 ├── PYTHON/ # Python scripts and notebooks
 │ ├── Automatizaciones/
 │ ├── PDFs/
-│ └── back_up.py
-├── C++/ # C++ examples
+│ └── scripts.py
+
+
 └── README.md # This file
 
 
