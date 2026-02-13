@@ -1,5 +1,5 @@
 # ----------------------------
-# Archivos de IDE / Editor
+# IDE / Editor
 # ----------------------------
 .venv/
 .venv311/
@@ -11,20 +11,17 @@
 *.code-workspace
 
 # ----------------------------
-# Archivos de sistema
+# Sistema
 # ----------------------------
 .DS_Store
 Thumbs.db
 desktop.ini
-*.swp       # archivos temporales de vim
-*~          # archivos de respaldo de editores
-*.png
-*.img
+*.swp
+*~
 
 # ----------------------------
-# Archivos de compilación / binarios
+# C / C++
 # ----------------------------
-# C/C++
 *.exe
 *.out
 *.app
@@ -38,33 +35,37 @@ desktop.ini
 *.pdb
 *.idb
 
-# Carpetas de compilación comunes
 build/
 bin/
 output/
 debug/
 **/ejecutables/
 
+# ----------------------------
 # Java
+# ----------------------------
 *.class
 *.jar
 *.war
 *.ear
 *.jmod
 target/
-*.log
 
+# ----------------------------
 # Python
+# ----------------------------
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
-*.pycache
 env/
+.env311/
 venv/
 .venv/
 
-# Node / JavaScript / Frontend
+# ----------------------------
+# Node / Frontend
+# ----------------------------
 node_modules/
 npm-debug.log*
 yarn-error.log*
@@ -73,18 +74,17 @@ coverage/
 *.tsbuildinfo
 
 # ----------------------------
-# Archivos temporales
+# Logs / Temporales
 # ----------------------------
+*.log
 *.tmp
 *.temp
-*.log
 *.bak
-*.swp
 *.lock
-
+*.png
+*.img
 # ----------------------------
-# Archivos de configuración local
+# Variables de entorno
 # ----------------------------
-*.json
-*.env
+.env
 .env.local
