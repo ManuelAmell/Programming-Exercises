@@ -1,0 +1,55 @@
+# ╔══════════════════════════════════════════════════════════════════════════════╗
+# ║                     BASE DE DATOS - REGISTRO DE CORREOS                        ║
+# ║                        Formato: TXT Estructurado                             ║
+# ╚══════════════════════════════════════════════════════════════════════════════╝
+#
+# ESTRUCTURA POR REGISTRO:
+# ---
+# CORREO: <email_destinatario>
+# ASUNTO: <asunto_completo>
+# FECHA: <YYYY-MM-DD>
+# HORA: <HH:MM:SS>
+# ADJUNTOS: <SI/NO> - <nombre_archivo> (si aplica)
+# ESTADO: <ENVIADO/FALLIDO/PENDIENTE>
+# CONTENIDO:
+# <cuerpo_completo_del_correo>
+# ---
+#
+# ═══════════════════════════════════════════════════════════════════════════════
+
+[REGISTROS_ENVIOS]
+
+---
+CORREO: ejemplo@correo.com
+ASUNTO: [ProyectoX] Mi asunto
+FECHA: 2025-02-11
+HORA: 12:00:00
+ADJUNTOS: NO
+ESTADO: PLANTILLA
+CONTENIDO:
+Hola Amell,
+
+Este es el contenido de mi correo.
+
+Fecha: 2025-02-11
+
+Saludos
+---
+
+
+---
+CORREO: ejemplo@correo.com
+ASUNTO: [ProyectoX] Mi asunto
+FECHA: 2026-02-13
+HORA: 01:17:51
+ADJUNTOS: NO - Ninguno
+ESTADO: ENVIADO
+CONTENIDO:
+# <cuerpo_completo_del_correo>
+# ---
+#
+---
+# ═══════════════════════════════════════════════════════════════════════════════
+# ═══════════════════════════════════════════════════════════════════════════════
+#                    Última actualización: 2026-02-13 01:17:51
+# ═══════════════════════════════════════════════════════════════════════════════
