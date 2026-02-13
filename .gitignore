@@ -1,6 +1,8 @@
 # ----------------------------
 # Archivos de IDE / Editor
 # ----------------------------
+.venv/
+.venv311/
 .vscode/
 .idea/
 *.suo
