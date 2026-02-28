@@ -26,6 +26,12 @@ desktop.ini
 *~
 
 # ----------------------------
+# Carpetas de prueba y descargas
+# ----------------------------
+PruebaCarpeta/
+Descargas_playlist/
+
+# ----------------------------
 # C / C++
 # ----------------------------
 *.exe
