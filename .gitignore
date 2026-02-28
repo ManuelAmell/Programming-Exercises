@@ -3,12 +3,18 @@
 # ----------------------------
 .venv/
 .venv311/
-.vscode/
 .idea/
 *.suo
 *.user
 *.sln
 *.code-workspace
+.classpath
+.project
+.settings/
+*.iml
+.factorypath
+.apt_generated/
+.apt_generated_tests/
 
 # ----------------------------
 # Sistema
@@ -34,12 +40,23 @@ desktop.ini
 *.ilk
 *.pdb
 *.idb
+*.a
+*.lib
+*.gch
+*.pch
 
 build/
 bin/
 output/
 debug/
+release/
 **/ejecutables/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+*.cmake
+compile_commands.json
 
 # ----------------------------
 # Java
@@ -49,7 +66,14 @@ debug/
 *.war
 *.ear
 *.jmod
+*.nar
 target/
+.gradle/
+gradle-app.setting
+!gradle-wrapper.jar
+.gradletasknamecache
+hs_err_pid*
+replay_pid*
 
 # ----------------------------
 # Python
@@ -58,20 +82,46 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
+*.py[cod]
+*$py.class
+*.so
+.Python
 env/
 .env311/
 venv/
 .venv/
+ENV/
+env.bak/
+venv.bak/
+pip-log.txt
+pip-delete-this-directory.txt
+.pytest_cache/
+.coverage
+htmlcov/
+*.cover
+.hypothesis/
+.mypy_cache/
+.dmypy.json
+dmypy.json
 
 # ----------------------------
 # Node / Frontend
 # ----------------------------
 node_modules/
 npm-debug.log*
+yarn-debug.log*
 yarn-error.log*
+lerna-debug.log*
 dist/
 coverage/
 *.tsbuildinfo
+.npm
+.eslintcache
+.parcel-cache
+.next/
+out/
+.nuxt/
+.cache/
 
 # ----------------------------
 # Logs / Temporales
@@ -81,11 +131,41 @@ coverage/
 *.temp
 *.bak
 *.lock
-*.png
-*.img
+logs/
+*.pid
+*.seed
+*.pid.lock
+
 # ----------------------------
 # Variables de entorno
 # ----------------------------
 .env
 .env.local
-*.txt
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ----------------------------
+# Bases de datos
+# ----------------------------
+*.db
+*.sqlite
+*.sqlite3
+*.db-shm
+*.db-wal
+
+# ----------------------------
+# Archivos de datos generados
+# ----------------------------
+reporte_*.txt
+inventory_data.txt
+database_*.txt
+
+# ----------------------------
+# Documentos (opcional - descomenta si no quieres subirlos)
+# ----------------------------
+# *.docx
+# *.pdf
+# *.xlsx
+PruebaCarpeta/
+Descargas_playlist/
