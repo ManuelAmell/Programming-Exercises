@@ -4,22 +4,19 @@
         {
             "label": "Run C++ (F5)",
             "type": "shell",
-
             // 👉 Aquí cambias la versión de C++ cuando quieras
             "options": {
                 "env": {
                     "CPP_STD": "c++11"
                 }
             },
-
-            "command": "konsole",
+            "command": "kitty",
             "args": [
                 "-e",
                 "bash",
                 "-c",
                 "clang-format -i '${file}' && mkdir -p '${fileDirname}/ejecutables' && g++ -std=$CPP_STD '${file}' -o '${fileDirname}/ejecutables/${fileBasenameNoExtension}' && '${fileDirname}/ejecutables/${fileBasenameNoExtension}'; read -p 'Presiona ENTER para cerrar...'"
             ],
-
             "problemMatcher": []
         }
     ]

@@ -3,9 +3,9 @@
 using namespace std;
 
 struct Texto {
-  int referencia;
-  string titulo;
-  string autor;
+  int referencia;// número de referencia único
+  string titulo;// título del texto
+  string autor;//
   string editorial;
   string clasePublicacion; // "libro" o "revista"
   int numeroEdicion;       // solo libros

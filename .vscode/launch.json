@@ -1,6 +1,7 @@
 {
   "version": "0.2.0",
   "configurations": [
+    
     {
       "type": "java",
       "name": "Main",
@@ -29,8 +30,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/amell/Documents/Programming-Exercises/C++/Archivos",
-      "program": "/home/amell/Documents/Programming-Exercises/C++/Archivos/build/Debug/outDebug",
+      "cwd": "${workspaceFolder}/C++/Archivos",
+      "program": "${workspaceFolder}/C++/Archivos/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

@@ -80,6 +80,7 @@ gradle-app.setting
 .gradletasknamecache
 hs_err_pid*
 replay_pid*
+/.metadata/
 
 # ----------------------------
 # Python
@@ -175,3 +176,4 @@ database_*.txt
 # *.xlsx
 PruebaCarpeta/
 Descargas_playlist/
+/.metadata/

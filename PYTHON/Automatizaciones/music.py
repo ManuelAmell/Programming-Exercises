@@ -12,7 +12,7 @@ def seleccionar_archivo(ruta):
     ruta = ruta.strip().replace('"', '').replace("'", "")
 
     if os.path.isfile(ruta):
-        return ruta
+        return ruta 
 
     elif os.path.isdir(ruta):
         txt_files = [f for f in os.listdir(ruta) if f.lower().endswith(".txt")]
