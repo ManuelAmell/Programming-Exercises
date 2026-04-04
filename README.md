@@ -1,67 +1,193 @@
-# 🖥️ Programming Exercises
+<div align="center">
 
-Welcome to my **Programming Exercises** repository!  
+# 💻 Programming Exercises
 
-This repository contains my personal projects, practice scripts, and experiments across different programming languages and web technologies.
+[![Python](https://img.shields.io/badge/Python-3.12+-3776AB?style=flat-square&logo=python&logoColor=white)](https://python.org)
+[![C++](https://img.shields.io/badge/C++-17+-00599C?style=flat-square&logo=c%2B%2B&logoColor=white)](https://isocpp.org)
+[![Java](https://img.shields.io/badge/Java-17+-ED8B00?style=flat-square&logo=openjdk&logoColor=white)](https://openjdk.org)
+[![HTML](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
 
----
+**Repositorio personal de ejercicios, proyectos y experimentos de programación**
 
-## ⚡ Technologies & Languages
-- **Python** 🐍  
-- **C++** 💻  
-- **Java** ☕  
-- **HTML5 / CSS3 / JavaScript** 🌐  
+[Explorar](#-estructura-del-repositorio) • [Cómo Usar](#-cómo-usar) • [Tecnologías](#-tecnologías)
 
----
-
-## 🗂 Repository Structure
-
-Programming-Exercises/ 
-
-├── HTML/ # Web projects
-│ ├── index.html
-│ ├── index2.html
-│ └── style.css
-├── C++/ # C++ examples
-│ 
-├── JAVA / # Java Examples
-│ 
-├── PYTHON/ # Python scripts and notebooks
-│ ├── Automatizaciones/
-│ ├── PDFs/
-│ └── scripts.py
-
-
-└── README.md # This file
-
+</div>
 
 ---
 
-## 💻 Development Environment
-- Operating System: **Arch Linux** 🏔️  
-- Recommended IDE/Editor: **VSCode** or your preferred editor  
-- Git for version control  
+## 📂 Estructura del Repositorio
+
+```
+Programming-Exercises/
+│
+├── 🐍 PYTHON/                    # Scripts y proyectos Python
+│   ├── Automatizaciones/         # Scripts de automatización
+│   │   ├── back_up.py           # Backup de archivos
+│   │   ├── CamaraMouse.py       # Control de mouse con cámara
+│   │   ├── Correos.py           # Gestión de correos
+│   │   ├── music.py             # Reproductor de música
+│   │   └── pruebaia.py          # Experimentos con IA
+│   │
+│   ├── Ordenamiento/             # Algoritmos de ordenamiento
+│   │   └── sorting_algorithms.py # Implementaciones de sort
+│   │
+│   ├── PDFs/                     # Generación de PDFs
+│   │   ├── clase1.py
+│   │   └── generar_plantilla.py
+│   │
+│   └── Ajedrez.py                # Juego de ajedrez
+│
+├── 💻 C++/                       # Proyectos y ejercicios en C++
+│   ├── Archivos/                 # Manejo de archivos
+│   │   ├── notastxt.cpp         # Notas en archivos de texto
+│   │   ├── notasbin.cpp         # Notas en archivos binarios
+│   │   └── metodos.cpp          # Métodos de archivo
+│   │
+│   ├── Arreglos/                 # Matrices y arreglos
+│   │   ├── matriztransp.cpp     # Matriz transpuesta
+│   │   └── opmatriz.cpp         # Operaciones con matrices
+│   │
+│   ├── Funciones/                # Ejercicios de funciones
+│   │   ├── algebra.cpp          # Funciones algebraicas
+│   │   ├── blackhole.cpp        # Simulación blackhole
+│   │   └── numerosamigos.cpp    # Números amigos
+│   │
+│   ├── Structs/                  # Estructuras de datos
+│   │   ├── Cadenas/             # Manipulación de cadenas
+│   │   └── structs1.cpp         # Ejercicios básicos
+│   │
+│   ├── Proyectos-small/          # Proyectos pequeños
+│   │   ├── escanerdepuertos.cpp # Escáner de puertos
+│   │   ├── gcontraseñas.cpp     # Generador de contraseñas
+│   │   └── horario.cpp          # Gestión de horarios
+│   │
+│   ├── Saber/                    # Ejercicios de repaso
+│   │   ├── burbuja.cpp          # Algoritmo burbuja
+│   │   ├── inserccion.cpp       # Inserción
+│   │   └── Dijkstra.cpp         # Algoritmo Dijkstra
+│   │
+│   ├── Games/                    # Juegos en C++
+│   └── Esteticos/                # Efectos visuales
+│       ├── colores.cpp          # Colores en terminal
+│       ├── ascii.cpp            # Arte ASCII
+│       └── terminal.cpp         # Efectos de terminal
+│
+├── ☕ JAVA/                      # Proyectos Java
+│   ├── HackerRank/               # Soluciones HackerRank
+│   │   ├── src/easy/            # Problemas fáciles
+│   │   ├── src/medium/          # Problemas medios
+│   │   └── src/hard/            # Problemas difíciles
+│   │
+│   ├── TALLERES/                 # Talleres de clase
+│   │   └── T2/gestionFigGeom/   # Gestión de figuras geométricas
+│   │       ├── Circulo.java
+│   │       ├── Cuadrado.java
+│   │       ├── Rectangulo.java
+│   │       └── Triangulo.java
+│   │
+│   └── Encapsulamiento/          # Ejercicios POO
+│
+├── 🌐 HTML/                      # Proyectos Web
+│   ├── index.html               # Página principal
+│   ├── index2.html              # Página secundaria
+│   └── style.css                # Estilos CSS
+│
+└── 📚 cleancode.pdf              # Libro Clean Code
+```
 
 ---
 
-## 🚀 How to Use
-1. Clone the repository:
+## 🛠️ Tecnologías
+
+| Lenguaje | Uso Principal | Archivos |
+|----------|--------------|----------|
+| **Python** 🐍 | Automatización, IA, Algoritmos | 16 archivos |
+| **C++** 💻 | Estructuras de datos, Algoritmos, Juegos | 80+ archivos |
+| **Java** ☕ | POO, Estructuras de datos, HackerRank | 20+ archivos |
+| **HTML/CSS** 🌐 | Desarrollo Web frontend | 3 archivos |
+
+---
+
+## 🚀 Cómo Usar
+
+### Clonar el repositorio
+
 ```bash
 git clone https://github.com/ManuelAmell/Programming-Exercises.git
-Navigate to the folder of the language you want to run:
+cd Programming-Exercises
+```
 
-cd Programming-Exercises/PYTHON
-Run the scripts depending on the language:
+### Ejecutar según el lenguaje
 
-Python: python script_name.py
+<details>
+<summary><b>🐍 Python</b></summary>
 
-C++: compile with g++ and run
+```bash
+cd PYTHON
+python nombre_script.py
+```
+</details>
 
-Java: compile with javac and run with java
+<details>
+<summary><b>💻 C++</b></summary>
 
-HTML/JS/CSS: open in a web browser
+```bash
+cd C++
+g++ -o programa archivo.cpp
+./programa
+```
+</details>
 
-📌 Note
-This repository is personal and continuously updated, as I regularly add new exercises and projects.
+<details>
+<summary><b>☕ Java</b></summary>
 
-✨ Thank you for visiting my repository!
+```bash
+cd JAVA
+javac NombreClase.java
+java NombreClase
+```
+</details>
+
+<details>
+<summary><b>🌐 HTML/CSS/JS</b></summary>
+
+Abre los archivos directamente en tu navegador web.
+</details>
+
+---
+
+## 📊 Estadísticas del Repositorio
+
+<div align="center">
+
+| Lenguaje | Líneas aproximadas | Proyectos |
+|----------|-------------------|-----------|
+| C++ | 4,000+ | 8 categorías |
+| Python | 1,500+ | 4 categorías |
+| Java | 800+ | 3 proyectos |
+| HTML/CSS | 300+ | 1 proyecto |
+
+</div>
+
+---
+
+## ✨ Características Destacadas
+
+- 🎯 **Algoritmos de Ordenamiento**: Implementaciones de Bubble Sort, Insertion Sort, y más
+- 🔒 **Seguridad**: Generador de contraseñas y escáner de puertos
+- 🤖 **Automatización**: Scripts para backup, correos y control de mouse
+- 🎮 **Juegos**: Ajedrez en Python y juegos en C++
+- 📐 **Geometría**: Sistema de gestión de figuras geométricas en Java
+- 📁 **Archivos**: Manejo de archivos de texto y binarios
+
+---
+
+## 📝 Notas
+
+> Este repositorio es personal y se actualiza continuamente con nuevos ejercicios y proyectos.
+
+<div align="center">
+
+**⭐ ¡Gracias por visitar mi repositorio!**
+
+</div>
