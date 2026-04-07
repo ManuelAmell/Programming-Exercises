@@ -1,0 +1,105 @@
+<java Main.java vs javac + java Main
+Diferencias clave:
+java Main.javajavac + java MainCompila enMemoria (temporal)Disco (genera .class)VelocidadMás lento (recompila siempre)Más rápido (reutiliza .class)Múltiples clasesSolo un archivoProyectos completosUso idealScripts rápidos / pruebasProducción / proyectos realesDesdeJava 11+Siempre
+
+Buenas prácticas
+Estructura de proyecto
+proyecto/
+├── src/        # código fuente (.java)
+└── out/        # compilados (.class)
+Compilar apuntando al directorio de salida:
+bashjavac -d out src/app/Main.java
+java -cp out app.Main
+Nombrado
+
+Clases en PascalCase → Main, MiClase
+Métodos y variables en camelCase → miMetodo, nombreUsuario
+El nombre del archivo debe coincidir exactamente con el nombre de la clase
+
+Una clase pública por archivo
+java// ✅ bien
+// archivo: Persona.java
+public class Persona { ... }
+
+// ❌ mal
+// dos clases públicas en el mismo archivo
+Siempre declara el package
+javapackage app;  // coincide con la carpeta donde está el archivo
+
+public class Main { ... }
+Para proyectos reales usa un build tool como Maven o Gradle, no javac a mano. Manejan dependencias, compilación y empaquetado automáticamente.>
+
+
+Identificó solicitud de comandos Java adicionalesThe user wants more compilation commands for Java.ListoComandos de compilación en Java
+javac — Compilador
+bash# Básico
+javac Main.java
+
+# Compilar múltiples archivos
+javac Main.java Persona.java Animal.java
+
+# Compilar todos los .java de una carpeta
+javac src/app/*.java
+
+# Especificar carpeta de salida para los .class
+javac -d out/ src/app/Main.java
+
+# Compilar con classpath (dependencias externas)
+javac -cp libs/library.jar src/app/Main.java
+
+# Combinar classpath y output
+javac -cp libs/*.jar -d out/ src/app/*.java
+
+# Ver versión del compilador
+javac --version
+
+# Ver warnings detallados
+javac -Xlint Main.java
+
+java — Ejecutor
+bash# Ejecutar .class normal
+java Main
+
+# Con package
+java app.Main
+
+# Especificar classpath
+java -cp out/ app.Main
+
+# Ejecutar con argumentos
+java Main arg1 arg2
+
+# Ejecutar .jar
+java -jar miapp.jar
+
+# Modo script (Java 11+)
+java Main.java
+
+# Pasar propiedades del sistema
+java -Dnombre=valor Main
+
+jar — Empaquetar
+bash# Crear un .jar
+jar cf miapp.jar -C out/ .
+
+# Crear .jar ejecutable (con main definido)
+jar cfe miapp.jar app.Main -C out/ .
+
+# Ver contenido de un .jar
+jar tf miapp.jar
+
+# Extraer un .jar
+jar xf miapp.jar
+
+Flujo completo típico
+bash# 1. Compilar
+javac -d out/ src/app/*.java
+
+# 2. Ejecutar
+java -cp out/ app.Main
+
+# 3. Empaquetar
+jar cfe miapp.jar app.Main -C out/ .
+
+# 4. Ejecutar el jar
+java -jar miapp.jar

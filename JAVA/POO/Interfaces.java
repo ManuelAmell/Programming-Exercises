@@ -1,6 +1,6 @@
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║                        POO EN JAVA - INTERFACES                               ║
+ * ║                        POO EN JAVA - INTERFACES                             ║
  * ╚══════════════════════════════════════════════════════════════════════════════╝
  * 
  * EXPLICACIÓN AL ESTILO FEYNMAN:
@@ -78,12 +78,12 @@
  * Desde Java 8, las interfaces pueden tener:
  * 
  * - MÉTODOS DEFAULT: Implementación por defecto
- *   default void metodo() { /* implementación */ }
- *   • Las clases pueden usarlo directamente o sobrescribirlo
+ *   default void metodo() { // implementación }
+ *   Las clases pueden usarlo directamente o sobrescribirlo
  * 
  * - MÉTODOS STATIC: Pertenece a la interfaz, no a implementaciones
- *   static void metodo() { /* implementación */ }
- *   • Se llama con: Interfaz.metodo()
+ *   static void metodo() { // implementación }
+ *   Se llama con: Interfaz.metodo()
  * 
  * Desde Java 9, también pueden tener métodos PRIVATE.
  */
@@ -359,14 +359,14 @@ class Barco implements Nadador, Transporte {
     private String nombre;
     private int capacidad;
     private double velocidad;
-    private double profundidad;
+   // private double profundidad;
     private boolean navegando;
     
     public Barco(String nombre, int capacidad, double velocidad) {
         this.nombre = nombre;
         this.capacidad = capacidad;
         this.velocidad = velocidad;
-        this.profundidad = 0;
+       // this.profundidad = 0;
         this.navegando = false;
     }
     

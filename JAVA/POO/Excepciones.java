@@ -1,6 +1,6 @@
 /**
  * ╔══════════════════════════════════════════════════════════════════════════════╗
- * ║                    POO EN JAVA - EXCEPCIONES                                  ║
+ * ║                    POO EN JAVA - EXCEPCIONES                               ║
  * ╚══════════════════════════════════════════════════════════════════════════════╝
  * 
  * EXPLICACIÓN AL ESTILO FEYNMAN:
@@ -132,7 +132,7 @@ public class Excepciones {
     // ═══════════════════════════════════════════════════════════════════════
     public static void main(String[] args) {
         System.out.println("╔══════════════════════════════════════════════════════════════╗");
-        System.out.println("║           DEMOSTRACIÓN: EXCEPCIONES                             ║");
+        System.out.println("║           DEMOSTRACIÓN: EXCEPCIONES                        ║");
         System.out.println("╚══════════════════════════════════════════════════════════════╝\n");
         
         Scanner scanner = new Scanner(System.in);
@@ -141,7 +141,7 @@ public class Excepciones {
         // SECCIÓN 1: EXCEPCIONES NO CHEQUEADAS (Unchecked)
         // ═══════════════════════════════════════════════════════════════════
         System.out.println("╔════════════════════════════════════════════════════════════╗");
-        System.out.println("║  SECCIÓN 1: EXCEPCIONES NO CHEQUEADAS (Unchecked)            ║");
+        System.out.println("║  SECCIÓN 1: EXCEPCIONES NO CHEQUEADAS (Unchecked)         ║");
         System.out.println("╚════════════════════════════════════════════════════════════╝\n");
         
         // 1.1 ArithmeticException
@@ -248,14 +248,13 @@ public class Excepciones {
         // SECCIÓN 2: EXCEPCIONES CHEQUEADAS (Checked)
         // ═══════════════════════════════════════════════════════════════════
         System.out.println("\n╔════════════════════════════════════════════════════════════╗");
-        System.out.println("║  SECCIÓN 2: EXCEPCIONES CHEQUEADAS (Checked)                ║");
+        System.out.println("║  SECCIÓN 2: EXCEPCIONES CHEQUEADAS (Checked)              ║");
         System.out.println("╚════════════════════════════════════════════════════════════╝\n");
         
         // 2.1 FileNotFoundException
         System.out.println("1️⃣  FileNotFoundException - Archivo no encontrado");
         System.out.println("─────────────────────────────────────────────────");
         try {
-            // Intentamos abrir un archivo que NO existe
             FileReader archivo = new FileReader("archivo_inexistente.txt");
             System.out.println("Archivo abierto");
         } catch (FileNotFoundException e) {
@@ -268,9 +267,9 @@ public class Excepciones {
         System.out.println("2️⃣  IOException - Error de entrada/salida");
         System.out.println("─────────────────────────────────────────────────");
         try {
-            // Intentamos crear archivo en directorio protegido
             FileWriter escritor = new FileWriter("/directorio_protegido/archivo.txt");
             System.out.println("Archivo creado");
+            escritor.close();
         } catch (IOException e) {
             System.out.println("❌ EXCEPCIÓN CAPTURADA: " + e.getClass().getSimpleName());
             System.out.println("   Mensaje: " + e.getMessage());
@@ -281,7 +280,6 @@ public class Excepciones {
         System.out.println("3️⃣  ClassNotFoundException - Clase no encontrada");
         System.out.println("─────────────────────────────────────────────────");
         try {
-            // Intentamos cargar una clase que no existe
             Class.forName("com.ejemplo.ClaseInexistente");
             System.out.println("Clase cargada");
         } catch (ClassNotFoundException e) {
@@ -295,7 +293,7 @@ public class Excepciones {
         System.out.println("─────────────────────────────────────────────────");
         try {
             System.out.println("   ⏰ Esperando 3 segundos...");
-            Thread.sleep(3000);  // Pausa de 3 segundos
+            Thread.sleep(3000);
             System.out.println("   ⏰ Tiempo completado");
         } catch (InterruptedException e) {
             System.out.println("❌ EXCEPCIÓN CAPTURADA: " + e.getClass().getSimpleName());
@@ -307,12 +305,11 @@ public class Excepciones {
         // SECCIÓN 3: MANEJO CON FINALLY
         // ═══════════════════════════════════════════════════════════════════
         System.out.println("\n╔════════════════════════════════════════════════════════════╗");
-        System.out.println("║  SECCIÓN 3: BLOQUE FINALLY                                   ║");
+        System.out.println("║  SECCIÓN 3: BLOQUE FINALLY                                ║");
         System.out.println("╚════════════════════════════════════════════════════════════╝\n");
         
         System.out.println("Bloque finally SIEMPRE se ejecuta, ocurra o no excepción:\n");
         
-        // Ejemplo con excepción
         System.out.println("Ejemplo 1: Con excepción");
         try {
             int x = 5 / 0;
@@ -322,7 +319,6 @@ public class Excepciones {
             System.out.println("   ✓ Finally: Siempre se ejecuta (liberando recursos)\n");
         }
         
-        // Ejemplo sin excepción
         System.out.println("Ejemplo 2: Sin excepción");
         try {
             int x = 5 / 1;
@@ -333,7 +329,6 @@ public class Excepciones {
             System.out.println("   ✓ Finally: Aún así se ejecuta\n");
         }
         
-        // Ejemplo de uso real: Cerrar recursos
         System.out.println("Ejemplo 3: Cerrando archivo (uso real)");
         BufferedReader lector = null;
         try {
@@ -343,7 +338,6 @@ public class Excepciones {
         } catch (IOException e) {
             System.out.println("   ✗ No se pudo leer el archivo (no existe)");
         } finally {
-            // Siempre cerramos el recurso, ocurra o no error
             try {
                 if (lector != null) {
                     lector.close();
@@ -358,14 +352,12 @@ public class Excepciones {
         // SECCIÓN 4: MULTI-CATCH
         // ═══════════════════════════════════════════════════════════════════
         System.out.println("\n╔════════════════════════════════════════════════════════════╗");
-        System.out.println("║  SECCIÓN 4: MULTI-CATCH                                      ║");
+        System.out.println("║  SECCIÓN 4: MULTI-CATCH                                   ║");
         System.out.println("╚════════════════════════════════════════════════════════════╝\n");
         
         System.out.println("Capturando múltiples excepciones en un solo catch:\n");
         
-        // Ejemplo 1
         try {
-            // Puede lanzar ArithmeticException o NullPointerException
             String entrada = null;
             if (entrada == null) {
                 throw new NullPointerException("Entrada es nula");
@@ -380,13 +372,13 @@ public class Excepciones {
         // SECCIÓN 5: LANZAR EXCEPCIONES (THROW)
         // ═══════════════════════════════════════════════════════════════════
         System.out.println("\n╔════════════════════════════════════════════════════════════╗");
-        System.out.println("║  SECCIÓN 5: LANZAR EXCEPCIONES MANUALMENTE (THROW)          ║");
+        System.out.println("║  SECCIÓN 5: LANZAR EXCEPCIONES MANUALMENTE (THROW)        ║");
         System.out.println("╚════════════════════════════════════════════════════════════╝\n");
         
         System.out.println("Usando 'throw' para lanzar excepciones manualmente:\n");
         
         try {
-            validarEdad(15);  // Menor de 18
+            validarEdad(15);
         } catch (IllegalArgumentException e) {
             System.out.println("   ✓ Excepción lanzada manualmente: " + e.getMessage() + "\n");
         }
@@ -395,13 +387,13 @@ public class Excepciones {
         // SECCIÓN 6: PROPAGACIÓN (THROWS)
         // ═══════════════════════════════════════════════════════════════════
         System.out.println("\n╔════════════════════════════════════════════════════════════╗");
-        System.out.println("║  SECCIÓN 6: PROPAGACIÓN DE EXCEPCIONES (THROWS)               ║");
+        System.out.println("║  SECCIÓN 6: PROPAGACIÓN DE EXCEPCIONES (THROWS)           ║");
         System.out.println("╚════════════════════════════════════════════════════════════╝\n");
         
         System.out.println("Usando 'throws' para delegar el manejo al llamador:\n");
         
         try {
-            metodoQuePropaga();  // Propaga la excepción
+            metodoQuePropaga();
         } catch (IOException e) {
             System.out.println("   ✓ Excepción propagada y capturada en main: " + e.getMessage() + "\n");
         }
@@ -410,13 +402,13 @@ public class Excepciones {
         // SECCIÓN 7: EXCEPCIONES PERSONALIZADAS
         // ═══════════════════════════════════════════════════════════════════
         System.out.println("\n╔════════════════════════════════════════════════════════════╗");
-        System.out.println("║  SECCIÓN 7: EXCEPCIONES PERSONALIZADAS                      ║");
+        System.out.println("║  SECCIÓN 7: EXCEPCIONES PERSONALIZADAS                    ║");
         System.out.println("╚════════════════════════════════════════════════════════════╝\n");
         
         System.out.println("Creando nuestras propias excepciones:\n");
         
         try {
-            retirarDinero(1000, 1500);  // Intenta retirar más de lo que tiene
+            retirarDinero(1000, 1500);
         } catch (SaldoInsuficienteException e) {
             System.out.println("❌ EXCEPCIÓN PERSONALIZADA: " + e.getClass().getSimpleName());
             System.out.println("   Mensaje: " + e.getMessage());
@@ -426,7 +418,7 @@ public class Excepciones {
         }
         
         try {
-            validarContrasena("123");  // Contraseña muy corta
+            validarContrasena("123");
         } catch (ContrasenaInvalidaException e) {
             System.out.println("❌ EXCEPCIÓN PERSONALIZADA: " + e.getClass().getSimpleName());
             System.out.println("   Mensaje: " + e.getMessage());
@@ -438,12 +430,11 @@ public class Excepciones {
         // SECCIÓN 8: TRY-WITH-RESOURCES (Java 7+)
         // ═══════════════════════════════════════════════════════════════════
         System.out.println("\n╔════════════════════════════════════════════════════════════╗");
-        System.out.println("║  SECCIÓN 8: TRY-WITH-RESOURCES (Java 7+)                   ║");
+        System.out.println("║  SECCIÓN 8: TRY-WITH-RESOURCES (Java 7+)                  ║");
         System.out.println("╚════════════════════════════════════════════════════════════╝\n");
         
         System.out.println("Cerrando recursos automáticamente:\n");
         
-        // Forma antigua (verbose)
         System.out.println("Forma antigua (con finally explícito):");
         BufferedReader br = null;
         try {
@@ -462,7 +453,6 @@ public class Excepciones {
             }
         }
         
-        // Forma moderna (try-with-resources)
         System.out.println("Forma moderna (try-with-resources):");
         try (BufferedReader br2 = new BufferedReader(new FileReader("test.txt"))) {
             System.out.println("   ✓ Archivo procesado");
@@ -475,7 +465,7 @@ public class Excepciones {
         // SECCIÓN 9: ERRORES (NO EXCEPCIONES)
         // ═══════════════════════════════════════════════════════════════════
         System.out.println("\n╔════════════════════════════════════════════════════════════╗");
-        System.out.println("║  SECCIÓN 9: ERRORES (NO DEBEN CAPTURARSE)                  ║");
+        System.out.println("║  SECCIÓN 9: ERRORES (NO DEBEN CAPTURARSE)                 ║");
         System.out.println("╚════════════════════════════════════════════════════════════╝\n");
         
         System.out.println("Errores graves que generalmente no se capturan:\n");
@@ -494,7 +484,7 @@ public class Excepciones {
         // RESUMEN FINAL
         // ═══════════════════════════════════════════════════════════════════
         System.out.println("╔════════════════════════════════════════════════════════════╗");
-        System.out.println("║                     FIN DE LA DEMOSTRACIÓN                 ║");
+        System.out.println("║                     FIN DE LA DEMOSTRACIÓN                ║");
         System.out.println("╚════════════════════════════════════════════════════════════╝");
         
         System.out.println("\n📚 RESUMEN DE EXCEPCIONES:\n");
@@ -555,8 +545,6 @@ public class Excepciones {
     }
     
     static void metodoQuePropaga() throws IOException {
-        // throws indica que este método PUEDE lanzar IOException
-        // y que el llamador debe manejarla
         throw new IOException("Error de E/S simulado");
     }
     
