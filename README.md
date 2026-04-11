@@ -5,6 +5,7 @@
 [![Python](https://img.shields.io/badge/Python-3.12+-3776AB?style=flat-square&logo=python&logoColor=white)](https://python.org)
 [![C++](https://img.shields.io/badge/C++-17+-00599C?style=flat-square&logo=c%2B%2B&logoColor=white)](https://isocpp.org)
 [![Java](https://img.shields.io/badge/Java-17+-ED8B00?style=flat-square&logo=openjdk&logoColor=white)](https://openjdk.org)
+[![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=flat-square&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![HTML](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
 
 **Repositorio personal de ejercicios, proyectos y experimentos de programación**
@@ -92,6 +93,31 @@ Programming-Exercises/
 │   ├── index2.html              # Página secundaria
 │   └── style.css                # Estilos CSS
 │
+├── 💛 JAVASCRIPT/                # Ejercicios JavaScript
+│   ├── 01-tipos/                # Tipos de datos
+│   │   ├── 01-variables.js      # Variables y declaraciones
+│   │   ├── 02-primitivos.js     # Tipos primitivos
+│   │   ├── 06-objetos.js        # Objetos básicos
+│   │   └── 07-arrays.js         # Arrays y métodos
+│   │
+│   ├── 02-operadores/           # Operadores
+│   │   ├── 01-aritmeticos.js    # Operadores aritméticos
+│   │   ├── 03-comparacion.js    # Comparación
+│   │   └── 04-logicos.js        # Operadores lógicos
+│   │
+│   ├── 03-control-flujo/        # Control de flujo
+│   │   ├── 01-if.js             # Condicionales
+│   │   ├── 02-loops.js          # Bucles
+│   │   └── 03-switch.js         # Switch case
+│   │
+│   ├── 04-objetos/              # Objetos avanzados
+│   │   ├── 03-factory.js        # Factory functions
+│   │   ├── 04-constructor.js    # Constructores
+│   │   └── 08-referencia.js     # Referencias
+│   │
+│   ├── index.html               # Página de pruebas
+│   └── app.js                   # Aplicación principal
+│
 └── 📚 cleancode.pdf              # Libro Clean Code
 ```
 
@@ -104,6 +130,7 @@ Programming-Exercises/
 | **Python** 🐍 | Automatización, IA, Algoritmos | 16 archivos |
 | **C++** 💻 | Estructuras de datos, Algoritmos, Juegos | 80+ archivos |
 | **Java** ☕ | POO, Estructuras de datos, HackerRank | 20+ archivos |
+| **JavaScript** 💛 | Fundamentos, Objetos, Control de flujo | 30+ archivos |
 | **HTML/CSS** 🌐 | Desarrollo Web frontend | 3 archivos |
 
 ---
@@ -149,7 +176,17 @@ java NombreClase
 </details>
 
 <details>
-<summary><b>🌐 HTML/CSS/JS</b></summary>
+<summary><b>💛 JavaScript</b></summary>
+
+```bash
+cd JAVASCRIPT
+# Abre index.html en tu navegador o ejecuta con Node.js
+node 01-tipos/01-variables.js
+```
+</details>
+
+<details>
+<summary><b>🌐 HTML/CSS</b></summary>
 
 Abre los archivos directamente en tu navegador web.
 </details>
@@ -165,6 +202,7 @@ Abre los archivos directamente en tu navegador web.
 | C++ | 4,000+ | 8 categorías |
 | Python | 1,500+ | 4 categorías |
 | Java | 800+ | 3 proyectos |
+| JavaScript | 600+ | 4 categorías |
 | HTML/CSS | 300+ | 1 proyecto |
 
 </div>
