@@ -21,10 +21,10 @@ import os
 import datetime
 import zipfile
 
-def crear_nombre_backup():
+def crear_nombre_backup(carpeta_origen):
     """Genera un nombre para el archivo de backup basado en la fecha y hora actual"""
     fecha_hora = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-    return f"backup_{fecha_hora}.zip"
+    return f"{carpeta_origen}_{fecha_hora}.zip"
 
 def crear_backup(carpeta_origen, carpeta_destino):
     """Crea un backup en zip de la carpeta de origen dentro de la carpeta destino"""
@@ -40,7 +40,7 @@ def crear_backup(carpeta_origen, carpeta_destino):
         os.makedirs(carpeta_destino)
 
     # Nombre y ruta del backup
-    nombre_backup = crear_nombre_backup()
+    nombre_backup = crear_nombre_backup(carpeta_origen)
     ruta_backup = os.path.join(carpeta_destino, nombre_backup)
 
     print(f"Creando backup en '{ruta_backup}'...")
@@ -52,6 +52,7 @@ def crear_backup(carpeta_origen, carpeta_destino):
                 ruta_archivo = os.path.join(carpeta_actual, archivo)
                 # Guardar el archivo en el zip con ruta relativa a la carpeta origen
                 ruta_relativa = os.path.relpath(ruta_archivo, carpeta_origen)
+            
                 zip_file.write(ruta_archivo, ruta_relativa)
                 print(f"Añadido: '{ruta_relativa}'")
 

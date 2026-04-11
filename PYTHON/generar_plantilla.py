@@ -29,6 +29,7 @@ ALTO = 3508     # Alto A4 en 300 DPI
 
 # Carpeta de salida (se crea en el mismo directorio del script)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+print (os.path.abspath(__file__))
 CARPETA_SALIDA = os.path.join(BASE_DIR, "salida")
 
 # ============================================
