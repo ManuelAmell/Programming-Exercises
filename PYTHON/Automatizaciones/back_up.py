@@ -21,7 +21,7 @@ import os
 import datetime
 import zipfile
 
-def crear_nombre_backup(carpeta_origen):
+def crear_nombre_backup(carpeta_origen ):
     """Genera un nombre para el archivo de backup basado en la fecha y hora actual"""
     fecha_hora = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
     return f"{carpeta_origen}_{fecha_hora}.zip"
@@ -61,6 +61,11 @@ def crear_backup(carpeta_origen, carpeta_destino):
 
 def main():
     carpeta_origen = input("Ingrese la ruta de la carpeta que desea respaldar: ")
+    if carpeta_origen is None or carpeta_origen.strip() == "":
+        print("ERROR: La ruta de la carpeta de origen no puede estar vacía.")
+        exit(1)
+
+        
     carpeta_destino = input(
         "Ingrese la ruta donde desea guardar el backup (deja en blanco para usar la carpeta 'backup' junto al script): "
     )
@@ -75,6 +80,7 @@ def main():
     if ruta_backup:
         tamaño_mb = os.path.getsize(ruta_backup) / (1024*1024)
         print(f"\nTamaño del Backup: {tamaño_mb:.2f} MB")
+        print(f"\nCarpeta respaldada: {os.path.basename(carpeta_origen)}")
         print("\n¡Backup completado con éxito!")
 
 if __name__ == "__main__":

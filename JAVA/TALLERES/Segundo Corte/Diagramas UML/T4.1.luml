@@ -1,0 +1,1084 @@
+{
+  "id": "d5c912f7-58ce-448c-94d0-986ea855ad6f",
+  "name": "Untitled Diagram",
+  "nodes": [
+    {
+      "id": "node-app",
+      "type": "umlClass",
+      "position": {
+        "x": -820,
+        "y": -40
+      },
+      "data": {
+        "label": "App",
+        "stereotype": "class",
+        "attributes": [],
+        "methods": [
+          {
+            "id": "meth-1777125320949-l7pc0gw5d",
+            "name": "main",
+            "returnType": "void",
+            "visibility": "+",
+            "isStatic": true,
+            "parameters": [
+              {
+                "name": "args",
+                "type": "String[]"
+              }
+            ]
+          }
+        ],
+        "isMain": true,
+        "package": "App"
+      },
+      "selected": false,
+      "width": 256,
+      "height": 120
+    },
+    {
+      "id": "node-persona",
+      "type": "umlClass",
+      "position": {
+        "x": 880,
+        "y": -420
+      },
+      "data": {
+        "label": "Persona",
+        "stereotype": "class",
+        "attributes": [
+          {
+            "id": "attr-1777125332953-pxioe95qa",
+            "name": "nombre",
+            "type": "String",
+            "visibility": "-",
+            "isArray": false
+          },
+          {
+            "id": "attr-1777125332953-ypis6zb3t",
+            "name": "direccion",
+            "type": "String",
+            "visibility": "-",
+            "isArray": false
+          },
+          {
+            "id": "attr-1777125332953-vqvt98zu5",
+            "name": "telefono",
+            "type": "String",
+            "visibility": "-",
+            "isArray": false
+          }
+        ],
+        "methods": [
+          {
+            "id": "meth-1777125332954-kq1l8g5dr",
+            "name": "getNombre",
+            "returnType": "String",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "meth-1777125332954-6dsv0lbfp",
+            "name": "setNombre",
+            "returnType": "void",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": [
+              {
+                "name": "nombre",
+                "type": "String"
+              }
+            ]
+          },
+          {
+            "id": "meth-1777125332954-nwkmqingt",
+            "name": "getDireccion",
+            "returnType": "String",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "meth-1777125332954-toiw9h0da",
+            "name": "setDireccion",
+            "returnType": "void",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": [
+              {
+                "name": "direccion",
+                "type": "String"
+              }
+            ]
+          },
+          {
+            "id": "meth-1777125332954-j23p60tc5",
+            "name": "getTelefono",
+            "returnType": "String",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "meth-1777125332954-ohgr975nq",
+            "name": "setTelefono",
+            "returnType": "void",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": [
+              {
+                "name": "telefono",
+                "type": "String"
+              }
+            ]
+          },
+          {
+            "id": "meth-1777125332954-jd4wwgkkp",
+            "name": "mostrarInfo",
+            "returnType": "void",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "c768a661-5e73-47eb-9877-61ad11c13234",
+            "name": "Persona",
+            "returnType": "",
+            "isReturnArray": false,
+            "visibility": "+",
+            "isStatic": false,
+            "isConstructor": true,
+            "parameters": [
+              {
+                "name": "nombre",
+                "type": "String",
+                "isArray": false
+              },
+              {
+                "name": "direccion",
+                "type": "String",
+                "isArray": false
+              },
+              {
+                "name": "telefono",
+                "type": "String",
+                "isArray": false
+              }
+            ]
+          }
+        ],
+        "isMain": false,
+        "package": "ClinicaApp"
+      },
+      "selected": false,
+      "width": 481,
+      "height": 325
+    },
+    {
+      "id": "node-veterinario",
+      "type": "umlClass",
+      "position": {
+        "x": 880,
+        "y": 480
+      },
+      "data": {
+        "label": "Veterinario",
+        "stereotype": "class",
+        "attributes": [],
+        "methods": [
+          {
+            "id": "08890729-ab83-4c9d-98e2-5cf729481ec4",
+            "visibility": "+",
+            "name": "Veterinario",
+            "returnType": "void",
+            "isReturnArray": false,
+            "isConstructor": true,
+            "parameters": [
+              {
+                "name": "nombre",
+                "type": "String",
+                "isArray": false
+              },
+              {
+                "name": "direccion",
+                "type": "String",
+                "isArray": false
+              },
+              {
+                "name": "telefono",
+                "type": "String",
+                "isArray": false
+              }
+            ]
+          },
+          {
+            "id": "meth-1777125352421-9osjrhd8n",
+            "name": "aplicarTratamiento",
+            "returnType": "void",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": [
+              {
+                "name": "animal",
+                "type": "Animal"
+              },
+              {
+                "name": "tratamiento",
+                "type": "Tratamiento"
+              }
+            ]
+          },
+          {
+            "id": "meth-1777125352421-c9iyby4or",
+            "name": "mostrarInfo",
+            "returnType": "void",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          }
+        ],
+        "isMain": false,
+        "package": "ClinicaApp"
+      },
+      "selected": true,
+      "width": 507,
+      "height": 167
+    },
+    {
+      "id": "node-tratamiento",
+      "type": "umlClass",
+      "position": {
+        "x": 880,
+        "y": 960
+      },
+      "data": {
+        "label": "Tratamiento",
+        "stereotype": "class",
+        "attributes": [
+          {
+            "id": "attr-1777125369079-zzqkxk0xk",
+            "name": "descripcion",
+            "type": "String",
+            "visibility": "-",
+            "isArray": false
+          },
+          {
+            "id": "attr-1777125369079-wur16thof",
+            "name": "fecha",
+            "type": "String",
+            "visibility": "-",
+            "isArray": false
+          },
+          {
+            "id": "attr-1777125369079-q35ogez5u",
+            "name": "nombreVeterinario",
+            "type": "String",
+            "visibility": "-",
+            "isArray": false
+          }
+        ],
+        "methods": [
+          {
+            "id": "meth-1777125369079-mazmaj19y",
+            "name": "getDescripcion",
+            "returnType": "String",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "meth-1777125369080-brrfahlyp",
+            "name": "setDescripcion",
+            "returnType": "void",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": [
+              {
+                "name": "descripcion",
+                "type": "String"
+              }
+            ]
+          },
+          {
+            "id": "meth-1777125369080-xe29xldjp",
+            "name": "getFecha",
+            "returnType": "String",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "meth-1777125369080-vtxwlm0xw",
+            "name": "setFecha",
+            "returnType": "void",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": [
+              {
+                "name": "fecha",
+                "type": "String"
+              }
+            ]
+          },
+          {
+            "id": "meth-1777125369080-7utcqvv8u",
+            "name": "getNombreVeterinario",
+            "returnType": "String",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "meth-1777125369080-bdnot8is7",
+            "name": "setNombreVeterinario",
+            "returnType": "void",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": [
+              {
+                "name": "nombreVeterinario",
+                "type": "String"
+              }
+            ]
+          },
+          {
+            "id": "meth-1777125369080-o2l1mi313",
+            "name": "toString",
+            "returnType": "String",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          }
+        ],
+        "isMain": false,
+        "package": "ClinicaApp"
+      },
+      "selected": false,
+      "width": 377,
+      "height": 301
+    },
+    {
+      "id": "node-historiaclinica",
+      "type": "umlClass",
+      "position": {
+        "x": -880,
+        "y": 1300
+      },
+      "data": {
+        "label": "HistoriaClinica",
+        "stereotype": "class",
+        "attributes": [
+          {
+            "id": "attr-1777125375501-jeqnjja2v",
+            "name": "tratamientos",
+            "type": "ArrayList<Tratamiento>",
+            "visibility": "-",
+            "isArray": false
+          }
+        ],
+        "methods": [
+          {
+            "id": "3499badd-fe76-42bf-b53a-1953127fee75",
+            "visibility": "+",
+            "name": "HistoriaClinica",
+            "returnType": "void",
+            "isReturnArray": false,
+            "isConstructor": true,
+            "parameters": [
+              {
+                "name": "Tratamiento",
+                "type": "Arraylist",
+                "isArray": false
+              }
+            ]
+          },
+          {
+            "id": "meth-1777125375501-i2m9h6ip2",
+            "name": "agregarTratamiento",
+            "returnType": "void",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": [
+              {
+                "name": "tratamiento",
+                "type": "Tratamiento"
+              }
+            ]
+          },
+          {
+            "id": "meth-1777125375501-34dvg9v2m",
+            "name": "mostrarHistorial",
+            "returnType": "void",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "meth-1777125375501-nuod2o1wm",
+            "name": "getTratamientos",
+            "returnType": "ArrayList<Tratamiento>",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          }
+        ],
+        "isMain": false,
+        "package": "ClinicaApp"
+      },
+      "selected": false,
+      "width": 357,
+      "height": 199
+    },
+    {
+      "id": "node-due",
+      "type": "umlClass",
+      "position": {
+        "x": -360,
+        "y": -560
+      },
+      "data": {
+        "label": "Dueño",
+        "stereotype": "class",
+        "attributes": [
+          {
+            "id": "attr-1777125381709-v3r9o8pep",
+            "name": "animales",
+            "type": "ArrayList<Animal>",
+            "visibility": "-",
+            "isArray": false
+          }
+        ],
+        "methods": [
+          {
+            "id": "ce4f6074-49e6-47ca-b614-3d00106561ca",
+            "visibility": "+",
+            "name": "Dueño",
+            "returnType": "void",
+            "isReturnArray": false,
+            "isConstructor": true,
+            "parameters": [
+              {
+                "name": "Nombre",
+                "type": "String",
+                "isArray": false
+              },
+              {
+                "name": "direccion",
+                "type": "String",
+                "isArray": false
+              },
+              {
+                "name": "Telefono",
+                "type": "String",
+                "isArray": false
+              }
+            ]
+          },
+          {
+            "id": "meth-1777125381709-fk171fn7l",
+            "name": "agregarAnimal",
+            "returnType": "void",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": [
+              {
+                "name": "animal",
+                "type": "Animal"
+              }
+            ]
+          },
+          {
+            "id": "meth-1777125381709-a9codeuva",
+            "name": "mostrarAnimales",
+            "returnType": "void",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "meth-1777125381709-6waxrr124",
+            "name": "getAnimales",
+            "returnType": "ArrayList<Animal>",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "af75bde1-3fa0-45db-9555-f48a43007b78",
+            "name": "Dueño",
+            "returnType": "",
+            "isReturnArray": false,
+            "visibility": "+",
+            "isStatic": false,
+            "isConstructor": true,
+            "parameters": [
+              {
+                "name": "animales",
+                "type": "ArrayList<Animal>",
+                "isArray": false
+              }
+            ]
+          }
+        ],
+        "isMain": false,
+        "package": "ClinicaApp"
+      },
+      "selected": false,
+      "width": 468,
+      "height": 222
+    },
+    {
+      "id": "node-animal",
+      "type": "umlClass",
+      "position": {
+        "x": -340,
+        "y": 380
+      },
+      "data": {
+        "label": "Animal",
+        "stereotype": "class",
+        "attributes": [
+          {
+            "id": "attr-1777125389261-33r8atf0e",
+            "name": "nombre",
+            "type": "String",
+            "visibility": "-",
+            "isArray": false
+          },
+          {
+            "id": "attr-1777125389261-csoab4yz5",
+            "name": "especie",
+            "type": "String",
+            "visibility": "-",
+            "isArray": false
+          },
+          {
+            "id": "attr-1777125389261-e4p5ayk2q",
+            "name": "edad",
+            "type": "int",
+            "visibility": "-",
+            "isArray": false
+          },
+          {
+            "id": "attr-1777125389261-2iu1ipdba",
+            "name": "historia",
+            "type": "HistoriaClinica",
+            "visibility": "-",
+            "isArray": false
+          }
+        ],
+        "methods": [
+          {
+            "id": "meth-1777125389261-op9f263qn",
+            "name": "getNombre",
+            "returnType": "String",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "meth-1777125389261-9v4no6ihl",
+            "name": "setNombre",
+            "returnType": "void",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": [
+              {
+                "name": "nombre",
+                "type": "String"
+              }
+            ]
+          },
+          {
+            "id": "meth-1777125389261-mvgwz22g6",
+            "name": "getEspecie",
+            "returnType": "String",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "meth-1777125389261-wav03egg3",
+            "name": "setEspecie",
+            "returnType": "void",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": [
+              {
+                "name": "especie",
+                "type": "String"
+              }
+            ]
+          },
+          {
+            "id": "meth-1777125389261-46js1he0g",
+            "name": "getEdad",
+            "returnType": "int",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "meth-1777125389261-sbwgr2gsj",
+            "name": "setEdad",
+            "returnType": "void",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": [
+              {
+                "name": "edad",
+                "type": "int"
+              }
+            ]
+          },
+          {
+            "id": "meth-1777125389261-kieuxc2mr",
+            "name": "getHistoria",
+            "returnType": "HistoriaClinica",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "meth-1777125389261-fan30o6zd",
+            "name": "mostrarInfo",
+            "returnType": "void",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "3f11bb36-097d-4f6c-bada-30ba1f4d3ca9",
+            "name": "Animal",
+            "returnType": "",
+            "isReturnArray": false,
+            "visibility": "+",
+            "isStatic": false,
+            "isConstructor": true,
+            "parameters": [
+              {
+                "name": "nombre",
+                "type": "String",
+                "isArray": false
+              },
+              {
+                "name": "especie",
+                "type": "String",
+                "isArray": false
+              },
+              {
+                "name": "edad",
+                "type": "int",
+                "isArray": false
+              },
+              {
+                "name": "historia",
+                "type": "HistoriaClinica",
+                "isArray": false
+              }
+            ]
+          }
+        ],
+        "isMain": false,
+        "package": "ClinicaApp"
+      },
+      "selected": false,
+      "width": 421,
+      "height": 384
+    },
+    {
+      "id": "220ab98b-3a14-4041-b35b-596d77ae69b9",
+      "type": "umlClass",
+      "position": {
+        "x": -1280,
+        "y": -40
+      },
+      "data": {
+        "label": "Arraylist",
+        "attributes": [],
+        "methods": [],
+        "stereotype": "class"
+      },
+      "selected": false,
+      "width": 256,
+      "height": 90
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge-veterinario-persona-inheritance",
+      "source": "node-veterinario",
+      "target": "node-persona",
+      "sourceHandle": "bottom",
+      "targetHandle": "left",
+      "type": "umlEdge",
+      "animated": false,
+      "style": {
+        "stroke": "var(--edge-inheritance)",
+        "strokeWidth": 3,
+        "zIndex": 999,
+        "opacity": 1,
+        "transition": "all 0.3s ease"
+      },
+      "data": {
+        "type": "inheritance",
+        "targetMultiplicity": ""
+      }
+    },
+    {
+      "id": "edge-historiaclinica-tratamiento-association",
+      "source": "node-historiaclinica",
+      "target": "node-tratamiento",
+      "sourceHandle": "right",
+      "targetHandle": "left",
+      "type": "umlEdge",
+      "animated": false,
+      "markerEnd": {
+        "type": "arrow",
+        "width": 20,
+        "height": 20,
+        "color": "var(--edge-base)"
+      },
+      "style": {
+        "stroke": "var(--edge-composition)",
+        "strokeWidth": 3,
+        "zIndex": 999,
+        "opacity": 1,
+        "transition": "all 0.3s ease"
+      },
+      "data": {
+        "type": "composition",
+        "sourceMultiplicity": "1",
+        "targetMultiplicity": "0..*"
+      }
+    },
+    {
+      "id": "edge-due-animal-association",
+      "source": "node-due",
+      "target": "node-animal",
+      "sourceHandle": "bottom",
+      "targetHandle": "top",
+      "type": "umlEdge",
+      "animated": false,
+      "markerEnd": {
+        "type": "arrow",
+        "width": 20,
+        "height": 20,
+        "color": "var(--edge-base)"
+      },
+      "style": {
+        "stroke": "var(--edge-association)",
+        "strokeWidth": 3,
+        "zIndex": 999,
+        "opacity": 1,
+        "transition": "all 0.3s ease"
+      },
+      "data": {
+        "type": "association",
+        "sourceMultiplicity": "1",
+        "targetMultiplicity": "0..*"
+      }
+    },
+    {
+      "id": "edge-animal-historiaclinica-association",
+      "source": "node-animal",
+      "target": "node-historiaclinica",
+      "sourceHandle": "bottom",
+      "targetHandle": "top",
+      "type": "umlEdge",
+      "animated": false,
+      "markerEnd": {
+        "type": "arrow",
+        "width": 20,
+        "height": 20,
+        "color": "var(--edge-base)"
+      },
+      "style": {
+        "stroke": "var(--edge-composition)",
+        "strokeWidth": 3,
+        "zIndex": 999,
+        "opacity": 1,
+        "transition": "all 0.3s ease"
+      },
+      "data": {
+        "type": "composition",
+        "sourceMultiplicity": "1",
+        "targetMultiplicity": "1"
+      }
+    },
+    {
+      "id": "reactflow__edge-node-animalright-node-veterinarioleft",
+      "source": "node-animal",
+      "target": "node-veterinario",
+      "sourceHandle": "right",
+      "targetHandle": "left",
+      "type": "umlEdge",
+      "animated": false,
+      "markerEnd": {
+        "type": "arrow",
+        "width": 20,
+        "height": 20,
+        "color": "var(--edge-base)",
+        "strokeWidth": 1.5
+      },
+      "style": {
+        "stroke": "var(--edge-dependency)",
+        "strokeWidth": 3,
+        "strokeDasharray": "4,4",
+        "zIndex": 999,
+        "opacity": 1,
+        "transition": "all 0.3s ease"
+      },
+      "data": {
+        "type": "dependency"
+      }
+    },
+    {
+      "id": "reactflow__edge-node-tratamientotop-node-veterinarioleft",
+      "source": "node-veterinario",
+      "target": "node-tratamiento",
+      "sourceHandle": "bottom",
+      "targetHandle": "top",
+      "type": "umlEdge",
+      "animated": false,
+      "markerEnd": {
+        "type": "arrow",
+        "width": 20,
+        "height": 20,
+        "color": "var(--edge-base)",
+        "strokeWidth": 1.5
+      },
+      "style": {
+        "stroke": "var(--edge-dependency)",
+        "strokeWidth": 3,
+        "strokeDasharray": "4,4",
+        "zIndex": 999,
+        "opacity": 1,
+        "transition": "all 0.3s ease"
+      },
+      "data": {
+        "type": "dependency"
+      }
+    },
+    {
+      "id": "reactflow__edge-node-dueright-node-personatop",
+      "source": "node-due",
+      "target": "node-persona",
+      "sourceHandle": "right",
+      "targetHandle": "left",
+      "type": "umlEdge",
+      "animated": false,
+      "markerEnd": {
+        "type": "arrow",
+        "width": 20,
+        "height": 20,
+        "color": "var(--edge-base)",
+        "strokeWidth": 1.5
+      },
+      "style": {
+        "stroke": "var(--edge-inheritance)",
+        "strokeWidth": 3,
+        "zIndex": 999,
+        "opacity": 1,
+        "transition": "all 0.3s ease"
+      },
+      "data": {
+        "type": "inheritance"
+      }
+    },
+    {
+      "id": "reactflow__edge-node-dueleft-node-apptop",
+      "source": "node-due",
+      "target": "node-app",
+      "sourceHandle": "bottom",
+      "targetHandle": "top",
+      "type": "umlEdge",
+      "animated": false,
+      "markerEnd": {
+        "type": "arrow",
+        "width": 20,
+        "height": 20,
+        "color": "var(--edge-base)",
+        "strokeWidth": 1.5
+      },
+      "style": {
+        "stroke": "var(--edge-association)",
+        "strokeWidth": 3,
+        "zIndex": 999,
+        "opacity": 1,
+        "transition": "all 0.3s ease"
+      },
+      "data": {
+        "type": "association"
+      }
+    },
+    {
+      "id": "reactflow__edge-node-appright-node-dueleft",
+      "source": "node-app",
+      "target": "node-due",
+      "sourceHandle": "right",
+      "targetHandle": "left",
+      "type": "umlEdge",
+      "animated": false,
+      "markerEnd": {
+        "type": "arrow",
+        "width": 20,
+        "height": 20,
+        "color": "var(--edge-base)",
+        "strokeWidth": 1.5
+      },
+      "style": {
+        "stroke": "var(--edge-dependency)",
+        "strokeWidth": 3,
+        "strokeDasharray": "4,4",
+        "zIndex": 999,
+        "opacity": 1,
+        "transition": "all 0.3s ease"
+      },
+      "data": {
+        "type": "dependency"
+      }
+    },
+    {
+      "id": "reactflow__edge-node-appbottom-node-animalleft",
+      "source": "node-app",
+      "target": "node-animal",
+      "sourceHandle": "right",
+      "targetHandle": "top",
+      "type": "umlEdge",
+      "animated": false,
+      "markerEnd": {
+        "type": "arrow",
+        "width": 20,
+        "height": 20,
+        "color": "var(--edge-base)",
+        "strokeWidth": 1.5
+      },
+      "style": {
+        "stroke": "var(--edge-dependency)",
+        "strokeWidth": 3,
+        "strokeDasharray": "4,4",
+        "zIndex": 999,
+        "opacity": 1,
+        "transition": "all 0.3s ease"
+      },
+      "data": {
+        "type": "dependency"
+      }
+    },
+    {
+      "id": "reactflow__edge-node-appbottom-node-historiaclinicaleft",
+      "source": "node-app",
+      "target": "node-historiaclinica",
+      "sourceHandle": "bottom",
+      "targetHandle": "top",
+      "type": "umlEdge",
+      "animated": false,
+      "markerEnd": {
+        "type": "arrow",
+        "width": 20,
+        "height": 20,
+        "color": "var(--edge-base)",
+        "strokeWidth": 1.5
+      },
+      "style": {
+        "stroke": "var(--edge-dependency)",
+        "strokeWidth": 3,
+        "strokeDasharray": "4,4",
+        "zIndex": 999,
+        "opacity": 1,
+        "transition": "all 0.3s ease"
+      },
+      "data": {
+        "type": "dependency"
+      }
+    },
+    {
+      "id": "reactflow__edge-node-appbottom-node-tratamientoleft",
+      "source": "node-app",
+      "target": "node-tratamiento",
+      "sourceHandle": "right",
+      "targetHandle": "left",
+      "type": "umlEdge",
+      "animated": false,
+      "markerEnd": {
+        "type": "arrow",
+        "width": 20,
+        "height": 20,
+        "color": "var(--edge-base)",
+        "strokeWidth": 1.5
+      },
+      "style": {
+        "stroke": "var(--edge-dependency)",
+        "strokeWidth": 3,
+        "strokeDasharray": "4,4",
+        "zIndex": 999,
+        "opacity": 1,
+        "transition": "all 0.3s ease"
+      },
+      "data": {
+        "type": "dependency"
+      }
+    },
+    {
+      "id": "reactflow__edge-node-appright-node-veterinariotop",
+      "source": "node-app",
+      "target": "node-veterinario",
+      "sourceHandle": "right",
+      "targetHandle": "left",
+      "type": "umlEdge",
+      "animated": false,
+      "markerEnd": {
+        "type": "arrow",
+        "width": 20,
+        "height": 20,
+        "color": "var(--edge-base)",
+        "strokeWidth": 1.5
+      },
+      "style": {
+        "stroke": "var(--edge-dependency)",
+        "strokeWidth": 3,
+        "strokeDasharray": "4,4",
+        "zIndex": 999,
+        "opacity": 1,
+        "transition": "all 0.3s ease"
+      },
+      "data": {
+        "type": "dependency"
+      }
+    },
+    {
+      "id": "reactflow__edge-node-appright-node-personatop",
+      "source": "node-app",
+      "target": "node-persona",
+      "sourceHandle": "right",
+      "targetHandle": "left",
+      "type": "umlEdge",
+      "animated": false,
+      "markerEnd": {
+        "type": "arrow",
+        "width": 20,
+        "height": 20,
+        "color": "var(--edge-base)",
+        "strokeWidth": 1.5
+      },
+      "style": {
+        "stroke": "var(--edge-dependency)",
+        "strokeWidth": 3,
+        "strokeDasharray": "4,4",
+        "zIndex": 999,
+        "opacity": 1,
+        "transition": "all 0.3s ease"
+      },
+      "data": {
+        "type": "dependency"
+      }
+    }
+  ],
+  "activeConnectionMode": "association",
+  "viewport": {
+    "x": 607.0508157141769,
+    "y": 182.92387279970694,
+    "zoom": 0.5
+  }
+}

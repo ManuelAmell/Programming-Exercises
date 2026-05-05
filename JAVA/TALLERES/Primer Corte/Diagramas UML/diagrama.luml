@@ -1,0 +1,353 @@
+{
+  "id": "dffb5f87-2158-422f-9e19-ca49ebe80f49",
+  "name": "Untitled Diagram",
+  "nodes": [
+    {
+      "id": "53ff0a1a-9a3a-4a9b-84b5-c312d20bdcec",
+      "type": "umlClass",
+      "position": {
+        "x": -220,
+        "y": -440
+      },
+      "data": {
+        "label": "app",
+        "attributes": [
+          {
+            "id": "60a7186a-98ef-4e85-bb09-15761a56fc91",
+            "visibility": "-",
+            "name": "arregloTriangulo",
+            "type": "ArrayList",
+            "isArray": false
+          },
+          {
+            "id": "250b1aca-a5b8-4b9b-8b98-ad6435116da3",
+            "visibility": "-",
+            "name": "arregloCirculo",
+            "type": "ArrayList",
+            "isArray": false
+          },
+          {
+            "id": "b4529310-72ea-464c-9aa8-418efd6cb511",
+            "visibility": "-",
+            "name": "arregloRectangulo",
+            "type": "ArrayList",
+            "isArray": false
+          },
+          {
+            "id": "04f956f9-fd98-4a77-9791-58e07e81a07c",
+            "visibility": "-",
+            "name": "arregloCuadrado",
+            "type": "ArrayList",
+            "isArray": false
+          },
+          {
+            "id": "d0822dcd-91ad-49e8-a61d-2ef232a2c73b",
+            "visibility": "-",
+            "name": "arregloPentagono",
+            "type": "ArrayList",
+            "isArray": false
+          }
+        ],
+        "methods": [
+          {
+            "id": "899f5bfd-6b31-4584-86ae-720e8f727678",
+            "visibility": "+",
+            "name": "static main",
+            "returnType": "void",
+            "isReturnArray": false,
+            "parameters": [
+              {
+                "name": "args",
+                "type": "String",
+                "isArray": true
+              }
+            ],
+            "isConstructor": false
+          }
+        ],
+        "stereotype": "class",
+        "package": "FigGeomApp"
+      },
+      "selected": true,
+      "width": 266,
+      "height": 194
+    },
+    {
+      "id": "8a1d9ff4-8b8e-4eb0-8808-3c2043da220c",
+      "type": "umlClass",
+      "position": {
+        "x": 340,
+        "y": -500
+      },
+      "data": {
+        "label": "triangulo",
+        "attributes": [],
+        "methods": [],
+        "stereotype": "class",
+        "package": "FigGeom"
+      },
+      "selected": false,
+      "width": 256,
+      "height": 107
+    },
+    {
+      "id": "b4727c9b-891a-4b68-b225-04964a79cdeb",
+      "type": "umlClass",
+      "position": {
+        "x": 340,
+        "y": -340
+      },
+      "data": {
+        "label": "circulo",
+        "attributes": [],
+        "methods": [],
+        "stereotype": "class",
+        "package": "FigGeom"
+      },
+      "selected": false,
+      "width": 256,
+      "height": 107
+    },
+    {
+      "id": "7b9926a8-0315-46e7-b343-67e163031e64",
+      "type": "umlClass",
+      "position": {
+        "x": 340,
+        "y": -60
+      },
+      "data": {
+        "label": "rectangulo",
+        "attributes": [],
+        "methods": [],
+        "stereotype": "class",
+        "package": "FigGeom"
+      },
+      "selected": false,
+      "width": 256,
+      "height": 107
+    },
+    {
+      "id": "a3349d88-127d-4279-85da-7d9470c54c30",
+      "type": "umlClass",
+      "position": {
+        "x": 320,
+        "y": 80
+      },
+      "data": {
+        "label": "cuadrado",
+        "attributes": [],
+        "methods": [],
+        "stereotype": "class",
+        "package": "FigGeom"
+      },
+      "selected": false,
+      "width": 256,
+      "height": 107
+    },
+    {
+      "id": "b1912929-57e8-4d4d-8b00-6e6a6b99576b",
+      "type": "umlClass",
+      "position": {
+        "x": -200,
+        "y": -100
+      },
+      "data": {
+        "label": "ArrayList",
+        "attributes": [],
+        "methods": [],
+        "stereotype": "class"
+      },
+      "selected": false,
+      "width": 256,
+      "height": 92
+    },
+    {
+      "id": "c228ecf7-d208-4a53-aa66-8636456dd62f",
+      "type": "umlClass",
+      "position": {
+        "x": 340,
+        "y": -200
+      },
+      "data": {
+        "label": "Pentagono",
+        "attributes": [],
+        "methods": [],
+        "stereotype": "class",
+        "package": "FigGeom"
+      },
+      "selected": false,
+      "width": 256,
+      "height": 107
+    }
+  ],
+  "edges": [
+    {
+      "id": "reactflow__edge-53ff0a1a-9a3a-4a9b-84b5-c312d20bdcecbottom-b1912929-57e8-4d4d-8b00-6e6a6b99576btop",
+      "source": "53ff0a1a-9a3a-4a9b-84b5-c312d20bdcec",
+      "target": "b1912929-57e8-4d4d-8b00-6e6a6b99576b",
+      "sourceHandle": "bottom",
+      "targetHandle": "top",
+      "type": "umlEdge",
+      "animated": false,
+      "markerEnd": {
+        "type": "arrow",
+        "width": 20,
+        "height": 20,
+        "color": "var(--edge-base)",
+        "strokeWidth": 1.5
+      },
+      "style": {
+        "stroke": "#06b6d4",
+        "strokeWidth": 3,
+        "strokeDasharray": "4,4",
+        "zIndex": 999,
+        "opacity": 1,
+        "transition": "all 0.3s ease"
+      },
+      "data": {
+        "type": "dependency"
+      }
+    },
+    {
+      "id": "reactflow__edge-53ff0a1a-9a3a-4a9b-84b5-c312d20bdcecright-8a1d9ff4-8b8e-4eb0-8808-3c2043da220cleft",
+      "source": "53ff0a1a-9a3a-4a9b-84b5-c312d20bdcec",
+      "target": "8a1d9ff4-8b8e-4eb0-8808-3c2043da220c",
+      "sourceHandle": "right",
+      "targetHandle": "left",
+      "type": "umlEdge",
+      "animated": false,
+      "markerEnd": {
+        "type": "arrow",
+        "width": 20,
+        "height": 20,
+        "color": "var(--edge-base)",
+        "strokeWidth": 1.5
+      },
+      "style": {
+        "stroke": "#06b6d4",
+        "strokeWidth": 3,
+        "strokeDasharray": "4,4",
+        "zIndex": 999,
+        "opacity": 1,
+        "transition": "all 0.3s ease"
+      },
+      "data": {
+        "type": "dependency"
+      }
+    },
+    {
+      "id": "reactflow__edge-53ff0a1a-9a3a-4a9b-84b5-c312d20bdcecright-b4727c9b-891a-4b68-b225-04964a79cdebleft",
+      "source": "53ff0a1a-9a3a-4a9b-84b5-c312d20bdcec",
+      "target": "b4727c9b-891a-4b68-b225-04964a79cdeb",
+      "sourceHandle": "right",
+      "targetHandle": "left",
+      "type": "umlEdge",
+      "animated": false,
+      "markerEnd": {
+        "type": "arrow",
+        "width": 20,
+        "height": 20,
+        "color": "var(--edge-base)",
+        "strokeWidth": 1.5
+      },
+      "style": {
+        "stroke": "#06b6d4",
+        "strokeWidth": 3,
+        "strokeDasharray": "4,4",
+        "zIndex": 999,
+        "opacity": 1,
+        "transition": "all 0.3s ease"
+      },
+      "data": {
+        "type": "dependency"
+      }
+    },
+    {
+      "id": "reactflow__edge-53ff0a1a-9a3a-4a9b-84b5-c312d20bdcecright-c228ecf7-d208-4a53-aa66-8636456dd62fleft",
+      "source": "53ff0a1a-9a3a-4a9b-84b5-c312d20bdcec",
+      "target": "c228ecf7-d208-4a53-aa66-8636456dd62f",
+      "sourceHandle": "right",
+      "targetHandle": "left",
+      "type": "umlEdge",
+      "animated": false,
+      "markerEnd": {
+        "type": "arrow",
+        "width": 20,
+        "height": 20,
+        "color": "var(--edge-base)",
+        "strokeWidth": 1.5
+      },
+      "style": {
+        "stroke": "#06b6d4",
+        "strokeWidth": 3,
+        "strokeDasharray": "4,4",
+        "zIndex": 999,
+        "opacity": 1,
+        "transition": "all 0.3s ease"
+      },
+      "data": {
+        "type": "dependency"
+      }
+    },
+    {
+      "id": "reactflow__edge-53ff0a1a-9a3a-4a9b-84b5-c312d20bdcecright-7b9926a8-0315-46e7-b343-67e163031e64left",
+      "source": "53ff0a1a-9a3a-4a9b-84b5-c312d20bdcec",
+      "target": "7b9926a8-0315-46e7-b343-67e163031e64",
+      "sourceHandle": "right",
+      "targetHandle": "left",
+      "type": "umlEdge",
+      "animated": false,
+      "markerEnd": {
+        "type": "arrow",
+        "width": 20,
+        "height": 20,
+        "color": "var(--edge-base)",
+        "strokeWidth": 1.5
+      },
+      "style": {
+        "stroke": "#06b6d4",
+        "strokeWidth": 3,
+        "strokeDasharray": "4,4",
+        "zIndex": 999,
+        "opacity": 1,
+        "transition": "all 0.3s ease"
+      },
+      "data": {
+        "type": "dependency"
+      }
+    },
+    {
+      "id": "reactflow__edge-53ff0a1a-9a3a-4a9b-84b5-c312d20bdcecright-a3349d88-127d-4279-85da-7d9470c54c30left",
+      "source": "53ff0a1a-9a3a-4a9b-84b5-c312d20bdcec",
+      "target": "a3349d88-127d-4279-85da-7d9470c54c30",
+      "sourceHandle": "right",
+      "targetHandle": "left",
+      "type": "umlEdge",
+      "animated": false,
+      "markerEnd": {
+        "type": "arrow",
+        "width": 20,
+        "height": 20,
+        "color": "var(--edge-base)",
+        "strokeWidth": 1.5
+      },
+      "style": {
+        "stroke": "#06b6d4",
+        "strokeWidth": 3,
+        "strokeDasharray": "4,4",
+        "zIndex": 999,
+        "opacity": 1,
+        "transition": "all 0.3s ease"
+      },
+      "data": {
+        "type": "dependency"
+      }
+    }
+  ],
+  "activeConnectionMode": "association",
+  "viewport": {
+    "x": 337.8035186154723,
+    "y": 520.8296500939337,
+    "zoom": 1.0160943748350326
+  }
+}

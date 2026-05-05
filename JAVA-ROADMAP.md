@@ -1,6 +1,6 @@
 # ☕ Java Learning Roadmap
 
-> **Estado actual:** Intermedio | **Nivel:** POO & Estructuras de Datos | **Última actualización:** Abril 2026
+> **Estado actual:** Intermedio | **Nivel:** POO & Estructuras de Datos | **Última actualización:** Mayo 2026
 
 ---
 
@@ -79,6 +79,24 @@ Avanzado:           ████░░░░░░░░░░░░░░░░
   - Herencia y polimorfismo aplicado
 - ✅ **Talleres de clase** - Múltiples proyectos
 - ✅ **Diagramas UML** - Diseño de clases
+
+### 📚 Talleres Reorganizados (90%)
+- ✅ **Primer Corte:**
+  - T1 IA - Introducción a la programación
+  - T2 - Figuras Geométricas (Gestión completa)
+  - T3 - Ramos (Sistema de gestión)
+  - T4 - Organización (Empleados, Oficinas, Tareas)
+- ✅ **Segundo Corte:**
+  - T1 - Proyectos avanzados
+  - T2 - Proyectos con archivos y estructuras
+  - Diagramas UML - Documentación de diseño
+
+### 🏠 Proyectos Personales (75%)
+- ✅ **PasswordSecure** - Gestor de contraseñas
+  - Sistema de seguridad
+  - Encriptación básica
+  - Interfaz de gestión
+  - Modularizado con packages
 
 ### 🔧 Conversiones y Utilidades (75%)
 - ✅ Conversiones de tipos

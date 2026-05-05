@@ -169,11 +169,37 @@ inventory_data.txt
 database_*.txt
 
 # ----------------------------
-# Documentos (opcional - descomenta si no quieres subirlos)
+# Documentos
 # ----------------------------
 # *.docx
 # *.pdf
 # *.xlsx
+*.zip
 PruebaCarpeta/
 Descargas_playlist/
 /.metadata/
+
+# Java 
+*.jar
+*.war
+# Java - archivos Eclipse
+/.metadata/
+/.lock
+*.lock
+# Proyectos comprimidos
+*.rar
+# Archivos de datos temporales 
+*.ipynb
+.ipynb_checkpoints/
+# Ejecutables de C++
+**/ejecutables/*  (ya lo tienes pero verificar)
+# Credenciales
+**/Credenciales.txt
+**/credentials.txt
+**/secrets.txt
+# TypeScript/Node:
+package-lock.json  (opcional - algunos lo ignoran, otros no)
+# Python:
+*.egg-info/
+dist/
+build/

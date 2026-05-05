@@ -1,0 +1,1454 @@
+{
+  "id": "6c225208-fa0b-41ba-bdf9-ed8601d80a66",
+  "name": "Untitled Diagram",
+  "nodes": [
+    {
+      "id": "node-app",
+      "type": "umlClass",
+      "position": {
+        "x": -480,
+        "y": 1300
+      },
+      "data": {
+        "label": "App",
+        "stereotype": "class",
+        "attributes": [
+          {
+            "id": "3f7c4644-928a-4033-b512-e395afefe258",
+            "visibility": "-",
+            "name": "Circulo",
+            "type": "Arraylist",
+            "isArray": true
+          },
+          {
+            "id": "2c1e66b1-dad4-497d-90a0-96bd38074357",
+            "visibility": "-",
+            "name": "Triangulo",
+            "type": "Arraylist",
+            "isArray": true
+          },
+          {
+            "id": "1b1a5be8-93d3-485a-8bd6-e3369e53d351",
+            "visibility": "-",
+            "name": "Cuadrado ",
+            "type": "Arraylist",
+            "isArray": true
+          },
+          {
+            "id": "f9b6db80-2bc5-402b-b193-57913e6a3b9e",
+            "visibility": "-",
+            "name": "Rectangulo",
+            "type": "Arraylist",
+            "isArray": true
+          },
+          {
+            "id": "ed77a806-af32-4b5e-a96f-94a84e7b5893",
+            "visibility": "-",
+            "name": "Pentagono",
+            "type": "Arraylist",
+            "isArray": true
+          }
+        ],
+        "methods": [
+          {
+            "id": "meth-1774292835738-27awkt7qp",
+            "name": "obtenerRangoColor",
+            "returnType": "int",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "meth-1774292835738-pz8r7ynq4",
+            "name": "cargarDatosDesdeCSV",
+            "returnType": "void",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": [
+              {
+                "name": "archivo",
+                "type": "String"
+              }
+            ]
+          },
+          {
+            "id": "meth-1774292835738-44vq4a9n8",
+            "name": "parsearColor",
+            "returnType": "Color",
+            "visibility": "-",
+            "isStatic": false,
+            "parameters": [
+              {
+                "name": "colorStr",
+                "type": "String"
+              }
+            ]
+          },
+          {
+            "id": "meth-1774292835738-quxdinoau",
+            "name": "obtenerNombreColor",
+            "returnType": "String",
+            "visibility": "-",
+            "isStatic": false,
+            "parameters": [
+              {
+                "name": "c",
+                "type": "Color"
+              }
+            ]
+          },
+          {
+            "id": "meth-1774292835738-55dva5kgw",
+            "name": "mostrarFigurasInvalidas",
+            "returnType": "void",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "meth-1774292835738-qecg0uk44",
+            "name": "ejecutarReportePrincipal",
+            "returnType": "void",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "meth-1774292835738-fyc6grlyw",
+            "name": "actualizarFigura",
+            "returnType": "void",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "meth-1774292835738-o5fjgen8y",
+            "name": "mostrarMenu",
+            "returnType": "void",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "meth-1774292835738-rgfppf8x1",
+            "name": "main",
+            "returnType": "void",
+            "visibility": "+",
+            "isStatic": true,
+            "parameters": [
+              {
+                "name": "args",
+                "type": "String[]"
+              }
+            ]
+          }
+        ],
+        "isMain": true,
+        "package": "app"
+      },
+      "selected": false,
+      "width": 330,
+      "height": 379
+    },
+    {
+      "id": "node-circulo",
+      "type": "umlClass",
+      "position": {
+        "x": 780,
+        "y": -220
+      },
+      "data": {
+        "label": "Circulo",
+        "stereotype": "class",
+        "attributes": [
+          {
+            "id": "attr-1774292858791-htmmj7z5n",
+            "name": "id",
+            "type": "String",
+            "visibility": "#",
+            "isArray": false
+          },
+          {
+            "id": "attr-1774292858791-ze2ns4x9d",
+            "name": "diametro",
+            "type": "double",
+            "visibility": "#",
+            "isArray": false
+          },
+          {
+            "id": "attr-1774292858791-yvov6c7k1",
+            "name": "color",
+            "type": "Color",
+            "visibility": "-",
+            "isArray": false
+          }
+        ],
+        "methods": [
+          {
+            "id": "875a6cff-cbf7-45f8-a7a1-26b69967dbb5",
+            "name": "Circulo",
+            "returnType": "",
+            "isReturnArray": false,
+            "visibility": "+",
+            "isStatic": false,
+            "isConstructor": true,
+            "parameters": [
+              {
+                "name": "id",
+                "type": "String",
+                "isArray": false
+              },
+              {
+                "name": "diametro",
+                "type": "double",
+                "isArray": false
+              },
+              {
+                "name": "color",
+                "type": "Color",
+                "isArray": false
+              }
+            ]
+          },
+          {
+            "id": "meth-1774292858791-9q7hu8ij7",
+            "name": "getId",
+            "returnType": "String",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "meth-1774292858791-0xcjhlcvr",
+            "name": "getDiametro",
+            "returnType": "double",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "meth-1774292858791-e7ioz9y0e",
+            "name": "getColor",
+            "returnType": "Color",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "meth-1774292858791-qa1n4uuts",
+            "name": "setDiametro",
+            "returnType": "void",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": [
+              {
+                "name": "diametro",
+                "type": "double"
+              }
+            ]
+          },
+          {
+            "id": "meth-1774292858791-2av8hlpr6",
+            "name": "setColor",
+            "returnType": "void",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": [
+              {
+                "name": "color",
+                "type": "Color"
+              }
+            ]
+          },
+          {
+            "id": "meth-1774292858791-wa3jduczx",
+            "name": "calcularPerimetro",
+            "returnType": "double",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "meth-1774292858791-nmwp67tju",
+            "name": "calcularArea",
+            "returnType": "double",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "meth-1774292858791-tdb7j0nm5",
+            "name": "toString",
+            "returnType": "String",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          }
+        ],
+        "isMain": false,
+        "package": "figurasgeometricas"
+      },
+      "selected": false,
+      "width": 458,
+      "height": 347
+    },
+    {
+      "id": "node-color",
+      "type": "umlClass",
+      "position": {
+        "x": 2120,
+        "y": 1040
+      },
+      "data": {
+        "label": "Color",
+        "stereotype": "class",
+        "attributes": [],
+        "methods": []
+      },
+      "selected": false,
+      "width": 256,
+      "height": 89
+    },
+    {
+      "id": "node-cuadrado",
+      "type": "umlClass",
+      "position": {
+        "x": 780,
+        "y": 900
+      },
+      "data": {
+        "label": "Cuadrado",
+        "stereotype": "class",
+        "attributes": [
+          {
+            "id": "attr-1774292885931-ixqroi36k",
+            "name": "id",
+            "type": "String",
+            "visibility": "#",
+            "isArray": false
+          },
+          {
+            "id": "attr-1774292885931-zkm5liop5",
+            "name": "lado",
+            "type": "double",
+            "visibility": "#",
+            "isArray": false
+          },
+          {
+            "id": "attr-1774292885931-rxxaq54zg",
+            "name": "color",
+            "type": "Color",
+            "visibility": "-",
+            "isArray": false
+          }
+        ],
+        "methods": [
+          {
+            "id": "60ddd203-e253-4659-ab91-0595913b5af2",
+            "name": "Cuadrado",
+            "returnType": "",
+            "isReturnArray": false,
+            "visibility": "+",
+            "isStatic": false,
+            "isConstructor": true,
+            "parameters": [
+              {
+                "name": "id",
+                "type": "String",
+                "isArray": false
+              },
+              {
+                "name": "lado",
+                "type": "double",
+                "isArray": false
+              },
+              {
+                "name": "color",
+                "type": "Color",
+                "isArray": false
+              }
+            ]
+          },
+          {
+            "id": "meth-1774292885931-byd0ut0jl",
+            "name": "getId",
+            "returnType": "String",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "meth-1774292885931-3k5xgbzmf",
+            "name": "getLado",
+            "returnType": "double",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "meth-1774292885931-x8cxzfcj1",
+            "name": "getColor",
+            "returnType": "Color",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "meth-1774292885931-jolaf90qf",
+            "name": "setLado",
+            "returnType": "void",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": [
+              {
+                "name": "lado",
+                "type": "double"
+              }
+            ]
+          },
+          {
+            "id": "meth-1774292885931-ggti61zgp",
+            "name": "setColor",
+            "returnType": "void",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": [
+              {
+                "name": "color",
+                "type": "Color"
+              }
+            ]
+          },
+          {
+            "id": "meth-1774292885931-3xmtlf8a6",
+            "name": "calcularPerimetro",
+            "returnType": "double",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "meth-1774292885931-lfh137jxs",
+            "name": "calcularArea",
+            "returnType": "double",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "meth-1774292885931-xam25qroe",
+            "name": "toString",
+            "returnType": "String",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          }
+        ],
+        "isMain": false,
+        "package": "figurasgeometricas"
+      },
+      "selected": false,
+      "width": 436,
+      "height": 347
+    },
+    {
+      "id": "node-pentagono",
+      "type": "umlClass",
+      "position": {
+        "x": 780,
+        "y": 1980
+      },
+      "data": {
+        "label": "Pentagono",
+        "stereotype": "class",
+        "attributes": [
+          {
+            "id": "attr-1774292906706-pi15od3he",
+            "name": "id",
+            "type": "String",
+            "visibility": "#",
+            "isArray": false
+          },
+          {
+            "id": "attr-1774292906706-31w8h0w9a",
+            "name": "lado1",
+            "type": "double",
+            "visibility": "#",
+            "isArray": false
+          },
+          {
+            "id": "attr-1774292906706-r7bu1nwwg",
+            "name": "lado2",
+            "type": "double",
+            "visibility": "#",
+            "isArray": false
+          },
+          {
+            "id": "attr-1774292906706-nl7ifmuir",
+            "name": "lado3",
+            "type": "double",
+            "visibility": "#",
+            "isArray": false
+          },
+          {
+            "id": "attr-1774292906706-i50kk6ix6",
+            "name": "lado4",
+            "type": "double",
+            "visibility": "#",
+            "isArray": false
+          },
+          {
+            "id": "attr-1774292906706-s9stre33w",
+            "name": "lado5",
+            "type": "double",
+            "visibility": "#",
+            "isArray": false
+          },
+          {
+            "id": "attr-1774292906706-9x67dnfo5",
+            "name": "color",
+            "type": "Color",
+            "visibility": "-",
+            "isArray": false
+          }
+        ],
+        "methods": [
+          {
+            "id": "9dc405ee-8b9a-4762-a285-e519c2d7e1eb",
+            "name": "Pentagono",
+            "returnType": "",
+            "isReturnArray": false,
+            "visibility": "+",
+            "isStatic": false,
+            "isConstructor": true,
+            "parameters": [
+              {
+                "name": "id",
+                "type": "String",
+                "isArray": false
+              },
+              {
+                "name": "lado1",
+                "type": "double",
+                "isArray": false
+              },
+              {
+                "name": "lado2",
+                "type": "double",
+                "isArray": false
+              },
+              {
+                "name": "lado3",
+                "type": "double",
+                "isArray": false
+              },
+              {
+                "name": "lado4",
+                "type": "double",
+                "isArray": false
+              },
+              {
+                "name": "lado5",
+                "type": "double",
+                "isArray": false
+              },
+              {
+                "name": "color",
+                "type": "Color",
+                "isArray": false
+              }
+            ]
+          },
+          {
+            "id": "meth-1774292906706-4feus5ikm",
+            "name": "getId",
+            "returnType": "String",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "meth-1774292906706-wn5hhpbbg",
+            "name": "getLado1",
+            "returnType": "double",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "meth-1774292906706-8a8h2p1v6",
+            "name": "getLado2",
+            "returnType": "double",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "meth-1774292906706-g8mzn21g2",
+            "name": "getLado3",
+            "returnType": "double",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "meth-1774292906706-i4bqgdxy6",
+            "name": "getLado4",
+            "returnType": "double",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "meth-1774292906706-zgb87hvfb",
+            "name": "getLado5",
+            "returnType": "double",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "meth-1774292906706-gurz1jr15",
+            "name": "getColor",
+            "returnType": "Color",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "meth-1774292906706-xqpjpcvg2",
+            "name": "setLado1",
+            "returnType": "void",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": [
+              {
+                "name": "lado1",
+                "type": "double"
+              }
+            ]
+          },
+          {
+            "id": "meth-1774292906706-op3ldnaqh",
+            "name": "setLado2",
+            "returnType": "void",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": [
+              {
+                "name": "lado2",
+                "type": "double"
+              }
+            ]
+          },
+          {
+            "id": "meth-1774292906706-7d9j11qtv",
+            "name": "setLado3",
+            "returnType": "void",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": [
+              {
+                "name": "lado3",
+                "type": "double"
+              }
+            ]
+          },
+          {
+            "id": "meth-1774292906706-zvyke6aye",
+            "name": "setLado4",
+            "returnType": "void",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": [
+              {
+                "name": "lado4",
+                "type": "double"
+              }
+            ]
+          },
+          {
+            "id": "meth-1774292906706-4d578kaja",
+            "name": "setLado5",
+            "returnType": "void",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": [
+              {
+                "name": "lado5",
+                "type": "double"
+              }
+            ]
+          },
+          {
+            "id": "meth-1774292906706-582qwpywo",
+            "name": "setColor",
+            "returnType": "void",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": [
+              {
+                "name": "color",
+                "type": "Color"
+              }
+            ]
+          },
+          {
+            "id": "meth-1774292906706-hlbpua9rg",
+            "name": "calcularPerimetro",
+            "returnType": "double",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "meth-1774292906706-d2rmqaqak",
+            "name": "esRegular",
+            "returnType": "boolean",
+            "visibility": "-",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "meth-1774292906706-w5raqgzh1",
+            "name": "calcularArea",
+            "returnType": "double",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "meth-1774292906706-1d44hvxs3",
+            "name": "toString",
+            "returnType": "String",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          }
+        ],
+        "isMain": false,
+        "package": "figurasgeometricas"
+      },
+      "selected": false,
+      "width": 485,
+      "height": 662
+    },
+    {
+      "id": "node-rectangulo",
+      "type": "umlClass",
+      "position": {
+        "x": 780,
+        "y": 1440
+      },
+      "data": {
+        "label": "Rectangulo",
+        "stereotype": "class",
+        "attributes": [
+          {
+            "id": "attr-1774292939705-vjwrqjlme",
+            "name": "id",
+            "type": "String",
+            "visibility": "#",
+            "isArray": false
+          },
+          {
+            "id": "attr-1774292939705-n0xoup8ly",
+            "name": "largo",
+            "type": "double",
+            "visibility": "#",
+            "isArray": false
+          },
+          {
+            "id": "attr-1774292939705-o4d6a7sw4",
+            "name": "ancho",
+            "type": "double",
+            "visibility": "#",
+            "isArray": false
+          },
+          {
+            "id": "attr-1774292939705-jeve9kcl7",
+            "name": "color",
+            "type": "Color",
+            "visibility": "-",
+            "isArray": false
+          }
+        ],
+        "methods": [
+          {
+            "id": "meth-1774292939705-t277hxegk",
+            "name": "getId",
+            "returnType": "String",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "meth-1774292939705-8clled4u7",
+            "name": "getLargo",
+            "returnType": "double",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "meth-1774292939705-fk9trnzcn",
+            "name": "getAncho",
+            "returnType": "double",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "0aee57fb-4eb2-43f2-836e-5e734b3f3a1e",
+            "name": "Rectangulo",
+            "returnType": "",
+            "isReturnArray": false,
+            "visibility": "+",
+            "isStatic": false,
+            "isConstructor": true,
+            "parameters": [
+              {
+                "name": "id",
+                "type": "String",
+                "isArray": false
+              },
+              {
+                "name": "largo",
+                "type": "double",
+                "isArray": false
+              },
+              {
+                "name": "ancho",
+                "type": "double",
+                "isArray": false
+              },
+              {
+                "name": "color",
+                "type": "Color",
+                "isArray": false
+              }
+            ]
+          },
+          {
+            "id": "meth-1774292939705-b20cykbdf",
+            "name": "getColor",
+            "returnType": "Color",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "meth-1774292939706-06ohe256j",
+            "name": "setLargo",
+            "returnType": "void",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": [
+              {
+                "name": "largo",
+                "type": "double"
+              }
+            ]
+          },
+          {
+            "id": "meth-1774292939706-qhdjdansy",
+            "name": "setAncho",
+            "returnType": "void",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": [
+              {
+                "name": "ancho",
+                "type": "double"
+              }
+            ]
+          },
+          {
+            "id": "meth-1774292939706-rhqgmo2yp",
+            "name": "setColor",
+            "returnType": "void",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": [
+              {
+                "name": "color",
+                "type": "Color"
+              }
+            ]
+          },
+          {
+            "id": "meth-1774292939706-js5c2iow8",
+            "name": "calcularPerimetro",
+            "returnType": "double",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "meth-1774292939706-weoym4uk1",
+            "name": "calcularArea",
+            "returnType": "double",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "meth-1774292939706-ano5m0yki",
+            "name": "toString",
+            "returnType": "String",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          }
+        ],
+        "isMain": false,
+        "package": "figurasgeometricas"
+      },
+      "selected": false,
+      "width": 471,
+      "height": 430
+    },
+    {
+      "id": "node-triangulo",
+      "type": "umlClass",
+      "position": {
+        "x": 780,
+        "y": 300
+      },
+      "data": {
+        "label": "Triangulo",
+        "stereotype": "class",
+        "attributes": [
+          {
+            "id": "attr-1774292986199-7qnf2sxs5",
+            "name": "id",
+            "type": "String",
+            "visibility": "#",
+            "isArray": false
+          },
+          {
+            "id": "attr-1774292986199-yikywsy0c",
+            "name": "ladoA",
+            "type": "double",
+            "visibility": "#",
+            "isArray": false
+          },
+          {
+            "id": "attr-1774292986199-cmdfu564s",
+            "name": "ladoB",
+            "type": "double",
+            "visibility": "#",
+            "isArray": false
+          },
+          {
+            "id": "attr-1774292986199-lww235qyr",
+            "name": "ladoC",
+            "type": "double",
+            "visibility": "#",
+            "isArray": false
+          },
+          {
+            "id": "attr-1774292986199-4lovdcf6z",
+            "name": "color",
+            "type": "Color",
+            "visibility": "-",
+            "isArray": false
+          }
+        ],
+        "methods": [
+          {
+            "id": "b83ff7af-62f0-47f2-9b10-d38f0a87983b",
+            "name": "Triangulo",
+            "returnType": "",
+            "isReturnArray": false,
+            "visibility": "+",
+            "isStatic": false,
+            "isConstructor": true,
+            "parameters": [
+              {
+                "name": "id",
+                "type": "String",
+                "isArray": false
+              },
+              {
+                "name": "ladoA",
+                "type": "double",
+                "isArray": false
+              },
+              {
+                "name": "ladoB",
+                "type": "double",
+                "isArray": false
+              },
+              {
+                "name": "ladoC",
+                "type": "double",
+                "isArray": false
+              },
+              {
+                "name": "color",
+                "type": "Color",
+                "isArray": false
+              }
+            ]
+          },
+          {
+            "id": "meth-1774292986199-joydw59l0",
+            "name": "getId",
+            "returnType": "String",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "meth-1774292986199-vj5byut5m",
+            "name": "getLadoA",
+            "returnType": "double",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "meth-1774292986199-1x18v578t",
+            "name": "getLadoB",
+            "returnType": "double",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "meth-1774292986199-t9urz5xyw",
+            "name": "getLadoC",
+            "returnType": "double",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "meth-1774292986199-61tlafqgp",
+            "name": "getColor",
+            "returnType": "Color",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "meth-1774292986199-c955n2hec",
+            "name": "setLadoA",
+            "returnType": "void",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": [
+              {
+                "name": "ladoA",
+                "type": "double"
+              }
+            ]
+          },
+          {
+            "id": "meth-1774292986199-8b53i0nj5",
+            "name": "setLadoB",
+            "returnType": "void",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": [
+              {
+                "name": "ladoB",
+                "type": "double"
+              }
+            ]
+          },
+          {
+            "id": "meth-1774292986199-abi3jbpfr",
+            "name": "setLadoC",
+            "returnType": "void",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": [
+              {
+                "name": "ladoC",
+                "type": "double"
+              }
+            ]
+          },
+          {
+            "id": "meth-1774292986199-ks1rjraiv",
+            "name": "setColor",
+            "returnType": "void",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": [
+              {
+                "name": "color",
+                "type": "Color"
+              }
+            ]
+          },
+          {
+            "id": "meth-1774292986199-chajdjd1e",
+            "name": "calcularPerimetro",
+            "returnType": "double",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "meth-1774292986199-lp3tc0fun",
+            "name": "calcularArea",
+            "returnType": "double",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          },
+          {
+            "id": "meth-1774292986199-4p8e8xkpp",
+            "name": "toString",
+            "returnType": "String",
+            "visibility": "+",
+            "isStatic": false,
+            "parameters": []
+          }
+        ],
+        "isMain": false,
+        "package": "figurasgeometricas"
+      },
+      "selected": false,
+      "width": 464,
+      "height": 493
+    },
+    {
+      "id": "c2212977-a22b-41e9-80ca-92cdadda6c07",
+      "type": "umlClass",
+      "position": {
+        "x": -920,
+        "y": 1440
+      },
+      "data": {
+        "label": "Arraylist",
+        "attributes": [],
+        "methods": [],
+        "stereotype": "class"
+      },
+      "selected": false,
+      "width": 256,
+      "height": 89
+    },
+    {
+      "id": "5c9c233c-d632-4937-b23a-9a07616577a0",
+      "type": "umlNote",
+      "position": {
+        "x": -440,
+        "y": 1040
+      },
+      "data": {
+        "label": "Elaborado por :",
+        "attributes": [],
+        "methods": [],
+        "stereotype": "note",
+        "content": "Manuel Amell #001\nAndres Ramos #028\nBrayan Ochoa #003"
+      },
+      "selected": false,
+      "width": 224,
+      "height": 120
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge-circulo-color-association",
+      "source": "node-circulo",
+      "target": "node-color",
+      "sourceHandle": "right",
+      "targetHandle": "left",
+      "type": "umlEdge",
+      "animated": false,
+      "markerEnd": {
+        "type": "arrow",
+        "width": 20,
+        "height": 20,
+        "color": "var(--edge-base)"
+      },
+      "style": {
+        "stroke": "var(--edge-association)",
+        "strokeWidth": 3,
+        "zIndex": 999,
+        "opacity": 1,
+        "transition": "all 0.3s ease"
+      },
+      "data": {
+        "type": "association",
+        "targetMultiplicity": "1"
+      }
+    },
+    {
+      "id": "edge-cuadrado-color-association",
+      "source": "node-cuadrado",
+      "target": "node-color",
+      "sourceHandle": "right",
+      "targetHandle": "left",
+      "type": "umlEdge",
+      "animated": false,
+      "markerEnd": {
+        "type": "arrow",
+        "width": 20,
+        "height": 20,
+        "color": "var(--edge-base)"
+      },
+      "style": {
+        "stroke": "var(--edge-association)",
+        "strokeWidth": 3,
+        "zIndex": 999,
+        "opacity": 1,
+        "transition": "all 0.3s ease"
+      },
+      "data": {
+        "type": "association",
+        "targetMultiplicity": "1"
+      }
+    },
+    {
+      "id": "edge-pentagono-color-association",
+      "source": "node-pentagono",
+      "target": "node-color",
+      "sourceHandle": "right",
+      "targetHandle": "left",
+      "type": "umlEdge",
+      "animated": false,
+      "markerEnd": {
+        "type": "arrow",
+        "width": 20,
+        "height": 20,
+        "color": "var(--edge-base)"
+      },
+      "style": {
+        "stroke": "var(--edge-association)",
+        "strokeWidth": 3,
+        "zIndex": 999,
+        "opacity": 1,
+        "transition": "all 0.3s ease"
+      },
+      "data": {
+        "type": "association",
+        "targetMultiplicity": "1"
+      }
+    },
+    {
+      "id": "edge-rectangulo-color-association",
+      "source": "node-rectangulo",
+      "target": "node-color",
+      "sourceHandle": "right",
+      "targetHandle": "left",
+      "type": "umlEdge",
+      "animated": false,
+      "markerEnd": {
+        "type": "arrow",
+        "width": 20,
+        "height": 20,
+        "color": "var(--edge-base)"
+      },
+      "style": {
+        "stroke": "var(--edge-association)",
+        "strokeWidth": 3,
+        "zIndex": 999,
+        "opacity": 1,
+        "transition": "all 0.3s ease"
+      },
+      "data": {
+        "type": "association",
+        "targetMultiplicity": "1"
+      }
+    },
+    {
+      "id": "edge-triangulo-color-association",
+      "source": "node-triangulo",
+      "target": "node-color",
+      "sourceHandle": "right",
+      "targetHandle": "left",
+      "type": "umlEdge",
+      "animated": false,
+      "markerEnd": {
+        "type": "arrow",
+        "width": 20,
+        "height": 20,
+        "color": "var(--edge-base)"
+      },
+      "style": {
+        "stroke": "var(--edge-association)",
+        "strokeWidth": 3,
+        "zIndex": 999,
+        "opacity": 1,
+        "transition": "all 0.3s ease"
+      },
+      "data": {
+        "type": "association",
+        "targetMultiplicity": "1"
+      }
+    },
+    {
+      "id": "reactflow__edge-node-appright-node-circuloleft",
+      "source": "node-app",
+      "target": "node-circulo",
+      "sourceHandle": "right",
+      "targetHandle": "left",
+      "type": "umlEdge",
+      "animated": false,
+      "markerEnd": {
+        "type": "arrow",
+        "width": 20,
+        "height": 20,
+        "color": "var(--edge-base)",
+        "strokeWidth": 1.5
+      },
+      "style": {
+        "stroke": "var(--edge-dependency)",
+        "strokeWidth": 3,
+        "strokeDasharray": "4,4",
+        "zIndex": 999,
+        "opacity": 1,
+        "transition": "all 0.3s ease"
+      },
+      "data": {
+        "type": "dependency"
+      }
+    },
+    {
+      "id": "reactflow__edge-node-appright-node-trianguloleft",
+      "source": "node-app",
+      "target": "node-triangulo",
+      "sourceHandle": "right",
+      "targetHandle": "left",
+      "type": "umlEdge",
+      "animated": false,
+      "markerEnd": {
+        "type": "arrow",
+        "width": 20,
+        "height": 20,
+        "color": "var(--edge-base)",
+        "strokeWidth": 1.5
+      },
+      "style": {
+        "stroke": "var(--edge-dependency)",
+        "strokeWidth": 3,
+        "strokeDasharray": "4,4",
+        "zIndex": 999,
+        "opacity": 1,
+        "transition": "all 0.3s ease"
+      },
+      "data": {
+        "type": "dependency"
+      }
+    },
+    {
+      "id": "reactflow__edge-node-appright-node-cuadradoleft",
+      "source": "node-app",
+      "target": "node-cuadrado",
+      "sourceHandle": "right",
+      "targetHandle": "left",
+      "type": "umlEdge",
+      "animated": false,
+      "markerEnd": {
+        "type": "arrow",
+        "width": 20,
+        "height": 20,
+        "color": "var(--edge-base)",
+        "strokeWidth": 1.5
+      },
+      "style": {
+        "stroke": "var(--edge-dependency)",
+        "strokeWidth": 3,
+        "strokeDasharray": "4,4",
+        "zIndex": 999,
+        "opacity": 1,
+        "transition": "all 0.3s ease"
+      },
+      "data": {
+        "type": "dependency"
+      }
+    },
+    {
+      "id": "reactflow__edge-node-appright-node-rectanguloleft",
+      "source": "node-app",
+      "target": "node-rectangulo",
+      "sourceHandle": "right",
+      "targetHandle": "left",
+      "type": "umlEdge",
+      "animated": false,
+      "markerEnd": {
+        "type": "arrow",
+        "width": 20,
+        "height": 20,
+        "color": "var(--edge-base)",
+        "strokeWidth": 1.5
+      },
+      "style": {
+        "stroke": "var(--edge-dependency)",
+        "strokeWidth": 3,
+        "strokeDasharray": "4,4",
+        "zIndex": 999,
+        "opacity": 1,
+        "transition": "all 0.3s ease"
+      },
+      "data": {
+        "type": "dependency"
+      }
+    },
+    {
+      "id": "reactflow__edge-node-appright-node-pentagonoleft",
+      "source": "node-app",
+      "target": "node-pentagono",
+      "sourceHandle": "right",
+      "targetHandle": "left",
+      "type": "umlEdge",
+      "animated": false,
+      "markerEnd": {
+        "type": "arrow",
+        "width": 20,
+        "height": 20,
+        "color": "var(--edge-base)",
+        "strokeWidth": 1.5
+      },
+      "style": {
+        "stroke": "var(--edge-dependency)",
+        "strokeWidth": 3,
+        "strokeDasharray": "4,4",
+        "zIndex": 999,
+        "opacity": 1,
+        "transition": "all 0.3s ease"
+      },
+      "data": {
+        "type": "dependency"
+      }
+    },
+    {
+      "id": "reactflow__edge-c2212977-a22b-41e9-80ca-92cdadda6c07right-node-appleft",
+      "source": "c2212977-a22b-41e9-80ca-92cdadda6c07",
+      "target": "node-app",
+      "sourceHandle": "right",
+      "targetHandle": "left",
+      "type": "umlEdge",
+      "animated": false,
+      "markerEnd": {
+        "type": "arrow",
+        "width": 20,
+        "height": 20,
+        "color": "var(--edge-base)",
+        "strokeWidth": 1.5
+      },
+      "style": {
+        "stroke": "var(--edge-association)",
+        "strokeWidth": 3,
+        "zIndex": 999,
+        "opacity": 1,
+        "transition": "all 0.3s ease"
+      },
+      "data": {
+        "type": "association"
+      }
+    }
+  ],
+  "activeConnectionMode": "association",
+  "viewport": {
+    "x": 764,
+    "y": -3.5,
+    "zoom": 0.5
+  }
+}
